@@ -2,29 +2,42 @@
 title: "Research Question Write Up"
 author: "Maggie Nead"
 date: "6/11/2020"
+header-includes:
+    - \usepackage{setspace}\doublespacing
 output: html_document
 ---
 
-Research Question Write Up
+# Research Question Write Up
     
-     •	Introduction: 
-     Congress: The Electoral Connection written by David Mayhew refers to Members of Congress as “single-minded seekers of reelection” stating that in order for Members of Congress to reach their goals of moving up the ranks, pushing policy goals, etc. they must first be in congress. This in turn makes reelection the single focus of current members. This research seeks to address the question of what happens when the goal of reelection is taken of the table.
+  **Introduction:** 
+  
+     	*Congress: The Electoral Connection* written by David Mayhew refers to Members of Congress as “single-minded seekers of reelection” stating that in order for Members of Congress to reach their goals of moving up the ranks, pushing policy goals, etc. they must first be in congress. This in turn makes reelection the single focus of current members. This research seeks to address the question of what happens when the goal of reelection is taken of the table. Or to put it simply, how does the behavior of members of congress change when they are not reelected?
+     
+  **Data**
+  
+    Data has been collected on 383,824 congressional correspondences from Members of Congress to federal agencies. In order to answer the question of congressional behavior there are a couple of ways to look at this data:
+    
+    1.	The behavior of members who are reelected (i.e. in consecutive congresses)
+    2.	The behavior of members who are not reelected (i.e. not in consecutive congresses)
+    3.	Compared behavior between the members who did not run for reelection and those that lost their bid for reelection.
+    
+    For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who is in one congress and not the following congress. This research may further break this down between members who ran for reelection and lost and those who did not run for reelection at all.
 
-     •	Questions:
+
+  **Questions:**
+  
+     The broad research question may be further broken down into the questions listed below:
          o	Is the behavior between members who get reelected different from members who do not?
              	How?
          o	Are members of congress not seeking reelection more willing to step outside of party lines on policy than those seeking reelection?
          o	Are corporate interests less important to members not seeking reelection?
              	Or are members who do not advocate for corporate interests less likely to be reelected?
-   
-    •	Has this changed over time?
+         o  Has this changed over time?
     
-    •	Why it is important
+  **Why it is important**
     
-    •	Thesis
+  **Thesis**
    
-    •	Data
-    For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who shows up in one congress and not the following congress. This research may further break this down between members who ran for reelection and lost and those who did not run for reelection at all.
-
-    •	References
-      o	Mayhew, David. 1974. Congress: The Electoral Connection. New Haven: Yale University Press.
+  **References**
+  
+      o Mayhew, David. 1974. Congress: The Electoral Connection. New Haven: Yale University Press.
