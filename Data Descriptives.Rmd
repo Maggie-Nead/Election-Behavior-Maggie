@@ -27,7 +27,7 @@ hist(data$congress)
 
 ```{r typeHist}
 
-hist(as.numeric(data$TYPE))
+table(data$TYPE)
 
 ```
 
@@ -35,7 +35,10 @@ hist(as.numeric(data$TYPE))
 
 cong106 <- data %>%
   filter(congress %in% 106)
-hist(as.numeric(cong106$TYPE))
+
+table(cong106$TYPE, cong106$party, cong106$elected106)
+
+
 table(as.factor(cong106$agency))
 
 table(cong106$party)
@@ -47,7 +50,7 @@ table(cong106$party)
 
 cong107 <- data %>%
   filter(congress %in% 107)
-hist(as.numeric(cong107$TYPE))
+table(cong107$TYPE, cong107$party, cong107$elected107)
 table(as.factor(cong107$agency))
 
 table(cong107$party)
@@ -58,7 +61,7 @@ table(cong107$party)
 
 cong108 <- data %>%
   filter(congress %in% 108)
-hist(as.numeric(cong108$TYPE))
+table(cong108$TYPE, cong108$party, cong108$elected108)
 table(as.factor(cong108$agency))
 
 table(cong108$party)
@@ -69,7 +72,7 @@ table(cong108$party)
 
 cong109 <- data %>%
   filter(congress %in% 109)
-hist(as.numeric(cong109$TYPE))
+table(cong109$TYPE, cong109$party, cong109$elected109)
 table(as.factor(cong109$agency))
 
 table(cong109$party)
@@ -80,7 +83,7 @@ table(cong109$party)
 
 cong110 <- data %>%
   filter(congress %in% 110)
-hist(as.numeric(cong110$TYPE))
+table(cong110$TYPE, cong110$party, cong110$elected110)
 table(as.factor(cong110$agency))
 
 table(cong110$party)
@@ -91,7 +94,7 @@ table(cong110$party)
 
 cong111 <- data %>%
   filter(congress %in% 111)
-hist(as.numeric(cong111$TYPE))
+table(cong111$TYPE, cong111$party, cong111$elected111)
 table(as.factor(cong111$agency))
 
 table(cong111$party)
@@ -103,7 +106,7 @@ table(cong111$party)
 
 cong112 <- data %>%
   filter(congress %in% 112)
-hist(as.numeric(cong112$TYPE))
+table(cong112$TYPE, cong112$party, cong112$elected112)
 
 table(cong112$party)
 
@@ -114,7 +117,7 @@ table(cong112$party)
 
 cong113 <- data %>%
   filter(congress %in% 113)
-hist(as.numeric(cong113$TYPE))
+table(cong113$TYPE, cong113$party, cong113$elected113)
 table(as.factor(cong113$agency))
 table(cong113$party)
 
@@ -125,7 +128,7 @@ table(cong113$party)
 
 cong114 <- data %>%
   filter(congress %in% 114)
-hist(as.numeric(cong114$TYPE))
+table(cong114$TYPE, cong114$party, cong114$elected114)
 table(as.factor(cong114$agency))
 table(cong114$party)
 
@@ -135,7 +138,7 @@ table(cong114$party)
 
 cong115 <- data %>%
   filter(congress %in% 115)
-hist(as.numeric(cong115$TYPE))
+table(cong115$TYPE, cong115$party, cong115$elected115)
 table(as.factor(cong115$agency))
 table(cong115$party)
 
@@ -145,7 +148,7 @@ table(cong115$party)
 
 cong116 <- data %>%
   filter(congress %in% 116)
-hist(as.numeric(cong116$TYPE))
+table(cong116$TYPE, cong116$party, cong116$elected116)
 table(as.factor(cong116$agency))
 table(cong116$party)
 
