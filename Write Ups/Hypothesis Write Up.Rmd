@@ -1,0 +1,29 @@
+---
+title: "Hypothesis Write Up"
+author: "Maggie Nead"
+date: "7/3/2020"
+output: html_document
+
+---
+
+Hypothesis #1:
+
+Constituents want to feel that they are listened to and that member of congress are advocating for their best interest. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
+
+
+$$H_0: \text{There is no difference in election outcome between Members that have a lot of constituency service correspondence.}$$
+$$H_a: \text{Members that have more constituent service correspondence are more likely to be reelected.}$$
+
+
+
+Hypothesis #2:
+
+In contrast to hypothesis #1, the biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and may be more likely to get elected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
+
+
+$$H_0: \text{Correspondence on behalf of corporations has no effect on election outcomes.}$$
+$$H_a: \text{The more correspondence from a member on behalf a corporation the more likely that member is to be reelected.}$$ 
+
+
+
+
