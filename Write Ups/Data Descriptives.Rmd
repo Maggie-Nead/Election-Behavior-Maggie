@@ -1,0 +1,133 @@
+---
+title: "Data Descriptives"
+author: "Maggie Nead"
+date: "6/17/2020"
+output: html_document
+---
+
+```{r setup}
+source("/Users/maggienead/Election-Behavior-Maggie/setup.R")
+source("/Users/maggienead/Election-Behavior-Maggie/dataSetup.R")
+
+```
+
+
+```{r reorder}
+#Reorder data
+
+data %<>%
+  select(bioname.x, yearelected.x, member_reelected, congress, TYPE, everything())
+
+data %<>%
+  filter(!is.na(TYPE))
+
+```
+
+#Histogram of observations in each congress
+```{r hist}
+data %>%
+  with(hist(congress))
+```
+
+
+
+```{r typeTab}
+
+data %>%
+  with(table(TYPE))
+
+```
+
+```{r cong106}
+
+data %>%
+  filter(congress %in% 106) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+
+
+```
+
+```{r cong107}
+
+data %>%
+  filter(congress %in% 107) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+
+
+
+```
+
+```{r cong108}
+
+data %>%
+  filter(congress %in% 108) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+
+```
+
+```{r cong109}
+
+data %>%
+  filter(congress %in% 109) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+```
+
+```{r cong110}
+
+data %>%
+  filter(congress %in% 110) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+
+```
+
+```{r cong111}
+
+data %>%
+  filter(congress %in% 111) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+
+```
+
+```{r cong112}
+data %>%
+  filter(congress %in% 112) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+
+
+```
+
+```{r cong113}
+
+data %>%
+  filter(congress %in% 113) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+
+```
+
+```{r cong114}
+
+data %>%
+  filter(congress %in% 114) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+
+```
+
+```{r cong115}
+
+data %>%
+  filter(congress %in% 115) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+
+```
+
+```{r cong116}
+
+data %>%
+  filter(congress %in% 116) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
+```
+
+
+
+
+
