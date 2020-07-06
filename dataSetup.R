@@ -1,5 +1,5 @@
 load("~/Election-Behavior-Maggie/all_contacts.RData") 
-load("~/Election-Behavior-Maggie/members.Rdata")
+load(here::here("members.Rdata"))
 
 
 
