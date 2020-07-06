@@ -1,4 +1,3 @@
-source("setup.R")
 
 load(here::here("data/all_contacts.RData"))
 load(here::here("data/members.Rdata"))
@@ -50,7 +49,7 @@ class(members$member_reelected)
 class(members$yearelected)
 
 members %<>%
-  select(yearelected, member_reelected,  icpsr)
+  select(yearelected, member_reelected,  icpsr, bioname)
 
 data = merge(all_contacts, members, by = "icpsr")
 
