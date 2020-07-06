@@ -1,5 +1,7 @@
 # WHAT DOES THIS SCRIPT DO?
 
+# source("setup.R")
+
 load(here::here("data/all_contacts.RData"))
 load(here::here("data/members.Rdata"))
 load(here::here("data/committees.Rdata"))
@@ -49,10 +51,11 @@ class(members$icpsr)
 class(members$member_reelected)
 class(members$yearelected)
 
-members %<>%
-  select(yearelected, member_reelected,  icpsr, bioname)
 
-data = merge(all_contacts, members, by = "icpsr")
+
+data <- merge(all_contacts, 
+              members %>% select(yearelected, member_reelected,  icpsr, bioname)
+              ) #, by = "icpsr")
 
 
 
