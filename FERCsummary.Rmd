@@ -18,52 +18,10 @@ Rscript -e 'library(rmarkdown);rmarkdown::render("FERC/FERCsummary.Rmd", "html_d
 ```
 
 ```{r setup, include=FALSE}
-# Rscript -e 'library(rmarkdown); rmarkdown::render("gh-pages/summary.Rmd", "html_document")'
-
-requires <- c("tidyverse", "broom", "knitr","ineq", "dplyr", "ggplot2", "magrittr", "stargazer", "maps", "fiftystater", "mapproj", "dotwhisker", "here", "devtools")
-  to_install <- c(!requires %in% rownames(installed.packages() ) )
-  install.packages(c(requires[to_install], "NA"), repos = "https://cloud.r-project.org/" )
-
-  if(!"fiftystater" %in% rownames(installed.packages())){
-    devtools::install_github("wmurphyrd/fiftystater")
-  }
-
+source(here::here("setup.R"))
+source(here::here("dataSetup.R"))
 ```
 
-```{r, include=FALSE}
-  library(tidyverse)
-  library(ggplot2); theme_set(theme_bw())
-  options(
-    ggplot2.continuous.color = "viridis",
-    ggplot2.continuous.fill = "viridis"
-  )
-  scale_color_discrete <- function(...)
-    scale_color_viridis_d(...)
-  scale_fill_discrete <- function(...)
-    scale_fill_viridis_d(...)
-  library(magrittr)
-  library(maps)
-  library(fiftystater)
-  library(mapproj)
-  library(knitr)
-  library(broom)
-  library(dotwhisker)
-  library(here)
-  library(dplyr)
-
-# source(here("setup.R"))
-```
-
-```{r global.options, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
-                      cache = FALSE, 
-                      fig.width=8.5, 
-                      split = T,
-                      fig.align = 'center', 
-                      fig.path='Figs/',
-                      warning=FALSE, 
-                      message=FALSE)
-```
 
 # Data
 
