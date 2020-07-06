@@ -42,13 +42,15 @@ members %<>%
   mutate(member_reelected = str_detect(congresses, as.character(as.numeric(congress) + 1))) %>% 
   mutate(member_reelected = ifelse(congress == 116, NA, member_reelected))
 
-members %>% filter(!member_reelected)
+#members %>% filter(!member_reelected)
   
 
 class(members$icpsr)
+class(members$member_reelected)
+class(members$yearelected)
 
 members %<>%
-  select(elected106, elected107, elected108, elected109, elected110, elected111, elected112, elected113, elected114, elected115, elected116, icpsr)
+  select(yearelected, member_reelected,  icpsr)
 
 data = merge(all_contacts, members, by = "icpsr")
 
