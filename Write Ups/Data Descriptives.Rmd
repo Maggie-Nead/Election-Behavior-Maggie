@@ -6,152 +6,125 @@ output: html_document
 ---
 
 ```{r setup}
-source("setup.R")
-source("dataSetup.R")
+source("/Users/maggienead/Election-Behavior-Maggie/setup.R")
+source("/Users/maggienead/Election-Behavior-Maggie/dataSetup.R")
 
 ```
 
 
 ```{r reorder}
 #Reorder data
+
 data %<>%
-  select(bioname, congress, elected106, elected107, elected108, elected109, elected110, elected111, elected112, elected113, elected114, elected115, elected116, everything())
+  select(bioname.x, yearelected.x, member_reelected, congress, TYPE, everything())
+
+data %<>%
+  filter(!is.na(TYPE))
+
 ```
 
 #Histogram of observations in each congress
 ```{r hist}
-hist(data$congress)
+data %>%
+  with(hist(congress))
 ```
 
 
 
-```{r typeHist}
+```{r typeTab}
 
-table(data$TYPE)
+data %>%
+  with(table(TYPE))
 
 ```
 
 ```{r cong106}
 
-cong106 <- data %>%
-  filter(congress %in% 106)
+data %>%
+  filter(congress %in% 106) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 
-table(cong106$TYPE, cong106$party, cong106$elected106)
 
-
-table(as.factor(cong106$agency))
-
-table(cong106$party)
-
-#plot(cong106$TYPE, cong106$party)
 ```
 
 ```{r cong107}
 
-cong107 <- data %>%
-  filter(congress %in% 107)
-table(cong107$TYPE, cong107$party, cong107$elected107)
-table(as.factor(cong107$agency))
+data %>%
+  filter(congress %in% 107) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 
-table(cong107$party)
+
 
 ```
 
 ```{r cong108}
 
-cong108 <- data %>%
-  filter(congress %in% 108)
-table(cong108$TYPE, cong108$party, cong108$elected108)
-table(as.factor(cong108$agency))
-
-table(cong108$party)
+data %>%
+  filter(congress %in% 108) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 
 ```
 
 ```{r cong109}
 
-cong109 <- data %>%
-  filter(congress %in% 109)
-table(cong109$TYPE, cong109$party, cong109$elected109)
-table(as.factor(cong109$agency))
-
-table(cong109$party)
-
+data %>%
+  filter(congress %in% 109) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 ```
 
 ```{r cong110}
 
-cong110 <- data %>%
-  filter(congress %in% 110)
-table(cong110$TYPE, cong110$party, cong110$elected110)
-table(as.factor(cong110$agency))
-
-table(cong110$party)
+data %>%
+  filter(congress %in% 110) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 
 ```
 
 ```{r cong111}
 
-cong111 <- data %>%
-  filter(congress %in% 111)
-table(cong111$TYPE, cong111$party, cong111$elected111)
-table(as.factor(cong111$agency))
-
-table(cong111$party)
-
+data %>%
+  filter(congress %in% 111) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 
 ```
 
 ```{r cong112}
-
-cong112 <- data %>%
-  filter(congress %in% 112)
-table(cong112$TYPE, cong112$party, cong112$elected112)
-
-table(cong112$party)
+data %>%
+  filter(congress %in% 112) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 
 
 ```
 
 ```{r cong113}
 
-cong113 <- data %>%
-  filter(congress %in% 113)
-table(cong113$TYPE, cong113$party, cong113$elected113)
-table(as.factor(cong113$agency))
-table(cong113$party)
-
+data %>%
+  filter(congress %in% 113) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 
 ```
 
 ```{r cong114}
 
-cong114 <- data %>%
-  filter(congress %in% 114)
-table(cong114$TYPE, cong114$party, cong114$elected114)
-table(as.factor(cong114$agency))
-table(cong114$party)
+data %>%
+  filter(congress %in% 114) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 
 ```
 
 ```{r cong115}
 
-cong115 <- data %>%
-  filter(congress %in% 115)
-table(cong115$TYPE, cong115$party, cong115$elected115)
-table(as.factor(cong115$agency))
-table(cong115$party)
+data %>%
+  filter(congress %in% 115) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 
 ```
 
 ```{r cong116}
 
-cong116 <- data %>%
-  filter(congress %in% 116)
-table(cong116$TYPE, cong116$party, cong116$elected116)
-table(as.factor(cong116$agency))
-table(cong116$party)
-
+data %>%
+  filter(congress %in% 116) %>%
+  with(table(TYPE, party, member_reelected, yearelected.x, as.factor(agency)))
 ```
 
 
