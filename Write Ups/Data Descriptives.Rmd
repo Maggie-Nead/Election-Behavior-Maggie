@@ -5,7 +5,7 @@ date: "6/17/2020"
 output: html_document
 ---
 
-```{r setup}
+```{r setup, include = FALSE}
 source(here::here("setup.R"))
 source(here::here("dataSetup.R"))
 
@@ -34,7 +34,10 @@ data %>%
 ```{r typeTab}
 
 data %>%
-  with(table(TYPE))
+  with(table(TYPE)) %>%
+  kable() %>%
+  kable_styling()
+
 
 ```
 
@@ -42,7 +45,9 @@ data %>%
 
 data %>%
   filter(congress %in% 106) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 
 
 ```
@@ -51,7 +56,9 @@ data %>%
 
 data %>%
   filter(congress %in% 107) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 
 
 
@@ -61,7 +68,9 @@ data %>%
 
 data %>%
   filter(congress %in% 108) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 
 ```
 
@@ -69,14 +78,18 @@ data %>%
 
 data %>%
   filter(congress %in% 109) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 ```
 
 ```{r cong110}
 
 data %>%
   filter(congress %in% 110) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 
 ```
 
@@ -84,14 +97,18 @@ data %>%
 
 data %>%
   filter(congress %in% 111) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 
 ```
 
 ```{r cong112}
 data %>%
   filter(congress %in% 112) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 
 
 ```
@@ -100,7 +117,9 @@ data %>%
 
 data %>%
   filter(congress %in% 113) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 
 ```
 
@@ -108,7 +127,9 @@ data %>%
 
 data %>%
   filter(congress %in% 114) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 
 ```
 
@@ -116,15 +137,20 @@ data %>%
 
 data %>%
   filter(congress %in% 115) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+  kable() %>%
+  kable_styling()
 
 ```
 
-```{r cong116}
 
-data %>%
-  filter(congress %in% 116) %>%
-  with(table(TYPE, party, member_reelected, yearelected, as.factor(agency)))
+#Fix Me
+```{r cong116}
+# data %>%
+#   filter(congress %in% 116) %>%
+#   with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
+#   kable() %>%
+#   kable_styling()
 ```
 
 
