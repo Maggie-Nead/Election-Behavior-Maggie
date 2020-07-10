@@ -54,6 +54,8 @@
   library(broom)
   library(dotwhisker)
   library(crayon)
+  library(knitr)
+  library(kableExtra)
 
   
   
