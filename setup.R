@@ -13,7 +13,7 @@
   }
   
   
-  
+  library(stargazer)
   library(tidyverse)
   library(dplyr) # in case tydyverse fails (problem on linux)
   library(ggplot2); theme_set(theme_bw())
