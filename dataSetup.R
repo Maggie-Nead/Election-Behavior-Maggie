@@ -64,7 +64,7 @@ class(members$yearelected)
 
 #merge data
 data <- merge(all_contacts, 
-              members %>% select(yearelected, member_reelected,  icpsr, bioname)
+              members %>% select(yearelected, member_reelected, icpsr, bioname)
               ) #, by = "icpsr")
 
 
