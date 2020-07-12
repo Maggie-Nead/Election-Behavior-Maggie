@@ -1,17 +1,23 @@
 # WHAT DOES THIS SCRIPT DO?
+#Creates variables year_elected and member_reelected
 
 # source("setup.R")
 
+
+#load data
 load(here::here("data/all_contacts.RData"))
 load(here::here("data/members.Rdata"))
 load(here::here("data/committees.Rdata"))
 
+
+ #creates elected that selected yearelected and icpsr
 elected <- committees %>% select(yearelected, icpsr) %>% 
   group_by(icpsr) %>% 
   #mutate(years_elected = str_c(yearelected, collapse = ";")) %>% 
   slice_min(yearelected)%>% # ungroup() %>% select(yearelected) %>% 
   distinct()
 
+#creates variable congresses
 members %<>%
   mutate(congress = as.character(congress))%>%
   group_by(bioname) %>%
@@ -22,6 +28,8 @@ members %<>%
   ungroup() %>%
   distinct() # %>% select(congress, congresses_n, congresses, bioname)
 
+
+#join elected with members data
 members %<>% left_join(elected %>% distinct()) %>% distinct()
 
 sum(members$icpsr %in% elected$icpsr)
@@ -39,10 +47,12 @@ sum(members$icpsr %in% elected$icpsr)
 #   mutate(elected115 = ifelse(str_detect(congresses, "114") & str_detect(congresses, "115"), 1, 0))%>%
 #   mutate(elected116 = ifelse(str_detect(congresses, "115") & str_detect(congresses, "116"), 1, 0))
 
+#create variable reelected
+#checks if member shows up in the following congress
 members %<>% 
   group_by(bioname) %>%
   mutate(member_reelected = str_detect(congresses, as.character(as.numeric(congress) + 1))) %>% 
-  mutate(member_reelected = ifelse(congress == 116, NA, member_reelected))
+  mutate(member_reelected = ifelse(congress == 116, NA, member_reelected)) #current congress
 
 #members %>% filter(!member_reelected)
   
@@ -52,7 +62,7 @@ class(members$member_reelected)
 class(members$yearelected)
 
 
-
+#merge data
 data <- merge(all_contacts, 
               members %>% select(yearelected, member_reelected,  icpsr, bioname)
               ) #, by = "icpsr")
