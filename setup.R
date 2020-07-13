@@ -56,6 +56,11 @@
   library(crayon)
   library(knitr)
   library(kableExtra)
+  library(tidytext)
+  library(topicmodels)
+  library(textfeatures)
+  library(cleanNLP)
+  library(textdata)
 
   
   
