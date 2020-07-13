@@ -60,15 +60,12 @@ members %<>%
 class(members$icpsr)
 class(members$member_reelected)
 class(members$yearelected)
-
-
 class(members$congress)
-
-
 class(all_contacts$congress)
 
 members$congress %<>%
   as.numeric()
+
 nrow(all_contacts)
 #merge data
 data <- left_join(all_contacts, 
