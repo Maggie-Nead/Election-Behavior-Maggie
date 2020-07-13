@@ -10,11 +10,6 @@ output:
 ```{r setup, include=FALSE}
 source(here::here("setup.R"))
 source(here::here("dataSetup.R"))
-library(tidytext)
-library(topicmodels)
-library(textfeatures)
-library(cleanNLP)
-library(textdata)
 ```
 
 ##data clean
@@ -41,7 +36,7 @@ d$SUBJECT %<>%
   # To lower case
   tolower() %>% 
   # Remove stopwords
-  str_replace(stopwords, " ") %>%
+  str_replace_all(stopwords, " ") %>%
   # Remove numbers 
   str_replace_all("[0-9]", "")
 
