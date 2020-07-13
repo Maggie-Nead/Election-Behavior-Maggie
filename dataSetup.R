@@ -62,12 +62,20 @@ class(members$member_reelected)
 class(members$yearelected)
 
 
+class(members$congress)
+
+
+class(all_contacts$congress)
+
+members$congress %<>%
+  as.numeric()
+nrow(all_contacts)
 #merge data
-data <- merge(all_contacts, 
-              members %>% select(yearelected, member_reelected, icpsr, bioname)
-              ) #, by = "icpsr")
+data <- left_join(all_contacts, 
+              members %>% select(yearelected, member_reelected, icpsr, bioname, congress, chamber)
+              )#, by = "icpsr")
 
-
+nrow(data)
 
   
   
