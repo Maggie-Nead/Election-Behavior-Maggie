@@ -65,16 +65,19 @@ class(all_contacts$congress)
 
 members$congress %<>%
   as.numeric()
+members$count <- as.numeric(ave(as.character(members$icpsr), as.character(members$icpsr), FUN = length))
+
+members %<>%
+  select(count, everything())
 
 nrow(all_contacts)
 #merge data
 data <- left_join(all_contacts, 
-              members %>% select(yearelected, member_reelected, icpsr, bioname, congress, chamber)
+              members %>% select(yearelected, member_reelected, icpsr, bioname, congress, chamber, count)
               )#, by = "icpsr")
 
 nrow(data)
 
-  
-  
-  
-  
+
+
+
