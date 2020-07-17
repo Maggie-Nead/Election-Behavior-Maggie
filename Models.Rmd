@@ -1,0 +1,90 @@
+---
+title: "Models"
+author: "Maggie Nead"
+date: "7/13/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+source(here::here("setup.R"))
+source(here::here("dataSetup.R"))
+```
+
+```{r dataFilter}
+d <- data %>%
+  filter(!is.na(TYPE))
+
+d %>%
+group_by(TYPE) %>%
+tally
+
+d %<>%
+  mutate(interest = ifelse(TYPE %in% c(1), "constituent", NA)) %>%
+  mutate(interest = ifelse(TYPE %in% c(2,4), "corporate", interest))# %>%
+  #mutate(interest = ifelse(! str_detect(TYPE, "1|2|4"), "neither", interest))
+
+
+
+d %>%
+  group_by(interest) %>%
+  tally()
+
+
+
+
+```
+
+
+```{r mplot_function}
+library(broom)
+library(tidyverse)
+
+```
+
+#1 corporate, 2 constituent
+```{r countModel1, fig.height=1}
+#d$interest <- ordered(d$interest, levels = c("neither", "corporate", "constituent"))
+
+countModel <- glm(count ~ interest, 
+            data = d,  #%>% distinct(), 
+            #contrasts = list(interest = contr.sum(3)),
+         family = poisson)  
+
+
+
+summary(countModel)
+
+```
+
+
+```{r countModel2}
+countModel2 <- lm(count ~ interest, 
+            data = d  %>% distinct())  
+
+summary(countModel2)
+```
+
+
+```{r partyModel}
+#d$party_name <- ordered(d$party_name, levels = c("Independent", "Democratic", "Republican"))
+partyModel <- glm(count ~ interest*party_name, 
+            data = d  %>% distinct(), 
+         family = poisson)  
+
+summary(partyModel)
+```
+
+
+```{r partyModel2}
+partyModel2 <- lm(count ~ interest*party_name, 
+            data = d  %>% distinct()
+            )  
+
+
+summary(partyModel2)
+
+
+```
+
+
+
