@@ -1,0 +1,101 @@
+---
+title: "Final Project"
+author: "Maggie Nead"
+date: "7/19/2020"
+output: html_document
+---
+Research Question Write Up
+
+Introduction
+Congress: The Electoral Connection written by David Mayhew refers to Members of Congress as “single-minded seekers of reelection” stating that in order for Members of Congress to reach their goals of moving up the ranks, pushing policy goals, etc. they must first be in congress. This in turn makes reelection the single focus of current members. This research seeks to address the question of what happens when the goal of reelection is taken off the table. Or to put it simply, how does the behavior of members of congress change when they are not reelected? 
+	There may exist patterns and relationships between congressional correspondence and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities lead to reelection and which may lead a member to be replaced. 
+
+Data
+
+Data has been collected on 383,824 congressional correspondences from Members of Congress to federal agencies. In order to answer the question of congressional behavior there are a couple of ways to look at this data:
+1. 	The behavior of members who are reelected (i.e. in consecutive congresses)
+2. 	The behavior of members who are not reelected (i.e. not in consecutive congresses)
+3. 	Compared behavior between the members who did not run for reelection and those that lost their bid for reelection.
+For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who is in one congress and not the following congress. This research may further break this down between members who ran for reelection and lost and those who did not run for reelection at all.
+
+Questions
+        	The broad research question may be further broken down into the questions listed below:
+Is the behavior between members who get reelected different from members who do not?
+How?
+Are members of congress not seeking reelection more willing to step outside of party lines on policy than those seeking reelection?
+Are corporate interests less important to members not seeking reelection?
+ Or are members who do not advocate for corporate interests less likely to be reelected?
+Has this changed over time?
+References
+Mayhew, David. 1974. Congress: The Electoral Connection. New Haven: Yale University Press.
+
+
+
+#Variables:
+
+members_reelected: Coded as TRUE/FALSE. If the member shows up in the following congress members_reelected = TRUE if not members_reelected = FALSE.
+
+Yearelected: Coded as year that a member was first elected.
+
+TYPE:
+1 = Personal Service
+  •	Individual, non-commercial constituent service
+Examples: Help with a government form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, financial services complaints, etc.
+
+2 = Commercial Service - Transactional
+  •	Anything related to a specific individual case by a business (including business owners like farmers and consultants)
+  •	Help with a grant application, payment, loan or contract (buying anything from or selling anything to a government agency) 
+  •	Help with an individual case of tax assessment, fine, or regulatory enforcement action
+  •	Help with public relations on behalf of a business
+Examples: allocation of radio spectrum, case against a company, tax dispute, contract for purchase of military surplus, crop insurance distribution, debt settlement, foreclosure assistance, a fine for a law violation, etc.
+
+3 = Government and Nonprofit Service - Transactional
+  •	[same as for #2, but for municipal or state governments (including cities, counties, etc.) or non-business-oriented non-profit organizations (i.e. NOT ones that represents an industry or trade association) (here’s a good search engine to check non-profit status) 
+
+4 = Commercial Service - Policy
+  •	Anything applying to a class of commercial activity or businesses (e.g. shipping, airlines, agriculture). This could include legislation, bills, acts, appropriations, authorizations, etc. 
+  •	Authorization of or appropriation to a government program that is targeted towards a particular industry or industries
+  •	Regulation of an industry or commercial practice or competition
+Examples: Milk prices, insurance or loan eligibility criteria, purchasing policies, crop insurance rates, pollution criteria, classification of products for trade or taxation, conservation appropriation, worker visa types, restrictions, or caps, etc.
+
+ 
+5 = Policy Work - NOT in the service of any individual, business, specific industry
+	Examples:
+  •	Lawmaking
+    o	Request for policy-relevant information. This includes prospective legislation, legislation under consideration, or already implemented legislation that requires oversight.
+  •	Oversight
+    o	Committee requesting a report or testimony at a hearing in for
+    o	 Requesting clarity on an agency rule
+  •	Lobbying administrative policy
+    o	Agency rulemaking with non-commercial implications (comments on agency rulemaking may often be #3)
+  •	Political work
+    o	Meeting with organized constituent groups (e.g. workers, people with disabilities, environmentalists) about policy (meetings with industry groups generally fall under #4).
+    o	Media requests
+
+6 = Other 
+	Suggest a new category in the NOTES column, only if it cannot be fit under 1-4. For example, requesting dirt on one's political opponents could be called "partisan" as it is none of the above. Other specific types: thank you (for thank you notes with no other information), congratulations (for congratulatory correspondence on appointments or retirements with no other information), family member (for correspondence on behalf of a family member)
+
+0  = Really no idea, no guesses, completely unclear
+
+
+#Confounding variables:
+
+
+#Hypotheses:
+Hypothesis #1:
+
+Constituents want to feel that they are listened to and that member of congress are advocating for their best interest. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
+
+
+$$H_0: \text{There is no difference in election outcome between Members that have a lot of constituency service correspondence.}$$
+$$H_a: \text{Members that have more constituent service correspondence are more likely to be reelected.}$$
+
+
+
+Hypothesis #2:
+
+In contrast to hypothesis #1, the biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and may be more likely to get elected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
+
+
+$$H_0: \text{Correspondence on behalf of corporations has no effect on election outcomes.}$$
+$$H_a: \text{The more correspondence from a member on behalf a corporation the more likely that member is to be reelected.}$$ 
