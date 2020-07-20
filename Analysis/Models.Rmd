@@ -35,12 +35,6 @@ d %>%
 ```
 
 
-```{r mplot_function}
-library(broom)
-library(tidyverse)
-
-```
-
 #1 corporate, 2 constituent
 ```{r countModel1, fig.height=1}
 #d$interest <- ordered(d$interest, levels = c("neither", "corporate", "constituent"))
@@ -77,8 +71,7 @@ summary(partyModel)
 
 ```{r partyModel2}
 partyModel2 <- lm(count ~ interest*party_name, 
-            data = d  %>% distinct()
-            )  
+            data = d  %>% distinct())  
 
 
 summary(partyModel2)
