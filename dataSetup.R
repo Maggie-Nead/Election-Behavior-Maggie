@@ -15,6 +15,7 @@ elected <- committees %>% select(yearelected, icpsr) %>%
   group_by(icpsr) %>% 
   #mutate(years_elected = str_c(yearelected, collapse = ";")) %>% 
   slice_min(yearelected)%>% # ungroup() %>% select(yearelected) %>% 
+  ungroup() %>%
   distinct()
 
 #creates variable congresses
@@ -52,11 +53,12 @@ sum(members$icpsr %in% elected$icpsr)
 members %<>% 
   group_by(bioname) %>%
   mutate(member_reelected = str_detect(congresses, as.character(as.numeric(congress) + 1))) %>% 
-  mutate(member_reelected = ifelse(congress == 116, NA, member_reelected)) #current congress
+  mutate(member_reelected = ifelse(congress == 116, NA, member_reelected)) %>% #current congress
+  ungroup()
 
 #members %>% filter(!member_reelected)
   
-
+#check variable class
 class(members$icpsr)
 class(members$member_reelected)
 class(members$yearelected)
@@ -65,19 +67,28 @@ class(all_contacts$congress)
 
 members$congress %<>%
   as.numeric()
-members$count <- as.numeric(ave(as.character(members$icpsr), as.character(members$icpsr), FUN = length))
+
+#Creates count of reelections
+# 0 if not reelected at all
+members %<>%
+  group_by(icpsr) %>%
+  mutate(reelections = length(unique(congress)-1)) %>%
+  ungroup()
+
 
 members %<>%
-  select(count, everything())
+  select(reelections, everything())
 
 nrow(all_contacts)
+
+
+
 #merge data
+#Two different year_elected
 data <- left_join(all_contacts, 
-              members %>% select(yearelected, member_reelected, icpsr, bioname, congress, chamber, count)
+              members %>% select(member_reelected, icpsr, bioname, congress, chamber, reelections)
               )#, by = "icpsr")
 
 nrow(data)
-
-
 
 
