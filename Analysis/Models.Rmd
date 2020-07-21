@@ -31,6 +31,26 @@ d %>%
 
 
 
+d %<>%
+  count(bioname, icpsr, congress, reelections, party_name, interest, name = "lettersPerInterest")
+ 
+d %<>% 
+  mutate(corporateInterest = ifelse(str_detect(interest, "corporate"), lettersPerInterest, 0)) %>%
+  mutate(constituentInterest = ifelse(str_detect(interest, "constituent"), lettersPerInterest, 0))
+
+
+```
+
+```{r plots}
+d %>%
+  ggplot(aes(x=corporateInterest, y=reelections)) + 
+  geom_point(outlier.colour="black", outlier.shape=16,
+               outlier.size=2, notch=TRUE) 
+
+d %>%
+  ggplot(aes(x=constituentInterest, y=reelections)) + 
+  geom_point(outlier.colour="black", outlier.shape=16,
+               outlier.size=2, notch=TRUE) 
 
 ```
 
@@ -39,20 +59,22 @@ d %>%
 ```{r countModel1, fig.height=1}
 #d$interest <- ordered(d$interest, levels = c("neither", "corporate", "constituent"))
 
-countModel <- glm(count ~ interest, 
+countModel <- glm(reelections ~ corporateInterest + constituentInterest, 
             data = d,  #%>% distinct(), 
-            #contrasts = list(interest = contr.sum(3)),
+            #contrasts = list(interest = contr.sum(2)),
          family = poisson)  
 
-
-
 summary(countModel)
+
+
+ggplot(countModel, aes(seq_along(.cooksd), .cooksd)) +
+  geom_col()
 
 ```
 
 
 ```{r countModel2}
-countModel2 <- lm(count ~ interest, 
+countModel2 <- lm(reelections ~ corporateInterest + constituentInterest, 
             data = d  %>% distinct())  
 
 summary(countModel2)
@@ -61,7 +83,7 @@ summary(countModel2)
 
 ```{r partyModel}
 #d$party_name <- ordered(d$party_name, levels = c("Independent", "Democratic", "Republican"))
-partyModel <- glm(count ~ interest*party_name, 
+partyModel <- glm(reelections ~ corporateInterest*party_name + constituentInterest*party_name, 
             data = d  %>% distinct(), 
          family = poisson)  
 
@@ -70,7 +92,7 @@ summary(partyModel)
 
 
 ```{r partyModel2}
-partyModel2 <- lm(count ~ interest*party_name, 
+partyModel2 <- lm(reelections ~ corporateInterest*party_name + constituentInterest*party_name, 
             data = d  %>% distinct())  
 
 
