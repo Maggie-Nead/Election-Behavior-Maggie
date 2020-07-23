@@ -29,28 +29,40 @@ d %>%
   group_by(interest) %>%
   tally()
 
+# d %>%
+#   gather(interest,letters,FY1993:FY1998) %>%
+#   spread(Field,value)
 
+
+checkCounts <- d %>%
+  count(bioname, icpsr, congress, reelections, party_name, interest, name = "lettersPerInterest")
 
 d %<>%
-  count(bioname, icpsr, congress, reelections, party_name, interest, name = "lettersPerInterest")
+  count(bioname, icpsr, congress, reelections, party_name, interest, name = "lettersPerInterest") %>%
+  spread(interest, lettersPerInterest)
  
-d %<>% 
-  mutate(corporateInterest = ifelse(str_detect(interest, "corporate"), lettersPerInterest, 0)) %>%
-  mutate(constituentInterest = ifelse(str_detect(interest, "constituent"), lettersPerInterest, 0))
+
+ 
+
+
+# d %<>% 
+#   mutate(corporateInterest = ifelse(str_detect(interest, "corporate"), lettersPerInterest, 0)) %>%
+#   mutate(constituentInterest = ifelse(str_detect(interest, "constituent"), lettersPerInterest, 0))
 
 
 ```
 
 ```{r plots}
 d %>%
-  ggplot(aes(x=corporateInterest, y=reelections)) + 
+  ggplot(aes(x=corporate, y=reelections)) + 
   geom_point(outlier.colour="black", outlier.shape=16,
                outlier.size=2, notch=TRUE) 
 
 d %>%
-  ggplot(aes(x=constituentInterest, y=reelections)) + 
+  ggplot(aes(x=constituent, y=reelections)) + 
   geom_point(outlier.colour="black", outlier.shape=16,
                outlier.size=2, notch=TRUE) 
+
 
 ```
 
@@ -59,13 +71,12 @@ d %>%
 ```{r countModel1, fig.height=1}
 #d$interest <- ordered(d$interest, levels = c("neither", "corporate", "constituent"))
 
-countModel <- glm(reelections ~ corporateInterest + constituentInterest, 
+countModel <- glm(reelections ~ corporate + constituent, 
             data = d,  #%>% distinct(), 
             #contrasts = list(interest = contr.sum(2)),
          family = poisson)  
 
 summary(countModel)
-
 
 ggplot(countModel, aes(seq_along(.cooksd), .cooksd)) +
   geom_col()
