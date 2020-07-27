@@ -123,6 +123,28 @@ countModel <- glm(reelections ~ corporate + constituent,
 
 summary(countModel)
 
+plot(countModel)
+
+ggplot(countModel, aes(seq_along(.cooksd), .cooksd)) +
+  geom_col()
+
+countModel %>% mplot()+
+  labs(x="", y="Increase in times reelection given letter interests")
+
+
+```
+Residual Deviance is greater than the degrees of freedom so we have over-dispersion.
+
+```{r qpoisson, fig.height=3, fig.width=4}
+library("MASS")
+countModelq <- glm.nb(reelections ~ corporate + constituent, 
+            data = d)  #%>% distinct(), 
+            #contrasts = list(interest = contr.sum(2)),
+         #link = log)  
+
+summary(countModelq)
+
+plot(countModelq)
 ggplot(countModel, aes(seq_along(.cooksd), .cooksd)) +
   geom_col()
 
@@ -132,7 +154,6 @@ countModel %>% mplot()+
 
 ```
 
-
 ```{r countModel2, fig.height=3, fig.width=4}
 countModelParty <- glm(reelections ~ corporate*party_name + constituent*party_name, 
             data = d,  #%>% distinct(), 
@@ -141,10 +162,26 @@ countModelParty <- glm(reelections ~ corporate*party_name + constituent*party_na
 
 summary(countModelParty)
 
+plot(countModelParty)
+
 countModelParty %>% mplot()+
   labs(x="", y="Increase in times reelection given letter interests and party")
 ```
 
+
+```{r countModel2q, fig.height=3, fig.width=4}
+countModelPartyq <- glm(reelections ~ corporate*party_name + constituent*party_name, 
+            data = d,  #%>% distinct(), 
+            #contrasts = list(interest = contr.sum(2)),
+         family = quasipoisson)  
+
+summary(countModelPartyq)
+
+plot(countModelPartyq)
+
+countModelParty %>% mplot()+
+  labs(x="", y="Increase in times reelection given letter interests and party")
+```
 
 ```{r logitmodel}
 
