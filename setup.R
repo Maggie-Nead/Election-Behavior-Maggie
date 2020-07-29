@@ -61,6 +61,8 @@
   library(textfeatures)
   library(cleanNLP)
   library(textdata)
+  library(broom)
+  library(gtsummary)
 
   
   
