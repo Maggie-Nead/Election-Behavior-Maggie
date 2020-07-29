@@ -11,12 +11,12 @@ load(here::here("data/committees.Rdata"))
 
 
  #creates elected that selected yearelected and icpsr
-# elected <- committees %>% select(yearelected, icpsr) %>% 
-#   group_by(icpsr) %>% 
-#   #mutate(years_elected = str_c(yearelected, collapse = ";")) %>% 
-#   slice_min(yearelected)%>% # ungroup() %>% select(yearelected) %>% 
-#   ungroup() %>%
-#   distinct()
+elected <- committees %>% select(yearelected, icpsr) %>% 
+  group_by(icpsr) %>% 
+  #mutate(years_elected = str_c(yearelected, collapse = ";")) %>% 
+  slice_min(yearelected)%>% # ungroup() %>% select(yearelected) %>% 
+  ungroup() %>%
+  distinct()
 
 #creates variable congresses
 members %<>%
@@ -31,9 +31,9 @@ members %<>%
 
 
 #join elected with members data
-#members %<>% left_join(elected %>% distinct()) %>% distinct()
+members %<>% left_join(elected %>% distinct()) %>% distinct()
 
-#sum(members$icpsr %in% elected$icpsr)
+sum(members$icpsr %in% elected$icpsr)
 
 # members %<>%
 #   mutate(elected106 = ifelse(str_detect(congresses, "105") & str_detect(congresses, "106"), 1, 0))%>%
@@ -59,7 +59,7 @@ members %<>%
 #members %>% filter(!member_reelected)
   
 #check variable class
-#class(members$icpsr)
+class(members$icpsr)
 class(members$member_reelected)
 class(members$yearelected)
 class(members$congress)
@@ -76,8 +76,8 @@ members %<>%
   ungroup()
 
 
-# members %<>%
-#   select(reelections, everything())
+members %<>%
+  select(reelections, everything())
 
 nrow(all_contacts)
 
