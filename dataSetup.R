@@ -11,12 +11,12 @@ load(here::here("data/committees.Rdata"))
 
 
  #creates elected that selected yearelected and icpsr
-elected <- committees %>% select(yearelected, icpsr) %>% 
-  group_by(icpsr) %>% 
-  #mutate(years_elected = str_c(yearelected, collapse = ";")) %>% 
-  slice_min(yearelected)%>% # ungroup() %>% select(yearelected) %>% 
-  ungroup() %>%
-  distinct()
+# elected <- committees %>% select(yearelected, icpsr) %>% 
+#   group_by(icpsr) %>% 
+#   #mutate(years_elected = str_c(yearelected, collapse = ";")) %>% 
+#   slice_min(yearelected)%>% # ungroup() %>% select(yearelected) %>% 
+#   ungroup() %>%
+#   distinct()
 
 #creates variable congresses
 members %<>%
