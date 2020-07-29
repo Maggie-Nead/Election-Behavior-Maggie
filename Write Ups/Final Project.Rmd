@@ -1,13 +1,12 @@
 ---
-title: "Final Project"
+title: "Correspondence and Congressional Member Reelection"
+subtitle: "Statistical Analysis of Reelection Rates and Correspondence Priorities"
 author: "Maggie Nead"
 date: "7/19/2020"
 output:
   html_document:
     code_folding: hide
-    toc: yes
-    toc_float: yes
-
+  pdf_document: default
 ---
 
 Introduction
@@ -120,7 +119,7 @@ source(here::here("dataSetup.R"))
 ```
 
 
-```{r reorder}
+```{r reorder, echo=FALSE}
 #Reorder data
 
 data %<>%
@@ -135,28 +134,19 @@ d <- data %>%
 
 
 #Histogram of observations in each congress
-```{r hist}
+```{r hist, echo=FALSE}
 d %>%
   with(hist(congress))
 ```
 
 
-```{r typeTab}
 
-d %>%
-  with(table(TYPE)) %>%
-  kable() %>%
-  kable_styling() 
-
-
-```
-
-
-
-```{r dataFilter, fig.height=3, fig.width=4}
+```{r dataFilter, fig.height=3, fig.width=4, echo=FALSE}
 d %>%
 group_by(TYPE) %>%
-tally
+tally%>%
+  kable() %>%
+  kable_styling() 
 
 d %<>%
   filter(TYPE == c(1,2,4))
@@ -170,7 +160,9 @@ d %<>%
 
 d %>%
   group_by(interest) %>%
-  tally()
+  tally()%>%
+  kable() %>%
+  kable_styling() 
 
 # d %>%
 #   gather(interest,letters,FY1993:FY1998) %>%
@@ -205,7 +197,7 @@ d %<>%
 
 ```
 
-```{r plots, fig.height=3, fig.width=4}
+```{r plots, fig.height=3, fig.width=4, echo=FALSE}
 d %>%
   ggplot(aes(x=corporate, y=reelections)) + 
   geom_point(outlier.colour="black", outlier.shape=16,
@@ -238,7 +230,7 @@ d %>%
 
 ```
 
-```{r mplot}
+```{r mplot, include=FALSE}
  mplot <- function(m){m %>%
   tidy(conf.int = TRUE) %>%
     filter(term!="(Intercept)") %>%
@@ -253,40 +245,43 @@ ggplot() +
 ```
 
 #1 corporate, 2 constituent
-```{r countModel1, fig.height=3, fig.width=4}
-#d$interest <- ordered(d$interest, levels = c("neither", "corporate", "constituent"))
-
-countModel <- glm(reelections ~ corporate + constituent, 
-            data = d,  #%>% distinct(), 
-            #contrasts = list(interest = contr.sum(2)),
-         family = poisson)  
-
-
-
-
-
-countModel %>%
-  tbl_regression(exponentiate = TRUE) %>%
-  bold_labels()
-
-plot(countModel)
-
-ggplot(countModel, aes(seq_along(.cooksd), .cooksd)) +
-  geom_col()
-
-countModel %>% mplot()+
-  labs(x="", y="Increase in times reelection given letter interests")
-
-
-```
+# ```{r countModel1, fig.height=3, fig.width=4, echo=FALSE}
+# #d$interest <- ordered(d$interest, levels = c("neither", "corporate", "constituent"))
+# 
+# countModel <- glm(reelections ~ corporate + constituent, 
+#             data = d,  #%>% distinct(), 
+#             #contrasts = list(interest = contr.sum(2)),
+#          family = poisson)  
+# 
+# 
+# 
+# 
+# 
+# countModel %>%
+#   tbl_regression(exponentiate = TRUE) %>%
+#   bold_labels()
+# 
+# #{par(mfrow=c(2,2))
+# plot(countModel)
+# 
+# ggplot(countModel, aes(seq_along(.cooksd), .cooksd)) +
+#   geom_col()
+# 
+# countModel %>% mplot()+
+#   labs(x="", y="Increase in times reelection given letter interests")
+# 
+# 
+# ```
 Residual Deviance is greater than the degrees of freedom so we have over-dispersion.
 
-```{r qpoisson, fig.height=3, fig.width=4}
-library("MASS")
+```{r qpoisson, fig.height=3, fig.width=4, echo=FALSE}
+
 countModelq <- glm.nb(reelections ~ corporate + constituent, 
             data = d)  #%>% distinct(), 
             #contrasts = list(interest = contr.sum(2)),
          #link = log)  
+
+summary(countModelq)
 
 countModelq%>%
   tbl_regression(exponentiate = TRUE) %>%
@@ -304,26 +299,26 @@ countModel %>% mplot()+
 
 ```
 
-```{r countModel2, fig.height=3, fig.width=4}
-countModelParty <- glm(reelections ~ corporate*party_name + constituent*party_name, 
-            data = d,  #%>% distinct(), 
-            #contrasts = list(interest = contr.sum(2)),
-         family = poisson)  
+# ```{r countModel2, fig.height=3, fig.width=4, echo=FALSE}
+# countModelParty <- glm(reelections ~ corporate*party_name + constituent*party_name, 
+#             data = d,  #%>% distinct(), 
+#             #contrasts = list(interest = contr.sum(2)),
+#          family = poisson)  
+# 
+# countModelParty%>%
+#   tbl_regression(exponentiate = TRUE) %>%
+#   bold_labels()
+# 
+# 
+# plot(countModelParty)
+# 
+# countModelParty %>% mplot()+
+#   labs(x="", y="Increase in times reelection given letter interests and party")
+# ```
 
-countModelParty%>%
-  tbl_regression(exponentiate = TRUE) %>%
-  bold_labels()
 
-
-plot(countModelParty)
-
-countModelParty %>% mplot()+
-  labs(x="", y="Increase in times reelection given letter interests and party")
-```
-
-
-```{r countModel2q, fig.height=3, fig.width=4}
-countModelPartyq <- glm(reelections ~ corporate*party_name + constituent*party_name, 
+```{r countModel2q, fig.height=3, fig.width=4, echo=FALSE}
+countModelPartyq <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
             data = d,  #%>% distinct(), 
             #contrasts = list(interest = contr.sum(2)),
          family = quasipoisson)  
@@ -339,7 +334,7 @@ countModelParty %>% mplot()+
   labs(x="", y="Increase in times reelection given letter interests and party")
 ```
 
-```{r logitmodel}
+```{r logitmodel, echo=FALSE}
 
 model <- glm(member_reelected ~ corporate + constituent, 
              data=d, 
