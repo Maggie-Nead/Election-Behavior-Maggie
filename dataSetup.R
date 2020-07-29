@@ -33,7 +33,7 @@ members %<>%
 #join elected with members data
 #members %<>% left_join(elected %>% distinct()) %>% distinct()
 
-sum(members$icpsr %in% elected$icpsr)
+#sum(members$icpsr %in% elected$icpsr)
 
 # members %<>%
 #   mutate(elected106 = ifelse(str_detect(congresses, "105") & str_detect(congresses, "106"), 1, 0))%>%
@@ -59,7 +59,7 @@ members %<>%
 #members %>% filter(!member_reelected)
   
 #check variable class
-class(members$icpsr)
+#class(members$icpsr)
 class(members$member_reelected)
 class(members$yearelected)
 class(members$congress)
