@@ -31,7 +31,7 @@ members %<>%
 
 
 #join elected with members data
-members %<>% left_join(elected %>% distinct()) %>% distinct()
+#members %<>% left_join(elected %>% distinct()) %>% distinct()
 
 sum(members$icpsr %in% elected$icpsr)
 
