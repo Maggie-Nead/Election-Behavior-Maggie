@@ -3,8 +3,6 @@ title: "Final Project"
 author: "Maggie Nead"
 date: "7/19/2020"
 output:
-  pdf_document:
-    code_folding: hide
   html_document:
     code_folding: hide
     toc: yes
@@ -265,8 +263,7 @@ countModel <- glm(reelections ~ corporate + constituent,
 
 
 
-library("broom")
-library("gtsummary")
+
 
 countModel %>%
   tbl_regression(exponentiate = TRUE) %>%
