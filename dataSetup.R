@@ -76,8 +76,8 @@ members %<>%
   ungroup()
 
 
-members %<>%
-  select(reelections, everything())
+# members %<>%
+#   select(reelections, everything())
 
 nrow(all_contacts)
 
