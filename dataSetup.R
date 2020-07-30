@@ -11,7 +11,7 @@ load(here::here("data/committees.Rdata"))
 
 
  #creates elected that selected yearelected and icpsr
-elected <- committees %>% select(yearelected, icpsr) %>% 
+elected <- committees %>% dplyr::select(yearelected, icpsr) %>% 
   group_by(icpsr) %>% 
   #mutate(years_elected = str_c(yearelected, collapse = ";")) %>% 
   slice_min(yearelected)%>% # ungroup() %>% select(yearelected) %>% 
@@ -77,7 +77,7 @@ members %<>%
 
 
 members %<>%
-  select(reelections, everything())
+ dplyr::select(reelections, everything())
 
 nrow(all_contacts)
 
@@ -86,7 +86,7 @@ nrow(all_contacts)
 #merge data
 #Two different year_elected
 data <- left_join(all_contacts, 
-              members %>% select(member_reelected, icpsr, bioname, congress, chamber, reelections)
+              members %>% dplyr::select(member_reelected, icpsr, bioname, congress, chamber, reelections)
               )#, by = "icpsr")
 
 nrow(data)
