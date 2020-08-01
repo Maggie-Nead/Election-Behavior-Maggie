@@ -480,6 +480,9 @@ ggplot(aes(x = constituent, y = .fitted)) +
 
 Throughout the course of this directed study I learned many things. This includes technical skills such as expanding my knowledge of tidyverse code in R. As well as learning how to implement and interpret Poisson and Negative Binomial regressions including when to use each model. 
 
+**Things I would do differently**
+One of the weaknesses of my models is that member correspodence is generally kept private and so the degree to which I can conclude causality is very small. Most likely there are other confounding factors that influence both correspodence interest and reelections. One such factor may be a candidate or party platform. If I could expand on this project or do it again it would interesting to compare a candidates running platform to the types of letters they write.
+
 
 
 ## Appendix
