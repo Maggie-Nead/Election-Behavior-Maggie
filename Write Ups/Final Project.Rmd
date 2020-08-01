@@ -3,9 +3,9 @@ title: "Correspondence and Congressional Member Reelection"
 author: "Maggie Nead"
 date: "7/19/2020"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
   code_folding: hide
   word_document: default
 subtitle: Statistical Analysis of Reelection Rates and Correspondence Priorities
@@ -56,7 +56,7 @@ Data for this research has been collected using the Freedom of Information Act (
 d %>%
   with(hist(congress))
 ```
-### Questions
+### Questions  
 The broad research question may be further broken down into the questions listed below:
 Is the behavior between members who get reelected different from members who do not?
 How?
@@ -105,7 +105,7 @@ members_reelected: Coded as TRUE/FALSE. If the member shows up in the following 
 
 Yearelected: Coded as year that a member was first elected.
 
-TYPE:
+TYPE:  
 - 1 = Personal Service  
   - Individual, non-commercial constituent service
 Examples: Help with a government form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, financial services complaints, etc.
@@ -262,6 +262,8 @@ ggplot() +
 
 ## Results
 
+
+### Poisson Regression
 ```{r disp, echo=FALSE}
 library(AER)
 countModel <- glm(reelections ~ corporate + constituent, data = d, family = poisson)
@@ -269,6 +271,12 @@ countModel <- glm(reelections ~ corporate + constituent, data = d, family = pois
 dispersiontest(countModel,trafo=1) 
 
 ```
+
+
+
+### Negative Binomial Regression
+
+### Corporate and Constituent Interest Letters
 
 ```{r qpoisson, fig.height=3, fig.width=4, echo=FALSE}
 
@@ -286,7 +294,7 @@ countModelq %>%
    bold_labels()
 
 
-cooks <- cooks.distance(countModelq)
+
 
 plot(countModelq)
 ggplot(countModelq, aes(seq_along(.cooksd), .cooksd)) +
@@ -301,11 +309,25 @@ countModelq %>% mplot()+
 
 
 ```
-Corporate interest correpodence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends the log count of times a member is reelected is expected to increase by 0.02 over a ten year period.
+Corporate interest correspondence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends the log count of times a member is reelected is expected to increase by 0.02 over a ten year period.
 
-This could mean one of two things. Either corporations have the money, resources and audience to use to help a member that advocates for them get reelected. Or it could be that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
+This could mean one of two things. Either corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could be that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
+
+### Model Diagnostics
+
+```{r qpoissonDiagn,echo=FALSE}
+
+res <- residuals(countModelq, type="deviance")
+{plot(log(predict(countModelq)), res)
+abline(h=0, lty=2)
+qqnorm(res)
+qqline(res)
+}
 
 
+library(car)
+influencePlot(countModelq)
+```
 
 
 ```{r countModel2q, fig.height=3, fig.width=4, echo=FALSE}
@@ -313,22 +335,26 @@ This could mean one of two things. Either corporations have the money, resources
 noI <- d %>%
   filter(!str_detect(party_name, "Independent"))
 
-countModelPartyq <- glm.nb(reelections ~ party_name, 
-            data = noI )  
-
-
-countModelPartyq%>%
-  tbl_regression() %>%
-  bold_labels()
-
-
-plot(countModelPartyq)
-
-countModelPartyq %>% mplot()+
-  labs(x="", y="Times reelected given party")
+# countModelPartyq <- glm.nb(reelections ~ party_name, 
+#             data = noI )  
+# 
+# 
+# countModelPartyq%>%
+#   tbl_regression() %>%
+#   bold_labels()
+# 
+# 
+# plot(countModelPartyq)
+# 
+# countModelPartyq %>% mplot()+
+#   labs(x="", y="Times reelected given party")
 ```
 
-To isolate the difference between the Democratic and Republican parties Idenpendent members were dropped.
+### Party and Constituent/Corporate Interest Letters
+
+Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
+
+
 
 ```{r partyLetter, fig.height=3, fig.width=4, echo=FALSE}
 
@@ -340,15 +366,18 @@ partyLetter%>%
   tbl_regression() %>%
   bold_labels()
 
-
+par(mfrow=c(2,2))
 plot(partyLetter)
+
 
 partyLetter %>% mplot()+
   labs(x="", y="Times reelection given party and letter interest")
 ```
-Party and corporate correspodence are significant predictors of the number of times a member is reelected. If the member is Repubulican the log count of the number of times they are reelected is supposed to be 0.10 less than that of a Democrat.
+Party and corporate correspodence are significant predictors of the number of times a member is reelected. If the member is Repubulican the log count of the number of times they are reelected is supposed to be 0.10 less than that of a Democrat. This does not necessarily mean that republicans are less likely to be elected or that there was a seat turn over. It is possible that the member is replaced by someone of the same party. This model also does not account for things like retirement. This just shows that generally republicans do not hang on to their seats for as long as the democrat counterparts over a ten year period. 
 
 
+
+### Interaction between Party and Letter Interests
 ```{r interactionParty, fig.height=3, fig.width=4, echo=FALSE}
 interactionparty <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
             data = noI)  
