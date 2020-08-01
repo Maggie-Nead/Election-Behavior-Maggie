@@ -4,13 +4,12 @@ author: "Maggie Nead"
 date: "7/20/2020"
 always_allow_html: yes
 output:
-  word_document:
-  pdf_document:
   html_document:
       #toc: true
       #toc_float: true
       code_folding: hide
-
+  pdf_document:
+  word_document:
 subtitle: Statistical Analysis of Reelection Rates and Correspondence Priorities
 ---
 
@@ -25,6 +24,20 @@ knitr::opts_chunk$set(echo = FALSE,
                       warning=FALSE, 
                       message=FALSE,
                       always_allow_html = TRUE)
+```
+
+```{r mplot, include=FALSE}
+ mplot <- function(m){m %>%
+  tidy(conf.int = TRUE) %>%
+    filter(term!="(Intercept)") %>%
+ggplot() + 
+  aes(x = term,
+      y = estimate, 
+      ymin = conf.low, 
+      ymax = conf.high)+ 
+    geom_hline(yintercept = 0, linetype =2) + 
+  geom_pointrange() + coord_flip() }
+
 ```
 
 ## Introduction
@@ -69,7 +82,7 @@ d <- data %>%
 Data for this research has been collected using the Freedom of Information Act (FOIA) on 383,824 congressional correspondences from Members of Congress to federal agencies. This data was collected by the Correspondence Research project headed by Professor Powell at the University of Wisconsin-Madison. The data spans from the 106th to the 116th congress and was requested from every federal agency. The 383,824 observations we currently have contains the data from every federal agency that has responded to the FOIA request so far.
 
 
-```{r hist }
+```{r hist, fig.width=5}
 d %>%
   with(hist(congress))
 ```
@@ -163,41 +176,7 @@ Suggest a new category in the NOTES column, only if it cannot be fit under 1-4. 
 - 0  = Really no idea, no guesses, completely unclear
 
 
-### Confounding variables:
-
-
-## Hypotheses:
-
-Hypothesis #1:
-
-Constituents want to feel that they are listened to and that member of congress are advocating for their best interest. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
-
-
-$$H_0: \text{There is no difference in election outcome between Members that have a lot of constituency service correspondence.}$$
-$$H_a: \text{Members that have more constituent service correspondence are more likely to be reelected.}$$
-
-
-
-Hypothesis #2:
-
-In contrast to hypothesis #1, the biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and may be more likely to get elected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
-
-
-$$H_0: \text{Correspondence on behalf of corporations has no effect on election outcomes.}$$
-$$H_a: \text{The more correspondence from a member on behalf a corporation the more likely that member is to be reelected.}$$ 
-
-
-
-## Methods 
-
-Originally Poisson regression was chosen for the models with reelections as the response variable. This was done because reelections is a count variable, however, a dispersion test yeilded a small p-value < 2.2e-16 and is estimated to be 0.339. This shows that the counts for this data are over-dispersed. To deal with this negative binomial regression models were used instead. Logistic regression was also used to look at the response variable of member_reelected which codes true or false for if a member was reelected or not.
-
-```{r dataFilter, fig.height=3, fig.width=4}
-
-
-# d %>%
-#   gather(interest,letters,FY1993:FY1998) %>%
-#   spread(Field,value)
+```{r dataFilter, fig.width=5}
 
 
 checkCounts <- d %>%
@@ -206,15 +185,9 @@ checkCounts <- d %>%
 d %<>%
   count(bioname, icpsr, congress, reelections, party_name, member_reelected, interest, name = "lettersPerInterest")
 
-
- 
-# 
-# qplot(x = lettersPerInterest, y = reelections, facets = ~interest, data = d, na.rm = TRUE) +
-#   geom_smooth(method = "lm")
  
 qplot(x = lettersPerInterest, y = reelections, data = d, color = interest) +
-  geom_smooth(method = "lm") 
-  
+  geom_smooth(method = "glm") 
 
 d %<>% 
   spread(interest, lettersPerInterest)
@@ -225,15 +198,9 @@ d %<>%
 
  
 
-
-# d %<>% 
-#   mutate(corporateInterest = ifelse(str_detect(interest, "corporate"), lettersPerInterest, 0)) %>%
-#   mutate(constituentInterest = ifelse(str_detect(interest, "constituent"), lettersPerInterest, 0))
-
-
 ```
 
-```{r plots, fig.height=3, fig.width=4 }
+```{r plots, fig.width=5}
 d %>%
   ggplot(aes(x=corporate, y=reelections)) + 
   geom_point(outlier.colour="black", outlier.shape=16,
@@ -268,94 +235,105 @@ d %>%
 
 ```
 
-```{r mplot, include=FALSE}
- mplot <- function(m){m %>%
-  tidy(conf.int = TRUE) %>%
-    filter(term!="(Intercept)") %>%
-ggplot() + 
-  aes(x = term,
-      y = estimate, 
-      ymin = conf.low, 
-      ymax = conf.high)+ 
-    geom_hline(yintercept = 0, linetype =2) + 
-  geom_pointrange() + coord_flip() }
 
-```
+## Hypotheses:
 
+Hypothesis #1:
+
+Constituents want to feel that they are listened to and that member of congress are advocating for their best interest. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
+
+
+$$H_0: \text{There is no difference in election outcome between Members that have a lot of constituency service correspondence.}$$
+$$H_a: \text{Members that have more constituent service correspondence are more likely to be reelected.}$$
+
+
+
+Hypothesis #2:
+
+In contrast to hypothesis #1, the biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and may be more likely to get elected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
+
+
+$$H_0: \text{Correspondence on behalf of corporations has no effect on election outcomes.}$$
+$$H_a: \text{The more correspondence from a member on behalf a corporation the more likely that member is to be reelected.}$$ 
+
+
+
+## Methods 
+
+### Poisson Regression
+
+Originally Poisson regression was chosen for the models with reelections as the response variable. This was done because reelections is a count, however, a dispersion test yeilded a small p-value < 2.2e-16 and has an estimated coeffience of 0.339 (See appedix dispersion test). This shows that the counts for this data are over-dispersed. 
+
+
+### Negative Binomial Regression
+
+Negative Binomial regression is used when the variance is greater than the mean. This tends to be the case when counts are increasing as is seen with the number of times over a ten year period a member is reelected to congress. After the dispersion test binomial regression models were chosen.
+
+
+### Logistic Regression
+
+Logistic regression was also used to look at the response variable of member_reelected which codes true or false for if a member was reelected or not. This was done to determine if there was a short term relationship between letter interests and reelection.
 
 
 ## Results
-
-
-### Poisson Regression
-```{r disp }
-library(AER)
-countModel <- glm(reelections ~ corporate + constituent, data = d, family = poisson)
-
-dispersiontest(countModel,trafo=1) 
-
-```
-
-
 
 ### Negative Binomial Regression
 
 ### Corporate and Constituent Interest Letters
 
-```{r qpoisson, fig.height=3, fig.width=4 }
+```{r interestModel}
 
-countModelq <- glm.nb(reelections ~ corporate + constituent, 
+interestModel <- glm.nb(reelections ~ corporate + constituent, 
             data = d)  
 
-
-# countModelq%>%
-#   tbl_regression(exponentiate = TRUE) %>%
-#   bold_labels()
-
-
-countModelq %>%
+interestModel %>%
    tbl_regression() %>%
    bold_labels()
 
-
-countModelq %>% mplot()+
-  labs(x="", y="Increase in times reelection given letter interests")
-
-
 ```
-Corporate interest correspondence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends the log count of times a member is reelected is expected to increase by 0.02 over a ten year period.
+
+
+Corporate interest correspondence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends the log count of times a member is reelected is expected to increase by 0.02 over a ten year period as illustrated by the model bellow.
+
+```{r interestfig, fig.width=5}
+
+interestModel %>% mplot()+
+  labs(x="", y="Change in Times Reelected Given Letter Interests")
+```
 
 This could mean one of two things. Either corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could be that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
 
 
 ### Party and Reelections
-```{r countModel2q, fig.height=3, fig.width=4 }
+
+Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
+
+```{r partyModel}
 
 noI <- d %>%
   filter(!str_detect(party_name, "Independent"))
 
- countModelPartyq <- glm.nb(reelections ~ party_name, 
+ partyModel <- glm.nb(reelections ~ party_name, 
              data = noI )  
  
- 
- countModelPartyq%>%
+ partyModel%>%
    tbl_regression() %>%
    bold_labels()
- 
- 
-
- 
- countModelPartyq %>% mplot()+
-   labs(x="", y="Times reelected given party")
 ```
+
+
+```{r partyfig, fig.width=5}
+
+partyModel %>% 
+   mplot()+
+   labs(x="", y="Change in times reelected given party") 
+
+```
+
 
 ### Party and Constituent/Corporate Interest Letters
 
-Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
-
-
-
-```{r partyLetter, fig.height=3, fig.width=4 }
+```{r partyLetter, fig.width=7}
 
 partyLetter <- glm.nb(reelections ~ constituent + corporate + party_name, 
             data = noI )  
@@ -366,17 +344,18 @@ partyLetter%>%
   bold_labels()
 
 
-
-
-partyLetter %>% mplot()+
-  labs(x="", y="Times reelection given party and letter interest")
 ```
 Party and corporate correspodence are significant predictors of the number of times a member is reelected. If the member is Repubulican the log count of the number of times they are reelected is supposed to be 0.10 less than that of a Democrat. This does not necessarily mean that republicans are less likely to be elected or that there was a seat turn over. It is possible that the member is replaced by someone of the same party. This model also does not account for things like retirement. This just shows that generally republicans do not hang on to their seats for as long as the democrat counterparts over a ten year period. 
 
+```{r partyletterFig, fig,width = 5}
 
+partyLetter %>% mplot()+
+  labs(x="", y="Change in Times Reelected Given Party and Letter Interest") 
+
+```
 
 ### Interaction between Party and Letter Interests
-```{r interactionParty, fig.height=3, fig.width=4 }
+```{r interactionParty, fig.width=7}
 interactionparty <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
             data = noI)  
 
@@ -387,15 +366,18 @@ interactionparty%>%
 
 
 
-
-interactionparty %>% mplot()+
-  labs(x="", y="Increase in times reelection given letter interests and party")
 ```
 As shown in the previous model the log of the expected number of times a member is reelected decreases if the member is Republican. What is interesting, however, is that the interaction between Republican and constituent correspodence is statistically significant. This suggests that while compared to democrates republicans are not as likely to serve as long the log expected number of times a republican was reelected increases when then send letters on behalf of constituents.
 
+```{r interactionFig, fig.width=5}
+
+interactionparty %>% mplot()+
+  labs(x="", y="Change in Times Reelected Given Letter Interests and Party")
+
+```
 
 
-```{r predictcorp}
+```{r predictcorp,fig.width=5}
 values <- noI %>%
   expand(corporate = corporate, constituent = mean(constituent), party_name = party_name)
 
@@ -409,12 +391,13 @@ ggplot(aes(x = corporate, y = .fitted)) +
   aes(color = party_name) +
   labs(color = "") + 
   xlab("Corporate Letters") + 
-  ylab("Predicted Reelections")
+  ylab("Predicted Reelections") +
+  geom_jitter()
 
 ```
 
 
-```{r predictconst}
+```{r predictconst, fig.width=5}
 values <- noI %>%
   expand(corporate = mean(corporate), constituent = constituent, party_name = party_name)
 
@@ -428,7 +411,8 @@ ggplot(aes(x = constituent, y = .fitted)) +
   aes(color = party_name) +
   labs(color = "") + 
   xlab("Constituent Letters") + 
-  ylab("Predicted Reelections")
+  ylab("Predicted Reelections") +
+  geom_jitter()
 
 ```
 
@@ -460,20 +444,32 @@ Throughout the course of this directed study I learned many things. This include
 
 ## Appendix
 
-### Modeling Assumptions
+### Dispersion Test
 
-### Corporate and Constituent Letters
-```{r corpcondiag}
-plot(countModelq)
-ggplot(countModelq, aes(seq_along(.cooksd), .cooksd)) +
-  geom_col() 
+```{r disp}
+library(AER)
+countModel <- glm(reelections ~ corporate + constituent, data = d, family = poisson)
+
+dispersiontest(countModel,trafo=1) 
 
 ```
 
-```{r qpoissonDiagn }
+### Modeling Assumptions
 
-res <- residuals(countModelq, type="deviance")
-{plot(log(predict(countModelq)), res)
+### Corporate and Constituent Letters
+```{r corpcondiag, fig.width=5, fig.height=2}
+ggplot(interestModel, aes(seq_along(.cooksd), .cooksd)) +
+  geom_col() 
+```
+```{r interestplots, fig.width=5}
+plot(interestModel)
+
+```
+
+```{r qpoissonDiagn, fig.width=5}
+
+res <- residuals(interestModel, type="deviance")
+{plot(log(predict(interestModel)), res)
 abline(h=0, lty=2)
 qqnorm(res)
 qqline(res)
@@ -481,28 +477,28 @@ qqline(res)
 
 
 library(car)
-influencePlot(countModelq)
+influencePlot(interestModel)
 ```
 
 
 ### Party and Reelections
  
-```{r partyReelections}
- plot(countModelPartyq)
+```{r partyReelections, fig.width=5}
+ plot(partyModel)
 
 ```
 
 
 ### Party and Constituent/Corporate Interest Letters
 
-```{r partyconcorp}
+```{r partyconcorp, fig.width=5}
 #par(mfrow=c(2,2))
 plot(partyLetter)
 ```
 
 ### Interaction party and interest letters
 
-```{r interaction}
+```{r interaction, fig.width=5}
 plot(interactionparty)
 
 ```
