@@ -400,15 +400,45 @@ interactionparty%>%
   bold_labels()
 
 
-interactionparty %>%
-  augment(data =noI)
-
 plot(interactionparty)
 
 interactionparty %>% mplot()+
   labs(x="", y="Increase in times reelection given letter interests and party")
 ```
 As shown in the previous model the log of the expected number of times a member is reelected decreases if the member is Republican. What is interesting, however, is that the interaction between Republican and constituent correspodence is statistically significant. This suggests that while compared to democrates republicans are not as likely to serve as long the log expected number of times a republican was reelected increases when then send letters on behalf of constituents.
+
+
+
+```{r predictcorp}
+values <- noI %>%
+  expand(corporate = corporate, constituent = mean(constituent), party_name = party_name)
+
+predicted <- interactionparty %>%
+  augment(type.predict = "response", newdata = values)
+
+
+predicted %>%
+ggplot(aes(x = corporate, y = .fitted)) +
+  geom_point() +
+  aes(color = party_name)
+
+```
+
+
+```{r predictconst}
+values <- noI %>%
+  expand(corporate = mean(corporate), constituent = constituent, party_name = party_name)
+
+predicted <- interactionparty %>%
+  augment(type.predict = "response", newdata = values)
+
+
+predicted %>%
+ggplot(aes(x = constituent, y = .fitted)) +
+  geom_point() +
+  aes(color = party_name)
+
+```
 
 ```{r logitmodel }
 
