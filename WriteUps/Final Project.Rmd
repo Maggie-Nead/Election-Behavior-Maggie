@@ -377,7 +377,7 @@ partyLetter %>% mplot()+
 
 ```{r countplots, fig.width=6}
 
-library(plyr)
+
 cdat <- noI %>%
   ddply("party_name", summarise, rating.mean=mean(reelections))
 
@@ -391,15 +391,18 @@ ggplot(noI, aes(x=reelections, fill=party_name)) +
 
 ```
 
-```{r boxplot, fig.height=5}
-ggplot(noI, aes(x= party_name, y=corporate, fill=party_name)) + 
-  geom_boxplot() +
-  guides(fill=FALSE)
+```{r boxplot, fig.height=5, fig.width=4}
 
-
-ggplot(noI, aes(x= party_name, y=constituent, fill=party_name)) + 
+boxcorp <- ggplot(noI, aes(x= party_name, y=corporate, fill=party_name)) + 
   geom_boxplot() +
-  guides(fill=FALSE)
+  guides(fill=FALSE) +
+  xlab("")
+  
+boxcon<-ggplot(noI, aes(x= party_name, y=constituent, fill=party_name)) + 
+  geom_boxplot() +
+  guides(fill=FALSE) +
+  xlab("")
+grid.arrange(boxcorp, boxcon, ncol=2)
 
 ```
 
