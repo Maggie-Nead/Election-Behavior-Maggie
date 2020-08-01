@@ -1,15 +1,27 @@
 ---
 title: "Correspondence and Congressional Member Reelection"
 author: "Maggie Nead"
-date: "7/19/2020"
+date: "7/20/2020"
 output:
-  html_document:
-    df_print: paged
-  pdf_document: default
-  code_folding: hide
-  word_document: default
+  #pdf_document
+    html_document:
+      #toc: true
+      #toc_float: true
+      code_folding: hide
 subtitle: Statistical Analysis of Reelection Rates and Correspondence Priorities
 ---
+
+```{r global.options, include=FALSE}
+knitr::opts_chunk$set(#echo = TRUE, 
+                      cache = FALSE, 
+                      fig.width=8.5, 
+                      split = T,
+                      fig.align = 'center', 
+                      fig.path='figs/',
+                      warning=FALSE, 
+                      message=FALSE)
+```
+
 ## Introduction
 
 Political scientists have long viewed members of congress as “single-minded seekers of reelection”, a term coined by David Mayhew in his book, Congress: The Electoral Connection. This idea stems from the fact that in order for Members of Congress to reach political goals. They must first be reelected. These goals may include personal goals such as becoming committee chair or minority/majority leader, or Speaker of the House. In contrast their goals might be to get a certain policy on the agenda or pass a certain bill that might help their constituents. All of these first require a member to be reelected. This in turn makes reelection the single focus of current members. Assuming this to be true, every correspondence should be used to advance that goal. This research seeks to answer the question, what kinds of congressional correspondence behavior leads to reelection?
@@ -37,7 +49,7 @@ source(here::here("dataSetup.R"))
 ```
 
 
-```{r reorder, echo=FALSE}
+```{r reorder}
 #Reorder data
 
 data %<>%
@@ -52,7 +64,7 @@ d <- data %>%
 Data for this research has been collected using the Freedom of Information Act (FOIA) on 383,824 congressional correspondences from Members of Congress to federal agencies. This data was collected by the Correspondence Research project headed by Professor Powell at the University of Wisconsin-Madison. The data spans from the 106th to the 116th congress and was requested from every federal agency. The 383,824 observations we currently have contains the data from every federal agency that has responded to the FOIA request so far.
 
 
-```{r hist, echo=FALSE}
+```{r hist }
 d %>%
   with(hist(congress))
 ```
@@ -175,7 +187,7 @@ $$H_a: \text{The more correspondence from a member on behalf a corporation the m
 
 Originally Poisson regression was chosen for the models with reelections as the response variable. This was done because reelections is a count variable, however, a dispersion test yeilded a small p-value < 2.2e-16 and is estimated to be 0.339. This shows that the counts for this data are over-dispersed. To deal with this negative binomial regression models were used instead. Logistic regression was also used to look at the response variable of member_reelected which codes true or false for if a member was reelected or not.
 
-```{r dataFilter, fig.height=3, fig.width=4, echo=FALSE}
+```{r dataFilter, fig.height=3, fig.width=4}
 
 
 # d %>%
@@ -211,7 +223,7 @@ d %<>%
 
 ```
 
-```{r plots, fig.height=3, fig.width=4, echo=FALSE}
+```{r plots, fig.height=3, fig.width=4 }
 d %>%
   ggplot(aes(x=corporate, y=reelections)) + 
   geom_point(outlier.colour="black", outlier.shape=16,
@@ -264,7 +276,7 @@ ggplot() +
 
 
 ### Poisson Regression
-```{r disp, echo=FALSE}
+```{r disp }
 library(AER)
 countModel <- glm(reelections ~ corporate + constituent, data = d, family = poisson)
 
@@ -278,7 +290,7 @@ dispersiontest(countModel,trafo=1)
 
 ### Corporate and Constituent Interest Letters
 
-```{r qpoisson, fig.height=3, fig.width=4, echo=FALSE}
+```{r qpoisson, fig.height=3, fig.width=4 }
 
 countModelq <- glm.nb(reelections ~ corporate + constituent, 
             data = d)  
@@ -330,7 +342,7 @@ influencePlot(countModelq)
 ```
 
 
-```{r countModel2q, fig.height=3, fig.width=4, echo=FALSE}
+```{r countModel2q, fig.height=3, fig.width=4 }
 
 noI <- d %>%
   filter(!str_detect(party_name, "Independent"))
@@ -356,7 +368,7 @@ Parties have different priorities and voting members of those parties likely hav
 
 
 
-```{r partyLetter, fig.height=3, fig.width=4, echo=FALSE}
+```{r partyLetter, fig.height=3, fig.width=4 }
 
 partyLetter <- glm.nb(reelections ~ constituent + corporate + party_name, 
             data = noI )  
@@ -378,7 +390,7 @@ Party and corporate correspodence are significant predictors of the number of ti
 
 
 ### Interaction between Party and Letter Interests
-```{r interactionParty, fig.height=3, fig.width=4, echo=FALSE}
+```{r interactionParty, fig.height=3, fig.width=4 }
 interactionparty <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
             data = noI)  
 
@@ -398,7 +410,7 @@ interactionparty %>% mplot()+
 ```
 As shown in the previous model the log of the expected number of times a member is reelected decreases if the member is Republican. What is interesting, however, is that the interaction between Republican and constituent correspodence is statistically significant. This suggests that while compared to democrates republicans are not as likely to serve as long the log expected number of times a republican was reelected increases when then send letters on behalf of constituents.
 
-```{r logitmodel, echo=FALSE}
+```{r logitmodel }
 
 model <- glm(member_reelected ~ corporate + constituent, 
              data=d, 
