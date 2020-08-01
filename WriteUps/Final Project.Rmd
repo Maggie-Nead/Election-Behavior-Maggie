@@ -318,16 +318,6 @@ countModelq %>%
    bold_labels()
 
 
-
-
-plot(countModelq)
-ggplot(countModelq, aes(seq_along(.cooksd), .cooksd)) +
-  geom_col() 
-
-
-
-
-
 countModelq %>% mplot()+
   labs(x="", y="Increase in times reelection given letter interests")
 
@@ -337,41 +327,26 @@ Corporate interest correspondence is statistically significant when predicting h
 
 This could mean one of two things. Either corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could be that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
 
-### Model Diagnostics
 
-```{r qpoissonDiagn }
-
-res <- residuals(countModelq, type="deviance")
-{plot(log(predict(countModelq)), res)
-abline(h=0, lty=2)
-qqnorm(res)
-qqline(res)
-}
-
-
-library(car)
-influencePlot(countModelq)
-```
-
-
+### Party and Reelections
 ```{r countModel2q, fig.height=3, fig.width=4 }
 
 noI <- d %>%
   filter(!str_detect(party_name, "Independent"))
 
-# countModelPartyq <- glm.nb(reelections ~ party_name, 
-#             data = noI )  
-# 
-# 
-# countModelPartyq%>%
-#   tbl_regression() %>%
-#   bold_labels()
-# 
-# 
-# plot(countModelPartyq)
-# 
-# countModelPartyq %>% mplot()+
-#   labs(x="", y="Times reelected given party")
+ countModelPartyq <- glm.nb(reelections ~ party_name, 
+             data = noI )  
+ 
+ 
+ countModelPartyq%>%
+   tbl_regression() %>%
+   bold_labels()
+ 
+ 
+
+ 
+ countModelPartyq %>% mplot()+
+   labs(x="", y="Times reelected given party")
 ```
 
 ### Party and Constituent/Corporate Interest Letters
@@ -390,8 +365,7 @@ partyLetter%>%
   tbl_regression() %>%
   bold_labels()
 
-#par(mfrow=c(2,2))
-plot(partyLetter)
+
 
 
 partyLetter %>% mplot()+
@@ -412,7 +386,7 @@ interactionparty%>%
   bold_labels()
 
 
-plot(interactionparty)
+
 
 interactionparty %>% mplot()+
   labs(x="", y="Increase in times reelection given letter interests and party")
@@ -486,4 +460,49 @@ Throughout the course of this directed study I learned many things. This include
 
 ## Appendix
 
+### Modeling Assumptions
 
+### Corporate and Constituent Letters
+```{r corpcondiag}
+plot(countModelq)
+ggplot(countModelq, aes(seq_along(.cooksd), .cooksd)) +
+  geom_col() 
+
+```
+
+```{r qpoissonDiagn }
+
+res <- residuals(countModelq, type="deviance")
+{plot(log(predict(countModelq)), res)
+abline(h=0, lty=2)
+qqnorm(res)
+qqline(res)
+}
+
+
+library(car)
+influencePlot(countModelq)
+```
+
+
+### Party and Reelections
+ 
+```{r partyReelections}
+ plot(countModelPartyq)
+
+```
+
+
+### Party and Constituent/Corporate Interest Letters
+
+```{r partyconcorp}
+#par(mfrow=c(2,2))
+plot(partyLetter)
+```
+
+### Interaction party and interest letters
+
+```{r interaction}
+plot(interactionparty)
+
+```
