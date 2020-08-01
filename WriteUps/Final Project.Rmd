@@ -277,9 +277,27 @@ Logistic regression was also used to look at the response variable of member_ree
 
 ## Results
 
+### Logistic Regression
+
+**Member Reelection and Letter Interest**
+
+```{r logitmodel }
+
+model <- glm(member_reelected ~ corporate + constituent, 
+             data=d, 
+             family=binomial(link="logit"))
+
+model %>%
+  tbl_regression() %>%
+  bold_labels()
+
+
+```
+This logit model shows no relationship between corporate or constituent interest correspodence and likelihood of being elected in the following congress. This model combined with the negative binomial model shows that the relationship between congressional correspdence and reelection does not occur over one congressional period and instead is a long term relationship over a period of several congresses.
+
 ### Negative Binomial Regression
 
-### Corporate and Constituent Interest Letters
+**Corporate and Constituent Interest Letters**
 
 ```{r interestModel}
 
@@ -304,7 +322,7 @@ interestModel %>% mplot()+
 This could mean one of two things. Either corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could be that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
 
 
-### Party and Reelections
+**Party and Reelections**
 
 Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
 
@@ -331,7 +349,7 @@ partyModel %>%
 ```
 
 
-### Party and Constituent/Corporate Interest Letters
+**Party and Constituent/Corporate Interest Letters**
 
 ```{r partyLetter, fig.width=7}
 
@@ -354,7 +372,37 @@ partyLetter %>% mplot()+
 
 ```
 
-### Interaction between Party and Letter Interests
+**Interaction between Party and Letter Interests**
+
+
+```{r countplots, fig.width=6}
+
+library(plyr)
+cdat <- noI %>%
+  ddply("party_name", summarise, rating.mean=mean(reelections))
+
+
+ggplot(noI, aes(x=reelections, fill=party_name)) + 
+  geom_density(alpha=.3) +
+  geom_vline(data=cdat, aes(xintercept=rating.mean,  colour=party_name), linetype="dashed", size=1) +
+  xlab("Number of Reelections")
+
+
+
+```
+
+```{r boxplot, fig.height=5}
+ggplot(noI, aes(x= party_name, y=corporate, fill=party_name)) + 
+  geom_boxplot() +
+  guides(fill=FALSE)
+
+
+ggplot(noI, aes(x= party_name, y=constituent, fill=party_name)) + 
+  geom_boxplot() +
+  guides(fill=FALSE)
+
+```
+
 ```{r interactionParty, fig.width=7}
 interactionparty <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
             data = noI)  
@@ -365,11 +413,10 @@ interactionparty%>%
   bold_labels()
 
 
-
 ```
 As shown in the previous model the log of the expected number of times a member is reelected decreases if the member is Republican. What is interesting, however, is that the interaction between Republican and constituent correspodence is statistically significant. This suggests that while compared to democrates republicans are not as likely to serve as long the log expected number of times a republican was reelected increases when then send letters on behalf of constituents.
 
-```{r interactionFig, fig.width=5}
+```{r interactionFig, fig.width=7}
 
 interactionparty %>% mplot()+
   labs(x="", y="Change in Times Reelected Given Letter Interests and Party")
@@ -392,7 +439,9 @@ ggplot(aes(x = corporate, y = .fitted)) +
   labs(color = "") + 
   xlab("Corporate Letters") + 
   ylab("Predicted Reelections") +
-  geom_jitter()
+  geom_jitter() + 
+  geom_pointrange(aes(ymin = .fitted - 1.96*.se.fit,
+                  ymax = .fitted + 1.96*.se.fit) )  
 
 ```
 
@@ -412,27 +461,13 @@ ggplot(aes(x = constituent, y = .fitted)) +
   labs(color = "") + 
   xlab("Constituent Letters") + 
   ylab("Predicted Reelections") +
-  geom_jitter()
+  geom_jitter() + 
+  geom_pointrange(aes(ymin = .fitted - 1.96*.se.fit,
+                  ymax = .fitted + 1.96*.se.fit) )  
 
 ```
 
-```{r logitmodel }
 
-model <- glm(member_reelected ~ corporate + constituent, 
-             data=d, 
-             family=binomial(link="logit"))
-
-model %>%
-  tbl_regression() %>%
-  bold_labels()
-
-# model %>%
-#   tbl_regression(exponentiate = TRUE) %>%
-#   bold_labels()
-
-
-```
-This logit model shows no relationship between corporate or constituent interest correspodence and likelihood of being elected in the following congress. This model combined with the negative binomial model shows that the relationship between congressional correspdence and reelection does not occur over one congressional period and instead is a long term relationship over a period of several congresses.
 
 
 
