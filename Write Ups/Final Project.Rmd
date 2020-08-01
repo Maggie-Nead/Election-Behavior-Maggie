@@ -1,115 +1,33 @@
 ---
 title: "Correspondence and Congressional Member Reelection"
-subtitle: "Statistical Analysis of Reelection Rates and Correspondence Priorities"
 author: "Maggie Nead"
 date: "7/19/2020"
 output:
-  html_document:
-    code_folding: hide
   pdf_document: default
+  html_document:
+    df_print: paged
+  code_folding: hide
+  word_document: default
+subtitle: Statistical Analysis of Reelection Rates and Correspondence Priorities
 ---
+## Introduction
 
-Introduction
-Congress: The Electoral Connection written by David Mayhew refers to Members of Congress as “single-minded seekers of reelection” stating that in order for Members of Congress to reach their goals of moving up the ranks, pushing policy goals, etc. they must first be in congress. This in turn makes reelection the single focus of current members. This research seeks to address the question of what kind of correspondence leads to reelection.
+Political scientists have long viewed members of congress as “single-minded seekers of reelection”, a term coined by David Mayhew in his book, Congress: The Electoral Connection. This idea stems from the fact that in order for Members of Congress to reach political goals. They must first be reelected. These goals may include personal goals such as becoming committee chair or minority/majority leader, or Speaker of the House. In contrast their goals might be to get a certain policy on the agenda or pass a certain bill that might help their constituents. All of these first require a member to be reelected. This in turn makes reelection the single focus of current members. Assuming this to be true, every correspondence should be used to advance that goal. This research seeks to answer the question, what kinds of congressional correspondence behavior leads to reelection?
+There may exist patterns and relationships between congressional correspondence and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities lead to reelection and which may lead a member to be replaced.
 
-Theory
-	There may exist patterns and relationships between congressional correspondence and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities lead to reelection and which may lead a member to be replaced. 
 
-Data
+## Theory
+
+In order for a Member of Congress to accomplish their political goals they must first be reelected. This means that first and foremost the goal of any politician is to be reelected. To be reelected a Member of Congress needs two things, money and the support of their constituents. Most campaigns are funded by a few large donations instead of a lot of small donations. For this reason, members seeking reelection may focus on advocating for the interest of corporations. With resources like money, advertising power, and audience corporations have power that can either lead to a successful reelection or help a political opponent take their own victory. On the other hand, corporations cannot vote. A member is ultimately elected by those they represent and there is evidence to suggest that members will change what they advocate for based on what they hear their constituents want. Constituent interest may play a big role in whether or not a member gets reelected. If a constituent feels that their member of congress listens to them and advocates on their behalf, they may be more likely to vote for that member again. It is also possible that both corporate and constituent interest play a significant role in getting a member reelected. Members who advocate for corporations and constituents at the same time may be more likely to be reelected.
+
+
+## Data
+
 Data has been collected on 383,824 congressional correspondences from Members of Congress to federal agencies. In order to answer the question of congressional behavior there are a couple of ways to look at this data:
 1. 	The behavior of members who are reelected (i.e. in consecutive congresses)
 2. 	The behavior of members who are not reelected (i.e. not in consecutive congresses)
 3. 	Compared behavior between the members who did not run for reelection and those that lost their bid for reelection.
 For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who is in one congress and not the following congress. This research may further break this down between members who ran for reelection and lost and those who did not run for reelection at all.
-
-Variables
-	To put this data into a usable format three variables were created:
-Member_reelected
-Corporate
-Constituent
-member _reelected is categorized as true or false for every member in every congress based on whether a member shows up in the following congress. For the purposes of this research if a member shows up in the following congress this is counted as one reelection. Corporate and constituent are counts based on letter type codings. A letter is type coded as either a 1 for person service, 2 for commercial services - transactional, and 4 for commercial services- policy. Type 1 was then re-coded as constituent and types 2 and 4 re-coded as corporate. The number of letters for each type given a member in a congress was then totaled up with the number of corporate correspondence in one column and the number of constituent correspondence in another.
-
-
-Questions
-        	The broad research question may be further broken down into the questions listed below:
-Is the behavior between members who get reelected different from members who do not?
-How?
-Are members of congress not seeking reelection more willing to step outside of party lines on policy than those seeking reelection?
-Are corporate interests less important to members not seeking reelection?
- Or are members who do not advocate for corporate interests less likely to be reelected?
-Has this changed over time?
-
-
-
-
-#Variables:
-
-members_reelected: Coded as TRUE/FALSE. If the member shows up in the following congress members_reelected = TRUE if not members_reelected = FALSE.
-
-Yearelected: Coded as year that a member was first elected.
-
-TYPE:
-1 = Personal Service
-  •	Individual, non-commercial constituent service
-Examples: Help with a government form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, financial services complaints, etc.
-
-2 = Commercial Service - Transactional
-  •	Anything related to a specific individual case by a business (including business owners like farmers and consultants)
-  •	Help with a grant application, payment, loan or contract (buying anything from or selling anything to a government agency) 
-  •	Help with an individual case of tax assessment, fine, or regulatory enforcement action
-  •	Help with public relations on behalf of a business
-Examples: allocation of radio spectrum, case against a company, tax dispute, contract for purchase of military surplus, crop insurance distribution, debt settlement, foreclosure assistance, a fine for a law violation, etc.
-
-3 = Government and Nonprofit Service - Transactional
-  •	[same as for #2, but for municipal or state governments (including cities, counties, etc.) or non-business-oriented non-profit organizations (i.e. NOT ones that represents an industry or trade association) (here’s a good search engine to check non-profit status) 
-
-4 = Commercial Service - Policy
-  •	Anything applying to a class of commercial activity or businesses (e.g. shipping, airlines, agriculture). This could include legislation, bills, acts, appropriations, authorizations, etc. 
-  •	Authorization of or appropriation to a government program that is targeted towards a particular industry or industries
-  •	Regulation of an industry or commercial practice or competition
-Examples: Milk prices, insurance or loan eligibility criteria, purchasing policies, crop insurance rates, pollution criteria, classification of products for trade or taxation, conservation appropriation, worker visa types, restrictions, or caps, etc.
-
- 
-5 = Policy Work - NOT in the service of any individual, business, specific industry
-	Examples:
-  •	Lawmaking
-    o	Request for policy-relevant information. This includes prospective legislation, legislation under consideration, or already implemented legislation that requires oversight.
-  •	Oversight
-    o	Committee requesting a report or testimony at a hearing in for
-    o	 Requesting clarity on an agency rule
-  •	Lobbying administrative policy
-    o	Agency rulemaking with non-commercial implications (comments on agency rulemaking may often be #3)
-  •	Political work
-    o	Meeting with organized constituent groups (e.g. workers, people with disabilities, environmentalists) about policy (meetings with industry groups generally fall under #4).
-    o	Media requests
-
-6 = Other 
-	Suggest a new category in the NOTES column, only if it cannot be fit under 1-4. For example, requesting dirt on one's political opponents could be called "partisan" as it is none of the above. Other specific types: thank you (for thank you notes with no other information), congratulations (for congratulatory correspondence on appointments or retirements with no other information), family member (for correspondence on behalf of a family member)
-
-0  = Really no idea, no guesses, completely unclear
-
-
-#Confounding variables:
-
-
-#Hypotheses:
-Hypothesis #1:
-
-Constituents want to feel that they are listened to and that member of congress are advocating for their best interest. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
-
-
-$$H_0: \text{There is no difference in election outcome between Members that have a lot of constituency service correspondence.}$$
-$$H_a: \text{Members that have more constituent service correspondence are more likely to be reelected.}$$
-
-
-
-Hypothesis #2:
-
-In contrast to hypothesis #1, the biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and may be more likely to get elected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
-
-
-$$H_0: \text{Correspondence on behalf of corporations has no effect on election outcomes.}$$
-$$H_a: \text{The more correspondence from a member on behalf a corporation the more likely that member is to be reelected.}$$ 
 
 
 ```{r setup, include = FALSE}
@@ -123,7 +41,7 @@ source(here::here("dataSetup.R"))
 #Reorder data
 
 data %<>%
-  select(bioname, member_reelected, congress, TYPE, everything())
+  dplyr::select(bioname, member_reelected, congress, TYPE, everything())
 
 d <- data %>%
   filter(!is.na(TYPE)) %>%
@@ -131,17 +49,33 @@ d <- data %>%
 
 ```
 
+Data for this research has been collected using the Freedom of Information Act (FOIA) on 383,824 congressional correspondences from Members of Congress to federal agencies. This data was collected by the Correspondence Research project headed by Professor Powell at the University of Wisconsin-Madison. The data spans from the 106th to the 116th congress and was requested from every federal agency. The 383,824 observations we currently have contains the data from every federal agency that has responded to the FOIA request so far.
 
 
-#Histogram of observations in each congress
 ```{r hist, echo=FALSE}
 d %>%
   with(hist(congress))
 ```
+### Questions
+The broad research question may be further broken down into the questions listed below:
+Is the behavior between members who get reelected different from members who do not?
+How?
+Are members of congress not seeking reelection more willing to step outside of party lines on policy than those seeking reelection?
+Are corporate interests less important to members not seeking reelection?
+ Or are members who do not advocate for corporate interests less likely to be reelected?
+Has this changed over time?
 
 
+### Variables
 
-```{r dataFilter, fig.height=3, fig.width=4, echo=FALSE}
+To put this data into a usable format three variables were created:
+Member_reelected
+Corporate
+Constituent
+member _reelected is categorized as true or false for every member in every congress based on whether a member shows up in the following congress. For the purposes of this research if a member shows up in the following congress this is counted as one reelection. Corporate and constituent are counts based on letter type codings. A letter is type coded as either a 1 for person service, 2 for commercial services - transactional, and 4 for commercial services- policy. Type 1 was then re-coded as constituent and types 2 and 4 re-coded as corporate. The number of letters for each type given a member in a congress was then totaled up with the number of corporate correspondence in one column and the number of constituent correspondence in another.
+
+
+```{r variables,echo=FALSE}
 d %>%
 group_by(TYPE) %>%
 tally%>%
@@ -163,6 +97,86 @@ d %>%
   tally()%>%
   kable() %>%
   kable_styling() 
+
+```
+
+
+members_reelected: Coded as TRUE/FALSE. If the member shows up in the following congress members_reelected = TRUE if not members_reelected = FALSE.
+
+Yearelected: Coded as year that a member was first elected.
+
+TYPE:
+- 1 = Personal Service  
+  - Individual, non-commercial constituent service
+Examples: Help with a government form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, financial services complaints, etc.
+
+- 2 = Commercial Service - Transactional  
+  - Anything related to a specific individual case by a business (including business owners like farmers and consultants)
+  - Help with a grant application, payment, loan or contract (buying anything from or selling anything to a government agency)
+  - Help with an individual case of tax assessment, fine, or regulatory enforcement action
+  - Help with public relations on behalf of a business  
+  Examples: allocation of radio spectrum, case against a company, tax dispute, contract for purchase of military surplus, crop insurance distribution, debt settlement, foreclosure assistance, a fine for a law violation, etc.
+
+- 3 = Government and Nonprofit Service - Transactional
+  - [same as for #2, but for municipal or state governments (including cities, counties, etc.) or non-business-oriented non-profit organizations (i.e. NOT ones that represents an industry or trade association) (here’s a good search engine to check non-profit status) 
+
+- 4 = Commercial Service - Policy
+  - Anything applying to a class of commercial activity or businesses (e.g. shipping, airlines, agriculture). This could include legislation, bills, acts, appropriations, authorizations, etc.
+  - Authorization of or appropriation to a government program that is targeted towards a particular industry or industries
+  - Regulation of an industry or commercial practice or competition  
+  Examples: Milk prices, insurance or loan eligibility criteria, purchasing policies, crop insurance rates, pollution criteria, classification of products for trade or taxation, conservation appropriation, worker visa types, restrictions, or caps, etc.
+
+ 
+- 5 = Policy Work - NOT in the service of any individual, business, specific industry  
+Examples:
+  - Lawmaking
+    - Request for policy-relevant information. This includes prospective legislation, legislation under consideration, or already implemented legislation that requires oversight.
+  - Oversight
+    - Committee requesting a report or testimony at a hearing in for
+    - Requesting clarity on an agency rule
+  - Lobbying administrative policy
+    - Agency rulemaking with non-commercial implications (comments on agency rulemaking may often be #3)
+  - Political work
+    - Meeting with organized constituent groups (e.g. workers, people with disabilities, environmentalists) about policy (meetings with industry groups generally fall under #4).
+    - Media requests
+
+- 6 = Other  
+Suggest a new category in the NOTES column, only if it cannot be fit under 1-4. For example, requesting dirt on one's political opponents could be called "partisan" as it is none of the above. Other specific types: thank you (for thank you notes with no other information), congratulations (for congratulatory correspondence on appointments or retirements with no other information), family member (for correspondence on behalf of a family member)
+
+- 0  = Really no idea, no guesses, completely unclear
+
+
+### Confounding variables:
+
+
+## Hypotheses:
+
+Hypothesis #1:
+
+Constituents want to feel that they are listened to and that member of congress are advocating for their best interest. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
+
+
+$$H_0: \text{There is no difference in election outcome between Members that have a lot of constituency service correspondence.}$$
+$$H_a: \text{Members that have more constituent service correspondence are more likely to be reelected.}$$
+
+
+
+Hypothesis #2:
+
+In contrast to hypothesis #1, the biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and may be more likely to get elected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
+
+
+$$H_0: \text{Correspondence on behalf of corporations has no effect on election outcomes.}$$
+$$H_a: \text{The more correspondence from a member on behalf a corporation the more likely that member is to be reelected.}$$ 
+
+
+
+## Methods 
+
+Originally Poisson regression was chosen for the models with reelections as the response variable. This was done because reelections is a count variable, however, a dispersion test yeilded a small p-value < 2.2e-16 and is estimated to be 0.339. This shows that the counts for this data are over-dispersed. To deal with this negative binomial regression models were used instead. Logistic regression was also used to look at the response variable of member_reelected which codes true or false for if a member was reelected or not.
+
+```{r dataFilter, fig.height=3, fig.width=4, echo=FALSE}
+
 
 # d %>%
 #   gather(interest,letters,FY1993:FY1998) %>%
@@ -211,18 +225,18 @@ d %>%
 
 #d %<>% arrange(constituent) %>% kable(caption = "Legislators who wrote the most letters to FERC")
 
-d %<>%
-  filter(!str_detect(bioname, "McCAIN, John Sidney, III"))
-
-d %>%
-  ggplot(aes(x=corporate, y=reelections)) + 
-  geom_point(outlier.colour="black", outlier.shape=16,
-               outlier.size=2, notch=TRUE) 
-
-d %>%
-  ggplot(aes(x=constituent, y=reelections)) + 
-  geom_point(outlier.colour="black", outlier.shape=16,
-               outlier.size=2, notch=TRUE) 
+# d %<>%
+#   filter(!str_detect(bioname, "McCAIN, John Sidney, III"))
+# 
+# d %>%
+#   ggplot(aes(x=corporate, y=reelections)) + 
+#   geom_point(outlier.colour="black", outlier.shape=16,
+#                outlier.size=2, notch=TRUE) 
+# 
+# d %>%
+#   ggplot(aes(x=constituent, y=reelections)) + 
+#   geom_point(outlier.colour="black", outlier.shape=16,
+#                outlier.size=2, notch=TRUE) 
 
 # qplot(x = lettersPerInterest, y = reelections, data = d, color = interest) +
 #   geom_smooth(method = "lm") 
@@ -244,95 +258,116 @@ ggplot() +
 
 ```
 
-#1 corporate, 2 constituent
-# ```{r countModel1, fig.height=3, fig.width=4, echo=FALSE}
-# #d$interest <- ordered(d$interest, levels = c("neither", "corporate", "constituent"))
-# 
-# countModel <- glm(reelections ~ corporate + constituent, 
-#             data = d,  #%>% distinct(), 
-#             #contrasts = list(interest = contr.sum(2)),
-#          family = poisson)  
-# 
-# 
-# 
-# 
-# 
-# countModel %>%
-#   tbl_regression(exponentiate = TRUE) %>%
-#   bold_labels()
-# 
-# #{par(mfrow=c(2,2))
-# plot(countModel)
-# 
-# ggplot(countModel, aes(seq_along(.cooksd), .cooksd)) +
-#   geom_col()
-# 
-# countModel %>% mplot()+
-#   labs(x="", y="Increase in times reelection given letter interests")
-# 
-# 
-# ```
-Residual Deviance is greater than the degrees of freedom so we have over-dispersion.
+
+
+## Results
+
+```{r disp, echo=FALSE}
+library(AER)
+countModel <- glm(reelections ~ corporate + constituent, data = d, family = poisson)
+
+dispersiontest(countModel,trafo=1) 
+
+```
 
 ```{r qpoisson, fig.height=3, fig.width=4, echo=FALSE}
 
 countModelq <- glm.nb(reelections ~ corporate + constituent, 
-            data = d)  #%>% distinct(), 
-            #contrasts = list(interest = contr.sum(2)),
-         #link = log)  
-
-summary(countModelq)
-
-countModelq%>%
-  tbl_regression(exponentiate = TRUE) %>%
-  bold_labels()
+            data = d)  
 
 
+# countModelq%>%
+#   tbl_regression(exponentiate = TRUE) %>%
+#   bold_labels()
+
+
+countModelq %>%
+   tbl_regression() %>%
+   bold_labels()
+
+
+cooks <- cooks.distance(countModelq)
 
 plot(countModelq)
-ggplot(countModel, aes(seq_along(.cooksd), .cooksd)) +
-  geom_col()
+ggplot(countModelq, aes(seq_along(.cooksd), .cooksd)) +
+  geom_col() 
 
-countModel %>% mplot()+
+
+
+
+
+countModelq %>% mplot()+
   labs(x="", y="Increase in times reelection given letter interests")
 
 
 ```
+Corporate interest correpodence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends the log count of times a member is reelected is expected to increase by 0.02 over a ten year period.
 
-# ```{r countModel2, fig.height=3, fig.width=4, echo=FALSE}
-# countModelParty <- glm(reelections ~ corporate*party_name + constituent*party_name, 
-#             data = d,  #%>% distinct(), 
-#             #contrasts = list(interest = contr.sum(2)),
-#          family = poisson)  
-# 
-# countModelParty%>%
-#   tbl_regression(exponentiate = TRUE) %>%
-#   bold_labels()
-# 
-# 
-# plot(countModelParty)
-# 
-# countModelParty %>% mplot()+
-#   labs(x="", y="Increase in times reelection given letter interests and party")
-# ```
+This could mean one of two things. Either corporations have the money, resources and audience to use to help a member that advocates for them get reelected. Or it could be that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
+
+
 
 
 ```{r countModel2q, fig.height=3, fig.width=4, echo=FALSE}
-countModelPartyq <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
-            data = d,  #%>% distinct(), 
-            #contrasts = list(interest = contr.sum(2)),
-         family = quasipoisson)  
+
+noI <- d %>%
+  filter(!str_detect(party_name, "Independent"))
+
+countModelPartyq <- glm.nb(reelections ~ party_name, 
+            data = noI )  
+
 
 countModelPartyq%>%
-  tbl_regression(exponentiate = TRUE) %>%
+  tbl_regression() %>%
   bold_labels()
 
 
 plot(countModelPartyq)
 
-countModelParty %>% mplot()+
+countModelPartyq %>% mplot()+
+  labs(x="", y="Times reelected given party")
+```
+
+To isolate the difference between the Democratic and Republican parties Idenpendent members were dropped.
+
+```{r partyLetter, fig.height=3, fig.width=4, echo=FALSE}
+
+partyLetter <- glm.nb(reelections ~ constituent + corporate + party_name, 
+            data = noI )  
+
+
+partyLetter%>%
+  tbl_regression() %>%
+  bold_labels()
+
+
+plot(partyLetter)
+
+partyLetter %>% mplot()+
+  labs(x="", y="Times reelection given party and letter interest")
+```
+Party and corporate correspodence are significant predictors of the number of times a member is reelected. If the member is Repubulican the log count of the number of times they are reelected is supposed to be 0.10 less than that of a Democrat.
+
+
+```{r interactionParty, fig.height=3, fig.width=4, echo=FALSE}
+interactionparty <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
+            data = noI)  
+
+
+interactionparty%>%
+  tbl_regression() %>%
+  bold_labels()
+
+
+interactionparty %>%
+  augment(data =noI)
+
+plot(interactionparty)
+
+interactionparty %>% mplot()+
   labs(x="", y="Increase in times reelection given letter interests and party")
 ```
+As shown in the previous model the log of the expected number of times a member is reelected decreases if the member is Republican. What is interesting, however, is that the interaction between Republican and constituent correspodence is statistically significant. This suggests that while compared to democrates republicans are not as likely to serve as long the log expected number of times a republican was reelected increases when then send letters on behalf of constituents.
 
 ```{r logitmodel, echo=FALSE}
 
@@ -346,3 +381,9 @@ model %>%
 
 
 ```
+This logit model shows no relationship between corporate or constituent interest correspodence and likelihood of being elected in the following congress. This model combined with the negative binomial model shows that the relationship between congressional correspdence and reelection does not occur over one congressional period and instead is a long term relationship over a period of several congresses.
+
+
+## Reflections
+
+Throughout the course of this directed study I learned many things. This includes technical skills such as expanding my knowledge of tidyverse code in R. As well as learning how to implement and interpret Poisson and Negative Binomial regressions including when to use each model. 
