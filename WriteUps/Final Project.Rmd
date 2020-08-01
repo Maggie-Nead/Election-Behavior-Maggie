@@ -2,17 +2,20 @@
 title: "Correspondence and Congressional Member Reelection"
 author: "Maggie Nead"
 date: "7/20/2020"
+always_allow_html: yes
 output:
-  #pdf_document
-    html_document:
+  word_document:
+  pdf_document:
+  html_document:
       #toc: true
       #toc_float: true
       code_folding: hide
+
 subtitle: Statistical Analysis of Reelection Rates and Correspondence Priorities
 ---
 
 ```{r global.options, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
+knitr::opts_chunk$set(echo = FALSE, 
                       cache = FALSE, 
                       fig.width= 7,
                       fig.height = 7,
@@ -20,7 +23,8 @@ knitr::opts_chunk$set(echo = TRUE,
                       fig.align = 'center', 
                       fig.path='figs/',
                       warning=FALSE, 
-                      message=FALSE)
+                      message=FALSE,
+                      always_allow_html = TRUE)
 ```
 
 ## Introduction
@@ -473,6 +477,13 @@ model %>%
 This logit model shows no relationship between corporate or constituent interest correspodence and likelihood of being elected in the following congress. This model combined with the negative binomial model shows that the relationship between congressional correspdence and reelection does not occur over one congressional period and instead is a long term relationship over a period of several congresses.
 
 
+
 ## Reflections
 
 Throughout the course of this directed study I learned many things. This includes technical skills such as expanding my knowledge of tidyverse code in R. As well as learning how to implement and interpret Poisson and Negative Binomial regressions including when to use each model. 
+
+
+
+## Appendix
+
+
