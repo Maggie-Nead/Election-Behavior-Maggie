@@ -1,6 +1,6 @@
   options(stringsAsFactors = FALSE)
   
-  
+  library(plyr)
   
   requires <- c("gmailr", "dplyr", "ggplot2", "gdata", "magrittr","googlesheets4","googledrive","devtools","stringi","stringr", "tidyverse",
                 "pdftools", "here", "rvest","maps", "ineq", "mapproj", "dotwhisker", "crayon")
