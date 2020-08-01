@@ -293,11 +293,13 @@ model %>%
 
 
 ```
-This logit model shows no relationship between corporate or constituent interest correspodence and likelihood of being elected in the following congress. This model combined with the negative binomial model shows that the relationship between congressional correspdence and reelection does not occur over one congressional period and instead is a long term relationship over a period of several congresses.
+This logit model shows no relationship between corporate or constituent interest correspodence and likelihood of being elected in the following congress. This is not unexpected as this is a simplistic model for a generally complex response variable. It can be difficult to predict the outcome of one election only given the correspodence from the previous congress as it may take many years for a trend to present itself. Using this as a jumping off point the data now lends itself to more complex models.
 
 ### Negative Binomial Regression
 
 **Corporate and Constituent Interest Letters**
+
+The most basic negative binomial model checks for a relationship between reelection counts and correspondece interest (corporate and constituent) without confounding variables.
 
 ```{r interestModel}
 
@@ -310,8 +312,7 @@ interestModel %>%
 
 ```
 
-
-Corporate interest correspondence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends the log count of times a member is reelected is expected to increase by 0.02 over a ten year period as illustrated by the model bellow.
+Corporate interest correspondence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends, the log count of times a member is reelected is expected to increase by 0.02 over a ten year period as illustrated by the figure bellow. There is not enough evidence to conclude that the same is true of constituent correspodence.
 
 ```{r interestfig, fig.width=5}
 
@@ -319,7 +320,7 @@ interestModel %>% mplot()+
   labs(x="", y="Change in Times Reelected Given Letter Interests")
 ```
 
-This could mean one of two things. Either corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could be that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
+This could mean one of two things. Either corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could mean that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
 
 
 **Party and Reelections**
@@ -338,7 +339,7 @@ noI <- d %>%
    tbl_regression() %>%
    bold_labels()
 ```
-
+Party is a significant predictor of reelection. Looking solely at democrats and republicans, if the member is Repubulican the log count of the number of times they are reelected is expected to be 0.12 less than that of a Democrat. This does not necessarily mean that republicans are less likely to be elected or that there was a seat turn over. It is possible that the member is replaced by someone of the same party. This model also does not account for things like retirement. This just shows that generally republicans do not hang on to their seats for as long as their democrat counterparts over a ten year period. 
 
 ```{r partyfig, fig.width=5}
 
@@ -363,7 +364,7 @@ partyLetter%>%
 
 
 ```
-Party and corporate correspodence are significant predictors of the number of times a member is reelected. If the member is Repubulican the log count of the number of times they are reelected is supposed to be 0.10 less than that of a Democrat. This does not necessarily mean that republicans are less likely to be elected or that there was a seat turn over. It is possible that the member is replaced by someone of the same party. This model also does not account for things like retirement. This just shows that generally republicans do not hang on to their seats for as long as the democrat counterparts over a ten year period. 
+As shown in the previous models above Party and corporate correspodence continue to be significant predictors of the number of times a member is reelected over a ten year period. 
 
 ```{r partyletterFig, fig,width = 5}
 
@@ -372,6 +373,7 @@ partyLetter %>% mplot()+
 
 ```
 
+### Final Model
 **Interaction between Party and Letter Interests**
 
 
