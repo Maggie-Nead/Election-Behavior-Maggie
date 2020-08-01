@@ -405,8 +405,12 @@ model <- glm(member_reelected ~ corporate + constituent,
              family=binomial(link="logit"))
 
 model %>%
-  tbl_regression(exponentiate = TRUE) %>%
+  tbl_regression() %>%
   bold_labels()
+
+# model %>%
+#   tbl_regression(exponentiate = TRUE) %>%
+#   bold_labels()
 
 
 ```
