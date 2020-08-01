@@ -12,9 +12,10 @@ subtitle: Statistical Analysis of Reelection Rates and Correspondence Priorities
 ---
 
 ```{r global.options, include=FALSE}
-knitr::opts_chunk$set(#echo = TRUE, 
+knitr::opts_chunk$set(echo = TRUE, 
                       cache = FALSE, 
-                      fig.width=8.5, 
+                      fig.width= 7,
+                      fig.height = 7,
                       split = T,
                       fig.align = 'center', 
                       fig.path='figs/',
@@ -87,7 +88,7 @@ Constituent
 member _reelected is categorized as true or false for every member in every congress based on whether a member shows up in the following congress. For the purposes of this research if a member shows up in the following congress this is counted as one reelection. Corporate and constituent are counts based on letter type codings. A letter is type coded as either a 1 for person service, 2 for commercial services - transactional, and 4 for commercial services- policy. Type 1 was then re-coded as constituent and types 2 and 4 re-coded as corporate. The number of letters for each type given a member in a congress was then totaled up with the number of corporate correspondence in one column and the number of constituent correspondence in another.
 
 
-```{r variables,echo=FALSE}
+```{r variables }
 d %>%
 group_by(TYPE) %>%
 tally%>%
@@ -200,6 +201,8 @@ checkCounts <- d %>%
 
 d %<>%
   count(bioname, icpsr, congress, reelections, party_name, member_reelected, interest, name = "lettersPerInterest")
+
+
  
 # 
 # qplot(x = lettersPerInterest, y = reelections, facets = ~interest, data = d, na.rm = TRUE) +
@@ -212,6 +215,9 @@ qplot(x = lettersPerInterest, y = reelections, data = d, color = interest) +
 d %<>% 
   spread(interest, lettersPerInterest)
  
+d %<>%
+  mutate(corporate = replace_na(corporate, 0)) %>%
+  mutate(constituent = replace_na(constituent, 0))
 
  
 
@@ -227,12 +233,14 @@ d %<>%
 d %>%
   ggplot(aes(x=corporate, y=reelections)) + 
   geom_point(outlier.colour="black", outlier.shape=16,
-               outlier.size=2, notch=TRUE) 
+               outlier.size=2, notch=TRUE) +
+  geom_jitter() 
 
 d %>%
   ggplot(aes(x=constituent, y=reelections)) + 
   geom_point(outlier.colour="black", outlier.shape=16,
-               outlier.size=2, notch=TRUE) 
+               outlier.size=2, notch=TRUE) +
+  geom_jitter()
 
 
 #d %<>% arrange(constituent) %>% kable(caption = "Legislators who wrote the most letters to FERC")
@@ -327,7 +335,7 @@ This could mean one of two things. Either corporations have the money, resources
 
 ### Model Diagnostics
 
-```{r qpoissonDiagn,echo=FALSE}
+```{r qpoissonDiagn }
 
 res <- residuals(countModelq, type="deviance")
 {plot(log(predict(countModelq)), res)
@@ -420,7 +428,10 @@ predicted <- interactionparty %>%
 predicted %>%
 ggplot(aes(x = corporate, y = .fitted)) +
   geom_point() +
-  aes(color = party_name)
+  aes(color = party_name) +
+  labs(color = "") + 
+  xlab("Corporate Letters") + 
+  ylab("Predicted Reelections")
 
 ```
 
@@ -436,7 +447,10 @@ predicted <- interactionparty %>%
 predicted %>%
 ggplot(aes(x = constituent, y = .fitted)) +
   geom_point() +
-  aes(color = party_name)
+  aes(color = party_name) +
+  labs(color = "") + 
+  xlab("Constituent Letters") + 
+  ylab("Predicted Reelections")
 
 ```
 
