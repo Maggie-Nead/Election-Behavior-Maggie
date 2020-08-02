@@ -375,7 +375,7 @@ partyLetter %>% mplot()+
 
 ### Final Model
 **Interaction between Party and Letter Interests**
-
+As discussed previously republicans generally to be reelected less often than democrats. This is illustrated by the distribution plot bellow.
 
 ```{r countplots, fig.width=6}
 
@@ -392,21 +392,25 @@ ggplot(noI, aes(x=reelections, fill=party_name)) +
 
 
 ```
+The sand color is the distribution of times reelected for republicans and the purple is democrat. The mean number of reelections is shown by the dashed line, blue for republicans and pink for democrats. The mean for republicans sits right around 6.5 and for democrats it is at 7.5. This plot, however, may not provide the full picture for what is happening. Parties can influence what a member advocates for and to that extent could have a significant impact on who (or what) a member is writting on behalf of. For this reason it is important to check for interaction party and correspondence interest.
 
 ```{r boxplot, fig.height=5, fig.width=4}
 
 boxcorp <- ggplot(noI, aes(x= party_name, y=corporate, fill=party_name)) + 
   geom_boxplot() +
+  scale_fill_manual(values=c("#E69F00", "#56B4E9")) +
   guides(fill=FALSE) +
   xlab("")
   
 boxcon<-ggplot(noI, aes(x= party_name, y=constituent, fill=party_name)) + 
   geom_boxplot() +
+  scale_fill_manual(values=c("#E69F00", "#56B4E9")) +
   guides(fill=FALSE) +
   xlab("")
 grid.arrange(boxcorp, boxcon, ncol=2)
 
 ```
+This plot looks at party and correspondence interest. The means for democrats and republicans is similar for corporate interest and constituent interest correspondence and the distributions themselves look very similar. The biggest differenct is between corporate and constituent as there are more constituent interest correspondence.
 
 ```{r interactionParty, fig.width=7}
 interactionparty <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
@@ -419,7 +423,7 @@ interactionparty%>%
 
 
 ```
-As shown in the previous model the log of the expected number of times a member is reelected decreases if the member is Republican. What is interesting, however, is that the interaction between Republican and constituent correspodence is statistically significant. This suggests that while compared to democrates republicans are not as likely to serve as long the log expected number of times a republican was reelected increases when then send letters on behalf of constituents.
+As shown in the previous model the log of the expected number of times a member is reelected decreases if the member is Republican. What is interesting, however, is that the interaction between Republican and constituent correspodence is statistically significant. This suggests that while compared to democrates, republicans are not as likely to serve as long, the log expected number of times a republican was reelected increases when they send letters on behalf of constituents.
 
 ```{r interactionFig, fig.width=7}
 
@@ -449,9 +453,9 @@ ggplot(aes(x = corporate, y = .fitted)) +
                   ymax = .fitted + 1.96*.se.fit) )  
 
 ```
+Modeled in this plot is the predicted number of reelections for a member based on their party and the number of corporate correspodence they have sent while holding constituent correspodence at its mean. the lines through each point is the confidence interval for that prediction. There is a clear overlap in the confidence intervals for democrats and republicans at each predicted count. This verfies what is seen in the model that the interaction between corporate correspondence and party is not significant.
 
-
-```{r predictconst, fig.width=5}
+```{r predictconst, fig.width=5, fig.height=5}
 values <- noI %>%
   expand(corporate = mean(corporate), constituent = constituent, party_name = party_name)
 
@@ -471,7 +475,7 @@ ggplot(aes(x = constituent, y = .fitted)) +
                   ymax = .fitted + 1.96*.se.fit) )  
 
 ```
-
+While there may not be evidence to suggest that constituent correspondence is a significant predictor of the number of times a member will be reelected, the interaction between party and constituent correspodence yeilds some interesting results. Holding the number of corporate correspondence at its mean, The number of predicted reelections for a republican member increases based on how much constituent correspondence they send wher the opposit is true for democrats.
 
 
 
