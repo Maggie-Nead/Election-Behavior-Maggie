@@ -8,8 +8,8 @@ output:
       #toc: true
       #toc_float: true
       code_folding: hide
-  pdf_document:
   word_document:
+  pdf_document:
 subtitle: Statistical Analysis of Reelection Rates and Correspondence Priorities
 ---
 
@@ -40,24 +40,28 @@ ggplot() +
 
 ```
 
-## Introduction
+### Introduction
 
-Political scientists have long viewed members of congress as “single-minded seekers of reelection”, a term coined by David Mayhew in his book, Congress: The Electoral Connection. This idea stems from the fact that in order for Members of Congress to reach political goals. They must first be reelected. These goals may include personal goals such as becoming committee chair or minority/majority leader, or Speaker of the House. In contrast their goals might be to get a certain policy on the agenda or pass a certain bill that might help their constituents. All of these first require a member to be reelected. This in turn makes reelection the single focus of current members. Assuming this to be true, every correspondence should be used to advance that goal. This research seeks to answer the question, what kinds of congressional correspondence behavior leads to reelection?
+Political scientists have long been studying factors which lead to reelection. Political ideology, campaign platforms, and voting records are just some of the topics that have been researched. Significant improvements have been made to the way in which researchers think about and study reelection but there is still gaps in what is known. One of the biggest gaps being what happens outside of public perview. Who do members of congress advocate for behind closed doors and what impact does that have on reelection? This research seeks to answer the question, what kinds of congressional correspondence behavior leads to reelection?
 There may exist patterns and relationships between congressional correspondence and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities lead to reelection and which may lead a member to be replaced.
 
 
-## Theory
+### Theory
 
-In order for a Member of Congress to accomplish their political goals they must first be reelected. This means that first and foremost the goal of any politician is to be reelected. To be reelected a Member of Congress needs two things, money and the support of their constituents. Most campaigns are funded by a few large donations instead of a lot of small donations. For this reason, members seeking reelection may focus on advocating for the interest of corporations. With resources like money, advertising power, and audience corporations have power that can either lead to a successful reelection or help a political opponent take their own victory. On the other hand, corporations cannot vote. A member is ultimately elected by those they represent and there is evidence to suggest that members will change what they advocate for based on what they hear their constituents want. Constituent interest may play a big role in whether or not a member gets reelected. If a constituent feels that their member of congress listens to them and advocates on their behalf, they may be more likely to vote for that member again. It is also possible that both corporate and constituent interest play a significant role in getting a member reelected. Members who advocate for corporations and constituents at the same time may be more likely to be reelected.
+In order for a Member of Congress to accomplish their political goals they must first be reelected. This means that first and foremost the goal of any politician is to be reelected. To be reelected a Member of Congress needs two things, money and the support of their constituents. Most campaigns are funded by a few large donations instead of a lot of small donations. For this reason, members seeking reelection may focus on advocating for the interest of corporations with resources like money, advertising power, and audience. Corporations have power that can either lead to a successful reelection or help a political opponent take their own victory. 
+
+On the other hand, corporations cannot vote. A member is ultimately elected by those they represent and there is evidence to suggest that members will change what they advocate for based on what they hear their constituents want. Constituent interest may play a big role in whether or not a member gets reelected. If a constituent feels that their member of congress listens to them and advocates on their behalf, they may be more likely to vote for that member again. It is also possible that both corporate and constituent interest play a significant role in getting a member reelected. Members who advocate for corporations and constituents at the same time may ultimatley be more likely to get reelected.
 
 
-## Data
+### Data
 
-Data has been collected on 383,824 congressional correspondences from Members of Congress to federal agencies. In order to answer the question of congressional behavior there are a couple of ways to look at this data:
-1. 	The behavior of members who are reelected (i.e. in consecutive congresses)
-2. 	The behavior of members who are not reelected (i.e. not in consecutive congresses)
-3. 	Compared behavior between the members who did not run for reelection and those that lost their bid for reelection.
-For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who is in one congress and not the following congress. This research may further break this down between members who ran for reelection and lost and those who did not run for reelection at all.
+Data for this research has been collected using the Freedom of Information Act (FOIA). All correspodence from a Member of Congress to a federal agency was requested. So far 383,824 letters have been collected and matched to the member it was sent from. This data was collected by the Correspondence Research project headed by Professor Powell at the University of Wisconsin-Madison. The data spans from the 106th to the 116th congress and was requested from every federal agency. The 383,824 observations we currently have contains the data from the federal agencies that have responded so far. Once collected the data was merged with the open source VoteView data. Voteview collects information on Members of Congress which included but is not limited to; names, congresses in which they served, chamber, state information, and ideology scores.
+
+In order to answer the question of congressional behavior there are two ways this research looks at the data:  
+-The behavior of members who serve in one congress and the following congress (i.e. in consecutive congresses)
+-Behavior trends over time for a count of all the times members have been reelected  
+
+For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who is in one congress and not the following congress. 
 
 
 ```{r setup, include = FALSE}
@@ -79,63 +83,27 @@ d <- data %>%
 
 ```
 
-Data for this research has been collected using the Freedom of Information Act (FOIA) on 383,824 congressional correspondences from Members of Congress to federal agencies. This data was collected by the Correspondence Research project headed by Professor Powell at the University of Wisconsin-Madison. The data spans from the 106th to the 116th congress and was requested from every federal agency. The 383,824 observations we currently have contains the data from every federal agency that has responded to the FOIA request so far.
 
 
+The histagram below shows the total number of letters sent by members of congress in each congress. The 106th congress has less letters as it is the first congress of data requested and for most agencies less is availible from this time. The 116th congress also has less letters because it is the current congressional session and as such is ongoing.
 ```{r hist, fig.width=5}
 d %>%
-  with(hist(congress))
-```
-### Questions  
-The broad research question may be further broken down into the questions listed below:
-Is the behavior between members who get reelected different from members who do not?
-How?
-Are members of congress not seeking reelection more willing to step outside of party lines on policy than those seeking reelection?
-Are corporate interests less important to members not seeking reelection?
- Or are members who do not advocate for corporate interests less likely to be reelected?
-Has this changed over time?
-
-
-### Variables
-
-To put this data into a usable format three variables were created:
-Member_reelected
-Corporate
-Constituent
-member _reelected is categorized as true or false for every member in every congress based on whether a member shows up in the following congress. For the purposes of this research if a member shows up in the following congress this is counted as one reelection. Corporate and constituent are counts based on letter type codings. A letter is type coded as either a 1 for person service, 2 for commercial services - transactional, and 4 for commercial services- policy. Type 1 was then re-coded as constituent and types 2 and 4 re-coded as corporate. The number of letters for each type given a member in a congress was then totaled up with the number of corporate correspondence in one column and the number of constituent correspondence in another.
-
-
-```{r variables }
-d %>%
-group_by(TYPE) %>%
-tally%>%
-  kable() %>%
-  kable_styling() 
-
-d %<>%
-  filter(TYPE == c(1,2,4))
-
-d %<>%
-  mutate(interest = ifelse(TYPE %in% c(1), "constituent", NA)) %>%
-  mutate(interest = ifelse(TYPE %in% c(2,4), "corporate", interest))# %>%
-  #mutate(interest = ifelse(! str_detect(TYPE, "1|2|4"), "neither", interest))
-
-
-
-d %>%
-  group_by(interest) %>%
-  tally()%>%
-  kable() %>%
-  kable_styling() 
+  ggplot(aes(x= congress)) +
+  geom_histogram(binwidth=1, color="black", fill="white") +
+  ylab("Number of Letters")
 
 ```
 
+**Variables**
+From the existing data in VoteView the variable party_name is used as a part of the models in this research. This variable is coded as Republican, Democratic or Independet. Along with this four variables were created:  
+-Member_reelected  
+-Corporate  
+-Constituent  
+-Reelections
 
-members_reelected: Coded as TRUE/FALSE. If the member shows up in the following congress members_reelected = TRUE if not members_reelected = FALSE.
+The first, member_reelected measures whether or not a member is reelected to the following congress. It is categorized as true or false variable for every member in every congress. For example if a member was elected to the 109th congress and served again in the 110th congress member_reelected equals true for the 109th congress. If they did not serve in the 110th congress, member-reelected would be false for the 109th congress. 
 
-Yearelected: Coded as year that a member was first elected.
-
-TYPE:  
+Corporate and constituent are  based on letter type codings that are as follows: 
 - 1 = Personal Service  
   - Individual, non-commercial constituent service
 Examples: Help with a government form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, financial services complaints, etc.
@@ -170,10 +138,32 @@ Examples:
     - Meeting with organized constituent groups (e.g. workers, people with disabilities, environmentalists) about policy (meetings with industry groups generally fall under #4).
     - Media requests
 
-- 6 = Other  
-Suggest a new category in the NOTES column, only if it cannot be fit under 1-4. For example, requesting dirt on one's political opponents could be called "partisan" as it is none of the above. Other specific types: thank you (for thank you notes with no other information), congratulations (for congratulatory correspondence on appointments or retirements with no other information), family member (for correspondence on behalf of a family member)
+Each type is a category for the subject of a letter written to a federal agency by a member. For this research we are only interested in letters that deal with corporations and constituents this includes types 1,2 and 4. To preform analysis the data was further subset to only these types which includes 53,390 observations. Type 1 was then re-coded as constituent and types 2 and 4 re-coded as corporate. The number of letters for each type given a member in a congress was then totaled up with the number of corporate correspondence in one column and the number of constituent correspondence in another. This was done in order to give each member one observation for every congress they serve in. That observation includes the total number of letters they wrote on behalf of constituents and the total number written on behalf of a corporation durring that congress.
 
-- 0  = Really no idea, no guesses, completely unclear
+```{r variables }
+d %>%
+group_by(TYPE) %>%
+tally%>%
+  kable() %>%
+  kable_styling() 
+
+d %<>%
+  filter(TYPE == c(1,2,4))
+
+d %<>%
+  mutate(interest = ifelse(TYPE %in% c(1), "constituent", NA)) %>%
+  mutate(interest = ifelse(TYPE %in% c(2,4), "corporate", interest))# %>%
+  #mutate(interest = ifelse(! str_detect(TYPE, "1|2|4"), "neither", interest))
+
+
+
+d %>%
+  group_by(interest) %>%
+  tally()%>%
+  kable() %>%
+  kable_styling() 
+
+```
 
 
 ```{r dataFilter, fig.width=5}
@@ -199,6 +189,8 @@ d %<>%
  
 
 ```
+This plot shows general trends for the number of letters (corporate and constituent) sent from the 106th to the 116th congress plotted with the number of reelections durring that time. This is further split out between both letters on behalf of corporation and letters on behalf of constituents in the plots below.
+
 
 ```{r plots, fig.width=5}
 d %>%
@@ -214,72 +206,55 @@ d %>%
   geom_jitter()
 
 
-#d %<>% arrange(constituent) %>% kable(caption = "Legislators who wrote the most letters to FERC")
-
-# d %<>%
-#   filter(!str_detect(bioname, "McCAIN, John Sidney, III"))
-# 
-# d %>%
-#   ggplot(aes(x=corporate, y=reelections)) + 
-#   geom_point(outlier.colour="black", outlier.shape=16,
-#                outlier.size=2, notch=TRUE) 
-# 
-# d %>%
-#   ggplot(aes(x=constituent, y=reelections)) + 
-#   geom_point(outlier.colour="black", outlier.shape=16,
-#                outlier.size=2, notch=TRUE) 
-
-# qplot(x = lettersPerInterest, y = reelections, data = d, color = interest) +
-#   geom_smooth(method = "lm") 
-
-
 ```
 
 
-## Hypotheses:
 
-Hypothesis #1:
+### Methods 
 
-Constituents want to feel that they are listened to and that member of congress are advocating for their best interest. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
 
+**Hypotheses:**
+
+*Hypothesis #1:*
+
+Constituents want to feel that they are listened to and that their member of congress is advocating for their best interest. Voters want to see that the priorities they hold are reflected by the person that represents them. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
 
 $$H_0: \text{There is no difference in election outcome between Members that have a lot of constituency service correspondence.}$$
 $$H_a: \text{Members that have more constituent service correspondence are more likely to be reelected.}$$
 
 
 
-Hypothesis #2:
+*Hypothesis #2:*
 
-In contrast to hypothesis #1, the biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and may be more likely to get elected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
-
+The biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and may be more likely to get elected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
 
 $$H_0: \text{Correspondence on behalf of corporations has no effect on election outcomes.}$$
 $$H_a: \text{The more correspondence from a member on behalf a corporation the more likely that member is to be reelected.}$$ 
 
 
 
-## Methods 
+**Logistic Regression**
 
-### Poisson Regression
-
-Originally Poisson regression was chosen for the models with reelections as the response variable. This was done because reelections is a count, however, a dispersion test yeilded a small p-value < 2.2e-16 and has an estimated coeffience of 0.339 (See appedix dispersion test). This shows that the counts for this data are over-dispersed. 
+Logistic regression was used to look at the response variable of member_reelected which codes true or false for if a member was reelected or not. This was done to determine if there was a short term relationship between letter interests and reelection.
 
 
-### Negative Binomial Regression
+**Poisson Regression**
 
-Negative Binomial regression is used when the variance is greater than the mean. This tends to be the case when counts are increasing as is seen with the number of times over a ten year period a member is reelected to congress. After the dispersion test binomial regression models were chosen.
-
-
-### Logistic Regression
-
-Logistic regression was also used to look at the response variable of member_reelected which codes true or false for if a member was reelected or not. This was done to determine if there was a short term relationship between letter interests and reelection.
+Originally Poisson regression was chosen for the models with reelections as the response variable. This was done because reelections is a count, however, a dispersion test yeilded a small p-value < 2.2e-16 and has an estimated coeffience of 0.339 (See appedix, dispersion test). This shows that the counts for this data are over-dispersed. 
 
 
-## Results
+**Negative Binomial Regression**
 
-### Logistic Regression
+Negative Binomial regression is used when the variance of the data is greater than the mean. This tends to be the case when counts are increasing as is seen with the number of times over a ten year period a member is reelected to congress. After the dispersion test, binomial regression models were chosen in order to minimize the effect of over-dispersed data.
 
-**Member Reelection and Letter Interest**
+
+### Results
+
+**Logistic Regression**
+
+This logistic regression tests for a relationship between member_reelected and letter interests (corporate or constituent).
+
+***Member Reelection and Letter Interest***
 
 ```{r logitmodel }
 
@@ -293,11 +268,11 @@ model %>%
 
 
 ```
-This logit model shows no relationship between corporate or constituent interest correspodence and likelihood of being elected in the following congress. This is not unexpected as this is a simplistic model for a generally complex response variable. It can be difficult to predict the outcome of one election only given the correspodence from the previous congress as it may take many years for a trend to present itself. Using this as a jumping off point the data now lends itself to more complex models.
+This logit model shows no relationship between corporate or constituent interest correspodence and likelihood of being elected in the following congress. This is not unexpected as this is a simplistic model for a generally complex response variable. It can be difficult to predict the outcome of one election given only the correspodence from the previous congress as it may take many years for a trend to present itself. Using this as a jumping off point the data now lends itself to more complex models.
 
-### Negative Binomial Regression
+**Negative Binomial Regression**
 
-**Corporate and Constituent Interest Letters**
+***Corporate and Constituent Interest Letters***
 
 The most basic negative binomial model checks for a relationship between reelection counts and correspondece interest (corporate and constituent) without confounding variables.
 
@@ -312,7 +287,7 @@ interestModel %>%
 
 ```
 
-Corporate interest correspondence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends, the log count of times a member is reelected is expected to increase by 0.02 over a ten year period as illustrated by the figure bellow. There is not enough evidence to conclude that the same is true of constituent correspodence.
+Corporate interest correspondence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends, the log count of times a member is reelected is expected to increase by 0.02 over a ten year period as illustrated by the figure below. There is not enough evidence to conclude that the same is true of constituent correspodence.
 
 ```{r interestfig, fig.width=5}
 
@@ -320,12 +295,12 @@ interestModel %>% mplot()+
   labs(x="", y="Change in Times Reelected Given Letter Interests")
 ```
 
-This could mean one of two things. Either corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could mean that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
+Two possibilities for this are: as stated in hypothesis #2 corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could also mean that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this as a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.
 
 
-**Party and Reelections**
+***Party and Reelections***
 
-Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
+Another variable that could have an effect on reelection is candidate political party. Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
 
 ```{r partyModel}
 
@@ -339,7 +314,7 @@ noI <- d %>%
    tbl_regression() %>%
    bold_labels()
 ```
-Party is a significant predictor of reelection. Looking solely at democrats and republicans, if the member is Repubulican the log count of the number of times they are reelected is expected to be 0.12 less than that of a Democrat. This does not necessarily mean that republicans are less likely to be elected or that there was a seat turn over. It is possible that the member is replaced by someone of the same party. This model also does not account for things like retirement. This just shows that generally republicans do not hang on to their seats for as long as their democrat counterparts over a ten year period. 
+Party is a significant predictor of reelection. Looking solely at democrats and republicans, if the member is republican the log count of the number of times they are reelected is expected to be 0.12 less than that of a Democrat from the 106th to the 116th congress. This does not necessarily mean that republicans are less likely to be elected or that there was a seat turn over. It is possible that the member is replaced by someone of the same party. This model also does not account for things like retirement. This just shows that generally republicans do not hang on to their seats for as long as their democrat counterparts over a ten year period. This is visualized in the figure below.
 
 ```{r partyfig, fig.width=5}
 
@@ -350,7 +325,7 @@ partyModel %>%
 ```
 
 
-**Party and Constituent/Corporate Interest Letters**
+***Party and Constituent/Corporate Interest Letters***
 
 ```{r partyLetter, fig.width=7}
 
@@ -374,8 +349,8 @@ partyLetter %>% mplot()+
 ```
 
 ### Final Model
-**Interaction between Party and Letter Interests**
-As discussed previously republicans generally to be reelected less often than democrats. This is illustrated by the distribution plot bellow.
+***Interaction between Party and Letter Interests***
+As discussed previously republicans generally seem to be reelected less often than democrats over a ten year period. This is illustrated by the distribution plot below.
 
 ```{r countplots, fig.width=6}
 
@@ -392,7 +367,7 @@ ggplot(noI, aes(x=reelections, fill=party_name)) +
 
 
 ```
-The sand color is the distribution of times reelected for republicans and the purple is democrat. The mean number of reelections is shown by the dashed line, blue for republicans and pink for democrats. The mean for republicans sits right around 6.5 and for democrats it is at 7.5. This plot, however, may not provide the full picture for what is happening. Parties can influence what a member advocates for and to that extent could have a significant impact on who (or what) a member is writting on behalf of. For this reason it is important to check for interaction party and correspondence interest.
+The sand color is the distribution of times republicans were reelected and the purple is democrat. The mean number of reelections is shown by the dashed line, blue for republicans and pink for democrats. The mean for republicans sits right around 6.5 and for democrats it is at 7.5. This plot, however, may not provide the full picture for what is happening. Parties can influence what a member advocates for and to that extent could have a significant impact on who (or what) a member is writting on behalf of. For this reason it is important to check for interaction between party and correspondence interest.
 
 ```{r boxplot, fig.height=5, fig.width=4}
 
@@ -400,17 +375,19 @@ boxcorp <- ggplot(noI, aes(x= party_name, y=corporate, fill=party_name)) +
   geom_boxplot() +
   scale_fill_manual(values=c("#E69F00", "#56B4E9")) +
   guides(fill=FALSE) +
-  xlab("")
+  xlab("") +
+  ylab("Number of Corporate Letters")
   
 boxcon<-ggplot(noI, aes(x= party_name, y=constituent, fill=party_name)) + 
   geom_boxplot() +
   scale_fill_manual(values=c("#E69F00", "#56B4E9")) +
   guides(fill=FALSE) +
-  xlab("")
+  xlab("") +
+  ylab("Number of Constituent Letters")
 grid.arrange(boxcorp, boxcon, ncol=2)
 
 ```
-This plot looks at party and correspondence interest. The means for democrats and republicans is similar for corporate interest and constituent interest correspondence and the distributions themselves look very similar. The biggest differenct is between corporate and constituent as there are more constituent interest correspondence.
+This plot looks at party and correspondence interest. The means for democrats and republicans is similar for corporate interest and constituent interest correspondence and the distributions themselves look very similar. The biggest difference is between corporate and constituent as there are more constituent interest letters.
 
 ```{r interactionParty, fig.width=7}
 interactionparty <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
@@ -453,7 +430,7 @@ ggplot(aes(x = corporate, y = .fitted)) +
                   ymax = .fitted + 1.96*.se.fit) )  
 
 ```
-Modeled in this plot is the predicted number of reelections for a member based on their party and the number of corporate correspodence they have sent while holding constituent correspodence at its mean. the lines through each point is the confidence interval for that prediction. There is a clear overlap in the confidence intervals for democrats and republicans at each predicted count. This verfies what is seen in the model that the interaction between corporate correspondence and party is not significant.
+Modeled in this plot is the predicted number of reelections for a member based on their party and the number of corporate correspodence they have sent in a congress while holding constituent correspodence at its mean. The lines through each point is the confidence interval for that prediction. There is a clear overlap in the confidence intervals for democrats and republicans at each predicted count. This verfies what is seen in the model that the interaction between corporate correspondence and party is not significant.
 
 ```{r predictconst, fig.width=5, fig.height=5}
 values <- noI %>%
@@ -475,23 +452,23 @@ ggplot(aes(x = constituent, y = .fitted)) +
                   ymax = .fitted + 1.96*.se.fit) )  
 
 ```
-While there may not be evidence to suggest that constituent correspondence is a significant predictor of the number of times a member will be reelected, the interaction between party and constituent correspodence yeilds some interesting results. Holding the number of corporate correspondence at its mean, The number of predicted reelections for a republican member increases based on how much constituent correspondence they send wher the opposit is true for democrats.
+While there may not be evidence to suggest that constituent correspondence is a significant predictor of the number of times a member will be reelected, the interaction between party and constituent correspodence yeilds some interesting results. Holding the number of corporate correspondence at its mean, The number of predicted reelections for a republican member increases based on how much constituent correspondence they send where the opposite appears to be true for democrats.
 
 
 
 
 ## Reflections
 
-Throughout the course of this directed study I learned many things. This includes technical skills such as expanding my knowledge of tidyverse code in R. As well as learning how to implement and interpret Poisson and Negative Binomial regressions including when to use each model. 
+Throughout the course of this directed study I learned many things. This includes technical skills such as expanding my knowledge of tidyverse code in R, learning how to implement and interpret Poisson and Negative Binomial regressions including when to use each model, creating and keeping track of workflow using Github and completing an entire research paper from start to finish in R. Outside of technical skills I learned even more. I worked with a team of three individuals and we all used the same data but researched different things. This allowed me a lot of freedom to explore what kind of research I was truly interested in. I was able to accomplish a lot independently but I also had the ability to work through theory and models with others who knew the data as well as I did. I was able to learn about how to collaborate with a team while still maintaining my own research and project. 
 
 **Things I would do differently**
-One of the weaknesses of my models is that member correspodence is generally kept private and so the degree to which I can conclude causality is very small. Most likely there are other confounding factors that influence both correspodence interest and reelections. One such factor may be a candidate or party platform. If I could expand on this project or do it again it would interesting to compare a candidates running platform to the types of letters they write.
+One of the weaknesses of my models is that member correspodence is generally kept private and so the degree to which I can conclude causality is very small. Most likely there are other confounding factors that influence both correspodence interest and reelections. One such factor may be a candidate or party platform. If I could expand on this project or do it again it would interesting to compare a candidates running platform to the types of letters they write. It would have been interesting to be able to delve into a little bit of text analysis to get a better sense of the content in the congressional letters. Also in type coding there currently is no type specifically for small buisnesses. Small buisness do not always have the resources or the influnce of large corporations but in this project they got grouped together. If I were to do this project over I would try and create a separate category for small buisness.
 
 
 
 ## Appendix
 
-### Dispersion Test
+**Dispersion Test**
 
 ```{r disp}
 library(AER)
@@ -503,7 +480,7 @@ dispersiontest(countModel,trafo=1)
 
 ### Modeling Assumptions
 
-### Corporate and Constituent Letters
+**Corporate and Constituent Letters**
 ```{r corpcondiag, fig.width=5, fig.height=2}
 ggplot(interestModel, aes(seq_along(.cooksd), .cooksd)) +
   geom_col() 
@@ -528,7 +505,7 @@ influencePlot(interestModel)
 ```
 
 
-### Party and Reelections
+**Party and Reelections**
  
 ```{r partyReelections, fig.width=5}
  plot(partyModel)
@@ -536,14 +513,14 @@ influencePlot(interestModel)
 ```
 
 
-### Party and Constituent/Corporate Interest Letters
+**Party and Constituent/Corporate Interest Letters**
 
 ```{r partyconcorp, fig.width=5}
 #par(mfrow=c(2,2))
 plot(partyLetter)
 ```
 
-### Interaction party and interest letters
+**Interaction party and interest letters**
 
 ```{r interaction, fig.width=5}
 plot(interactionparty)
