@@ -2,9 +2,10 @@
 title: "Research Question Write Up"
 author: "Maggie Nead"
 date: "6/11/2020"
-header-includes:
-    - \usepackage{setspace}\doublespacing
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
+header-includes: \usepackage{setspace}\doublespacing
 ---
 
 # Research Question Write Up
@@ -42,9 +43,4 @@ The broad research question may be further broken down into the questions listed
   - Or are members who do not advocate for corporate interests less likely to be reelected?  
     - Has this changed over time?
     
-### **Why it is important**
-    
-### **Thesis**
-   
-###  **References**
-Mayhew, David. 1974. Congress: The Electoral Connection. New Haven: Yale University Press.
+
