@@ -3,10 +3,10 @@ title: "Correspondence and Congressional Member Reelection"
 author: "Maggie Nead"
 date: "7/20/2020"
 output:
+  pdf_document: null
   html_document:
     df_print: paged
     toc: yes
-  pdf_document: null
   word_document:
     toc: yes
     toc_float: yes
@@ -248,7 +248,7 @@ Originally Poisson regression was chosen for the models with reelections as the 
 Negative Binomial regression is used when the variance of the data is greater than the mean. This tends to be the case when counts are increasing as is seen with the number of times over a ten year period a member is reelected to congress. After the dispersion test, binomial regression models were chosen in order to minimize the effect of over-dispersed data.
 
 
-### Results
+## Results
 
 **Logistic Regression**
 
@@ -463,7 +463,7 @@ ggplot(aes(x = constituent, y = .fitted)) +
 While there may not be evidence to suggest that constituent correspondence is a significant predictor of the number of times a member will be reelected, the interaction between party and constituent correspodence yeilds some interesting results. Holding the number of corporate correspondence at its mean, The number of predicted reelections for a republican member increases based on how much constituent correspondence they send where the opposite appears to be true for democrats.
 
 
-*Modeling Assumptions*
+*Modeling Assumptions*  
 Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagonsitic plots see appendix model 4).
 
 
