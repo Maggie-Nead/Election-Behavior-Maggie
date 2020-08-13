@@ -2,7 +2,9 @@
 title: "Data Descriptives"
 author: "Maggie Nead"
 date: "6/17/2020"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include = FALSE}
@@ -16,7 +18,7 @@ source(here::here("dataSetup.R"))
 #Reorder data
 
 data %<>%
-  select(bioname, yearelected, member_reelected, congress, TYPE, everything())
+  dplyr::select(bioname, yearelected, member_reelected, congress, TYPE, everything())
 
 data %<>%
   filter(!is.na(TYPE))
@@ -25,10 +27,90 @@ data %<>%
 
 #Histogram of observations in each congress
 ```{r hist}
-data %>%
+ data %>%
   with(hist(congress))
+
+
 ```
 
+```{r variables , echo=FALSE}
+
+
+data %>%
+group_by(TYPE) %>%
+tally%>%
+  kable() %>%
+  kable_styling() 
+
+d <- data %>%
+  filter(TYPE == c(1,2,4))
+
+d %<>%
+  mutate(interest = ifelse(TYPE %in% c(1), "constituent", NA)) %>%
+  mutate(interest = ifelse(TYPE %in% c(2,4), "corporate", interest))# %>%
+  #mutate(interest = ifelse(! str_detect(TYPE, "1|2|4"), "neither", interest))
+
+
+
+d %>%
+  group_by(interest) %>%
+  tally()%>%
+  kable() %>%
+  kable_styling() 
+
+d %<>%
+  count(bioname, icpsr, congress, reelections, party_name, member_reelected, interest, name = "lettersPerInterest")
+
+
+
+d %<>% 
+  spread(interest, lettersPerInterest)
+ 
+d %<>%
+  mutate(corporate = replace_na(corporate, 0)) %>%
+  mutate(constituent = replace_na(constituent, 0))
+
+
+noI <- d %>%
+  filter(!str_detect(party_name, "Independent"))
+
+```
+
+```{r countplots, fig.width=6, echo=FALSE}
+
+
+cdat <- noI %>%
+  ddply("party_name", summarise, rating.mean=mean(reelections))
+
+
+ggplot(noI, aes(x=reelections, fill=party_name)) + 
+  geom_density(alpha=.3) +
+  geom_vline(data=cdat, aes(xintercept=rating.mean,  colour=party_name), linetype="dashed", size=1) +
+  xlab("Number of Reelections")
+
+
+
+```
+
+
+```{r boxplot, fig.height=5, fig.width=4, echo=FALSE}
+
+boxcorp <- ggplot(noI, aes(x= party_name, y=corporate, fill=party_name)) + 
+  geom_boxplot() +
+  scale_fill_manual(values=c("#E69F00", "#56B4E9")) +
+  guides(fill=FALSE) +
+  xlab("") +
+  ylab("Number of Corporate Letters")
+  
+boxcon<-ggplot(noI, aes(x= party_name, y=constituent, fill=party_name)) + 
+  geom_boxplot() +
+  scale_fill_manual(values=c("#E69F00", "#56B4E9")) +
+  guides(fill=FALSE) +
+  xlab("") +
+  ylab("Number of Constituent Letters")
+grid.arrange(boxcorp, boxcon, ncol=2)
+
+```
 
 
 ```{r typeTab}
@@ -143,15 +225,6 @@ data %>%
 
 ```
 
-
-#Fix Me
-```{r cong116}
-# data %>%
-#   filter(congress %in% 116) %>%
-#   with(table(TYPE, party, member_reelected, yearelected, as.factor(agency))) %>%
-#   kable() %>%
-#   kable_styling()
-```
 
 
 

@@ -3,10 +3,10 @@ title: "Correspondence and Congressional Member Reelection"
 author: "Maggie Nead"
 date: "7/20/2020"
 output:
-  pdf_document: null
   html_document:
     df_print: paged
     toc: yes
+  pdf_document: null
   word_document:
     toc: yes
     toc_float: yes
@@ -374,7 +374,6 @@ ggplot(noI, aes(x=reelections, fill=party_name)) +
   xlab("Number of Reelections")
 
 
-
 ```
 The sand color is the distribution of times republicans were reelected and the purple is democrat. The mean number of reelections is shown by the dashed line, blue for republicans and pink for democrats. The mean for republicans sits right around 6.5 and for democrats it is at 7.5. This plot, however, may not provide the full picture for what is happening. Parties can influence what a member advocates for and to that extent could have a significant impact on who (or what) a member is writting on behalf of. For this reason it is important to check for interaction between party and correspondence interest.
 
@@ -468,6 +467,8 @@ While there may not be evidence to suggest that constituent correspondence is a 
 Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagonsitic plots see appendix model 4).
 
 
+### Potential for Further Studies  
+Further research could be done into how closely correspondece to federal agencies match party platforms. This could then be tested to see if members that follow party lines are more likely to be reelected more times. Along with that ideology scores could also be looked at to determine if members with more extreme views (either left or right) are more likely to be elected more times. Demographic information could also be added to this as well.
 
 ## Appendix
 
