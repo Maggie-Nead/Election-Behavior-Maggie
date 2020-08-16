@@ -36,13 +36,14 @@ ggplot() +
 
 ### Introduction
 
-Political scientists have long been studying factors which lead to reelection. Political ideology, campaign platforms, and voting records are just some of the topics that have been researched. Significant improvements have been made to the way in which researchers think about and study reelection but there is still gaps in what is known. One of the biggest gaps being what happens outside of public perview. Who do members of congress advocate for behind closed doors and what impact does that have on reelection? This research seeks to answer the question, what kinds of congressional correspondence behavior leads to reelection?
-There may exist patterns and relationships between congressional correspondence and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities lead to reelection and which may lead a member to be replaced.
+Political scientists have long studied factors that affect reelection, including political ideology, campaign platforms, and voting records. Significant improvements have been made to the way in which researchers think about and study reelection, but gaps remain. One of the biggest gaps is what happens outside of public perview, such as constituent service and advocacy on behalf of businesses. Who do members of congress advocate for outside of the spotlight, and what impact does that have on reelection? This research seeks to answer the question: what kinds of constituent service behavior leads to reelection?
+There may exist patterns and relationships between constituent service and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities are associated with reelection. <!-- and which may lead a member to be replaced.-->
 
 
 ### Theory
 
-In order for a Member of Congress to accomplish their political goals they must first be reelected. This means that first and foremost the goal of any politician is to be reelected. To be reelected a Member of Congress needs two things, money and the support of their constituents. Most campaigns are funded by a few large donations instead of a lot of small donations. For this reason, members seeking reelection may focus on advocating for the interest of corporations with resources like money, advertising power, and audience. Corporations have power that can either lead to a successful reelection or help a political opponent take their own victory. 
+In order for a Member of Congress to accomplish their political goals they must first be reelected (Mayhew 1974). <!-- if you want Rmarkdown to make the bibliography in the future, you can just use "[@Mayhew1974]" here to link to a .bib file entry -->
+This means that first and foremost the goal of any politician is to be reelected. To be reelected a Member of Congress needs two things, money and the support of their constituents. Most campaigns are funded by a few large donations instead of a lot of small donations. For this reason, members seeking reelection may focus on advocating for the interest of corporations with resources like money, advertising power, and audience. Corporations have power that can either lead to a successful reelection or help a political opponent take their own victory. 
 
 On the other hand, corporations cannot vote. A member is ultimately elected by those they represent and there is evidence to suggest that members will change what they advocate for based on what they hear their constituents want. Constituent interest may play a big role in whether or not a member gets reelected. If a constituent feels that their member of congress listens to them and advocates on their behalf, they may be more likely to vote for that member again. It is also possible that both corporate and constituent interest play a significant role in getting a member reelected. Members who advocate for corporations and constituents at the same time may ultimatley be more likely to get reelected.
 
@@ -93,14 +94,15 @@ d %>%
 
 **Variables**  
 From the existing data in VoteView the variable party_name is used as a part of the models in this research. This variable is coded as Republican, Democratic or Independet. Along with this four variables were created:  
--Member_reelected  
+-Member_reelected  <!-- write this out in sentence form --> 
 -Corporate  
 -Constituent  
 -Reelections
 
-The first, member_reelected measures whether or not a member is reelected to the following congress. It is categorized as true or false variable for every member in every congress. For example if a member was elected to the 109th congress and served again in the 110th congress member_reelected equals true for the 109th congress. If they did not serve in the 110th congress, member-reelected would be false for the 109th congress. 
+The first, `member_reelected` measures whether or not a member is reelected to the following congress. It is coded as true or false for every member in every congress. For example if a member was elected to the 109th congress and served again in the 110th congress member_reelected equals true for the 109th congress. If they did not serve in the 110th congress, member-reelected would be false for the 109th congress. 
 
 Corporate and constituent are  based on letter type codings that are as follows:  
+<!-- write this out in sentence form -->
 
 - 1 = Personal Service  
   - Individual, non-commercial constituent service
@@ -136,7 +138,7 @@ Examples:
     - Meeting with organized constituent groups (e.g. workers, people with disabilities, environmentalists) about policy (meetings with industry groups generally fall under #4).
     - Media requests
 
-Each type is a category for the subject of a letter written to a federal agency by a member. For this research we are only interested in letters that deal with corporations and constituents this includes types 1,2 and 4. To preform analysis the data was further subset to only these types which includes 53,390 observations. Type 1 was then re-coded as constituent and types 2 and 4 re-coded as corporate. The number of letters for each type given a member in a congress was then totaled up with the number of corporate correspondence in one column and the number of constituent correspondence in another. This was done in order to give each member one observation for every congress they serve in. That observation includes the total number of letters they wrote on behalf of constituents and the total number written on behalf of a corporation durring that congress.
+Each type is a category for the subject of a letter written to a federal agency by a member. For this paper, I am only interested in letters that deal with corporations and constituents this includes types 1,2 and 4, which includes 53,390 observations. The variable `constituent` is a count of type 1  each legislator wrote per congress, and `corporate` is a count of the number of type 2 and 4 letters that each legislator wrote per congress. In the analysis below, each Member of Congress has observation for each congress in which they served. That observation includes the total number of letters they wrote on behalf of constituents and the total number written on behalf of a corporation durring that congress.
 
 
 ```{r variables  }
@@ -167,7 +169,7 @@ d %>%
 
 ```{r dataFilter, fig.width=5  }
 
-
+# COUNTS PER ICPSR PER INTEREST (FOR MEMBERS WHO WROTE AT LEASE ONE LETTER OF THAT TYPE IN THAT CONGRESS)
 checkCounts <- d %>%
   count(bioname, icpsr, congress, reelections, party_name, interest, member_reelected, name = "lettersPerInterest")
 
