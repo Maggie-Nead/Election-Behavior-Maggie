@@ -17,8 +17,7 @@ always_allow_html: yes
 
 ```{r global.options, include=FALSE}
 
-knitr::opts_chunk$set(echo = FALSE, 
-                      cache = FALSE, 
+knitr::opts_chunk$set(cache = FALSE, 
                       split = T,
                       fig.align = 'center', 
                       fig.path='figs/',
