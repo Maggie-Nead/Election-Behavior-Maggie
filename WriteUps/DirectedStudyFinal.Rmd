@@ -92,50 +92,28 @@ d %>%
 
 
 **Variables**  
-From the existing data in VoteView the variable party_name is used as a part of the models in this research. This variable is coded as Republican, Democratic or Independet. Along with this four variables were created:  
--Member_reelected  <!-- write this out in sentence form --> 
--Corporate  
--Constituent  
--Reelections
+From the existing data in VoteView the variable party_name is used as a part of the models in this research. This variable is coded as Republican, Democratic or Independet. Along with this four variables were created: `member_reelected`, `corporate`, `constituent`, and `reelections`.  <!-- write this out in sentence form --> 
 
 The first, `member_reelected` measures whether or not a member is reelected to the following congress. It is coded as true or false for every member in every congress. For example if a member was elected to the 109th congress and served again in the 110th congress member_reelected equals true for the 109th congress. If they did not serve in the 110th congress, member-reelected would be false for the 109th congress. 
 
-Corporate and constituent are  based on letter type codings that are as follows:  
+Corporate and constituent are based on letter type codings that are contained within five categories. This includes type 1-personal service, type 2-commercial service (transactional), type 3-government or nonprofit service (transactional), type 4-commercial service (policy), and type 5-policy work.
 <!-- write this out in sentence form -->
 
-- 1 = Personal Service  
-  - Individual, non-commercial constituent service
-Examples: Help with a government form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, financial services complaints, etc.
 
-- 2 = Commercial Service - Transactional  
-  - Anything related to a specific individual case by a business (including business owners like farmers and consultants)
-  - Help with a grant application, payment, loan or contract (buying anything from or selling anything to a government agency)
-  - Help with an individual case of tax assessment, fine, or regulatory enforcement action
-  - Help with public relations on behalf of a business  
-  Examples: allocation of radio spectrum, case against a company, tax dispute, contract for purchase of military surplus, crop insurance distribution, debt settlement, foreclosure assistance, a fine for a law violation, etc.
+***Personal Service*** is categorized by correspodence sent on behalf of an individual constituent about something non-commercial. This includes things like; help with a governmnet form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, or financial services complaints.
 
-- 3 = Government and Nonprofit Service - Transactional
+
+***Commercial service (transactional)*** contains correspodence that deals with anything related to a specific individual case by a business (including business owners like farmers and consultants). Generally the correspondence contains; help with a grant application, payment, loan or contract (buying anything from or selling anything to a government agency). It migth also include; help with an individual case of tax assessment, fine, or regulatory enforcement action. Or it could also be help with public relations on behalf of a business. Examples of this are: allocation of radio spectrum, case against a company, tax dispute, contract for purchase of military surplus, crop insurance distribution, debt settlement, foreclosure assistance, a fine for a law violation.
+
+***Government and Nonprofit service (transactional)***
   - [same as for #2, but for municipal or state governments (including cities, counties, etc.) or non-business-oriented non-profit organizations (i.e. NOT ones that represents an industry or trade association) (here’s a good search engine to check non-profit status) 
+<!-- come back to this tomorrow -->
 
-- 4 = Commercial Service - Policy
-  - Anything applying to a class of commercial activity or businesses (e.g. shipping, airlines, agriculture). This could include legislation, bills, acts, appropriations, authorizations, etc.
-  - Authorization of or appropriation to a government program that is targeted towards a particular industry or industries
-  - Regulation of an industry or commercial practice or competition  
-  Examples: Milk prices, insurance or loan eligibility criteria, purchasing policies, crop insurance rates, pollution criteria, classification of products for trade or taxation, conservation appropriation, worker visa types, restrictions, or caps, etc.
+***Commercial Service - Policy*** is anything applying to a class of commercial activity or businesses (e.g. shipping, airlines, agriculture). This could include legislation, bills, acts, appropriations, or authorizations. Authorization of or appropriation to a government program that is targeted towards a particular industry or industries and regulation of an industry or commercial practice or competition. Examples of this are: milk prices, insurance or loan eligibility criteria, purchasing policies, crop insurance rates, pollution criteria, classification of products for trade or taxation, conservation appropriation, worker visa types, restrictions, or caps.
 
  
-- 5 = Policy Work - NOT in the service of any individual, business, specific industry  
-Examples:
-  - Lawmaking
-    - Request for policy-relevant information. This includes prospective legislation, legislation under consideration, or already implemented legislation that requires oversight.
-  - Oversight
-    - Committee requesting a report or testimony at a hearing in for
-    - Requesting clarity on an agency rule
-  - Lobbying administrative policy
-    - Agency rulemaking with non-commercial implications (comments on agency rulemaking may often be #3)
-  - Political work
-    - Meeting with organized constituent groups (e.g. workers, people with disabilities, environmentalists) about policy (meetings with industry groups generally fall under #4).
-    - Media requests
+***Policy Work*** is not in the service of any individual, business, specific industry. This includes lawmaking, oversight, lobbying administrative policy, and political work. Examples of this might be: request for policy-relevant information, committee requesting a report or testimony at a hearing, requesting clarity on an agency rule, agency rulemaking with non-commercial implications, meeting with organized constituent groups, and media requests. 
+
 
 Each type is a category for the subject of a letter written to a federal agency by a member. For this paper, I am only interested in letters that deal with corporations and constituents this includes types 1,2 and 4, which includes 53,390 observations. The variable `constituent` is a count of type 1  each legislator wrote per congress, and `corporate` is a count of the number of type 2 and 4 letters that each legislator wrote per congress. In the analysis below, each Member of Congress has observation for each congress in which they served. That observation includes the total number of letters they wrote on behalf of constituents and the total number written on behalf of a corporation durring that congress.
 
@@ -512,7 +490,9 @@ Further research could be done into how closely correspondece to federal agencie
 
 
 \newpage
+## References
 
+\newpage
 ## Appendix
 
 **Dispersion Test**
