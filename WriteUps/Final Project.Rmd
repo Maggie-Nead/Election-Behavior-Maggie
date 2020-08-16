@@ -3,10 +3,11 @@ title: "Correspondence and Congressional Member Reelection"
 author: "Maggie Nead"
 date: "7/20/2020"
 output:
-  pdf_document: null
   html_document:
     df_print: paged
+    code_folding: hide
     toc: yes
+  pdf_document: null
   word_document:
     toc: yes
     toc_float: yes
