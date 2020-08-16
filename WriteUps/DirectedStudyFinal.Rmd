@@ -2,6 +2,8 @@
 title: "Correspondence and Congressional Member Reelection"
 author: "Maggie Nead"
 date: "7/20/2020"
+header-includes:
+  - \usepackage{setspace}\doublespacing
 output:
   pdf_document: null
   html_document:
