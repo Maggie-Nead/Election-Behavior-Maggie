@@ -3,11 +3,11 @@ title: "Correspondence and Congressional Member Reelection"
 author: "Maggie Nead"
 date: "7/20/2020"
 output:
+  pdf_document: null
   html_document:
     df_print: paged
     code_folding: hide
     toc: yes
-  pdf_document: null
   word_document:
     toc: yes
     toc_float: yes
@@ -82,7 +82,7 @@ d <- data %>%
 The histogram below shows the total number of letters sent by members of congress in each congress. The 106th congress has less letters as it is the first congress of data requested and for most agencies less is availible from this time. The 116th congress also has less letters because it is the current congressional session and as such is ongoing.
 
 
-```{r hist, fig.width=5 }
+```{r hist, fig.width=5, echo=FALSE}
 d %>%
   ggplot(aes(x= congress)) +
   geom_histogram(binwidth=1, color="black", fill="white") +
@@ -140,7 +140,7 @@ Examples:
 Each type is a category for the subject of a letter written to a federal agency by a member. For this paper, I am only interested in letters that deal with corporations and constituents this includes types 1,2 and 4, which includes 53,390 observations. The variable `constituent` is a count of type 1  each legislator wrote per congress, and `corporate` is a count of the number of type 2 and 4 letters that each legislator wrote per congress. In the analysis below, each Member of Congress has observation for each congress in which they served. That observation includes the total number of letters they wrote on behalf of constituents and the total number written on behalf of a corporation durring that congress.
 
 
-```{r variables  }
+```{r variables , echo=FALSE }
 d %>%
 group_by(TYPE) %>%
 tally%>%
@@ -166,7 +166,7 @@ d %>%
 ```
 
 
-```{r dataFilter, fig.width=5  }
+```{r dataFilter, fig.width=5  , echo=FALSE}
 
 # COUNTS PER ICPSR PER INTEREST (FOR MEMBERS WHO WROTE AT LEASE ONE LETTER OF THAT TYPE IN THAT CONGRESS)
 checkCounts <- d %>%
@@ -194,7 +194,7 @@ d %<>%
 This plot shows general trends for the number of letters (corporate and constituent) sent from the 106th to the 116th congress plotted with the number of reelections durring that time. This is further split out between both letters on behalf of corporation and letters on behalf of constituents in the plots below.
 
 
-```{r plots, fig.width=5  }
+```{r plots, fig.width=5  , echo=FALSE}
 d %>%
   ggplot(aes(x=corporate, y=reelections)) + 
   geom_point(outlier.colour="black", outlier.shape=16,
@@ -260,7 +260,7 @@ This logistic regression tests for a relationship between member_reelected and l
 
 ***Member Reelection and Letter Interest***
 
-```{r logitmodel  }
+```{r logitmodel  , echo=FALSE}
 
 model <- glm(member_reelected ~ corporate + constituent, 
              data=d, 
@@ -283,7 +283,7 @@ This logit model shows no relationship between corporate or constituent interest
 The most basic negative binomial model checks for a relationship between reelection counts and correspondece interest (corporate and constituent) without confounding variables.
 
 
-```{r interestModel }
+```{r interestModel , echo=FALSE}
 
 interestModel <- glm.nb(reelections ~ corporate + constituent, 
             data = d)  
@@ -298,7 +298,7 @@ interestModel %>%
 Corporate interest correspondence is statistically significant when predicting how many times a member of congress gets reelected. For each corporate letter a member sends, the log count of times a member is reelected is expected to increase by 0.02 over a ten year period as illustrated by the figure below. There is not enough evidence to conclude that the same is true of constituent correspodence.
 
 
-```{r interestfig, fig.width=5 }
+```{r interestfig, fig.width=5 , echo=FALSE}
 interestModel %>% mplot()+
   labs(x="", y="Change in Times Reelected Given Letter Interests")
 ```
@@ -307,7 +307,7 @@ interestModel %>% mplot()+
 Two possibilities for this are: as stated in hypothesis #2 corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could also mean that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this as a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.  
 
 
-*Modeling Assumptions*
+*Modeling Assumptions*  
 Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagonsitic plots see appendix model 1).
 
 ***Party and Reelections***
@@ -315,7 +315,7 @@ Negative Binomial models are not assumed to have normalized residuals. The norma
 Another variable that could have an effect on reelection is candidate political party. Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
 
 
-```{r partyModel }
+```{r partyModel, echo=FALSE }
 
 noI <- d %>%
   filter(!str_detect(party_name, "Independent"))
@@ -332,7 +332,7 @@ noI <- d %>%
 Party is a significant predictor of reelection. Looking solely at democrats and republicans, if the member is republican the log count of the number of times they are reelected is expected to be 0.12 less than that of a Democrat from the 106th to the 116th congress. This does not necessarily mean that republicans are less likely to be elected or that there was a seat turn over. It is possible that the member is replaced by someone of the same party. This model also does not account for things like retirement. This just shows that generally republicans do not hang on to their seats for as long as their democrat counterparts over a ten year period. This is visualized in the figure below.
 
 
-```{r partyfig, fig.width=5 }
+```{r partyfig, fig.width=5, echo=FALSE }
 
 partyModel %>% 
    mplot()+
@@ -341,13 +341,13 @@ partyModel %>%
 ```
 
 
-*Modeling Assumptions*
+*Modeling Assumptions*  
 Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagonsitic plots see appendix model 2).
 
 
 ***Party and Constituent/Corporate Interest Letters***
 
-```{r partyLetter, fig.width=7 }
+```{r partyLetter, fig.width=7 , echo=FALSE}
 
 partyLetter <- glm.nb(reelections ~ constituent + corporate + party_name, 
             data = noI )  
@@ -364,7 +364,7 @@ partyLetter%>%
 As shown in the previous models above Party and corporate correspodence continue to be significant predictors of the number of times a member is reelected over a ten year period. 
 
 
-```{r partyletterFig, fig,width = 5 }
+```{r partyletterFig, fig,width = 5 , echo=FALSE}
 
 partyLetter %>% mplot()+
   labs(x="", y="Change in Times Reelected Given Party and Letter Interest") 
@@ -372,7 +372,7 @@ partyLetter %>% mplot()+
 ```
 
 
-*Modeling Assumptions*
+*Modeling Assumptions*  
 Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagonsitic plots see appendix model 3).
 
 
@@ -381,7 +381,7 @@ Negative Binomial models are not assumed to have normalized residuals. The norma
 As discussed previously republicans generally seem to be reelected less often than democrats over a ten year period. This is illustrated by the distribution plot below.
 
 
-```{r countplots, fig.width=6 }
+```{r countplots, fig.width=6 , echo=FALSE}
 
 
 cdat <- noI %>%
@@ -400,7 +400,7 @@ ggplot(noI, aes(x=reelections, fill=party_name)) +
 The sand color is the distribution of times republicans were reelected and the purple is democrat. The mean number of reelections is shown by the dashed line, blue for republicans and pink for democrats. The mean for republicans sits right around 6.5 and for democrats it is at 7.5. This plot, however, may not provide the full picture for what is happening. Parties can influence what a member advocates for and to that extent could have a significant impact on who (or what) a member is writting on behalf of. For this reason it is important to check for interaction between party and correspondence interest.
 
 
-```{r boxplot, fig.height=5, fig.width=4 }
+```{r boxplot, fig.height=5, fig.width=4 , echo=FALSE}
 
 boxcorp <- ggplot(noI, aes(x= party_name, y=corporate, fill=party_name)) + 
   geom_boxplot() +
@@ -423,7 +423,7 @@ grid.arrange(boxcorp, boxcon, ncol=2)
 This plot looks at party and correspondence interest. The means for democrats and republicans is similar for corporate interest and constituent interest correspondence and the distributions themselves look very similar. The biggest difference is between corporate and constituent as there are more constituent interest letters.
 
 
-```{r interactionParty, fig.width=7 }
+```{r interactionParty, fig.width=7 , echo=FALSE}
 interactionparty <- glm.nb(reelections ~ corporate*party_name + constituent*party_name, 
             data = noI)  
 
@@ -440,7 +440,7 @@ As shown in the previous model the log of the expected number of times a member 
 
 
 
-```{r interactionFig, fig.width=7 }
+```{r interactionFig, fig.width=7, echo=FALSE }
 
 interactionparty %>% mplot()+
   labs(x="", y="Change in Times Reelected Given Letter Interests and Party")
@@ -448,7 +448,7 @@ interactionparty %>% mplot()+
 ```
 
 
-```{r predictcorp,fig.width=5 }
+```{r predictcorp,fig.width=5 , echo=FALSE}
 values <- noI %>%
   expand(corporate = corporate, constituent = mean(constituent), party_name = party_name)
 
@@ -474,7 +474,7 @@ Modeled in this plot is the predicted number of reelections for a member based o
 
 
 
-```{r predictconst, fig.width=5, fig.height=5 }
+```{r predictconst, fig.width=5, fig.height=5 , echo=FALSE}
 values <- noI %>%
   expand(corporate = mean(corporate), constituent = constituent, party_name = party_name)
 
@@ -510,11 +510,14 @@ There is evidence of a relationship between reelction, letter interest, and part
 
 Further research could be done into how closely correspondece to federal agencies match party platforms. This could then be tested to see if members that follow party lines are more likely to be reelected more times. Along with that ideology scores could also be looked at to determine if members with more extreme views (either left or right) are more likely to be elected more times. Demographic information could also be added to this as well.
 
+
+\newpage
+
 ## Appendix
 
 **Dispersion Test**
 
-```{r disp }
+```{r disp , echo=FALSE}
 library(AER)
 countModel <- glm(reelections ~ corporate + constituent, data = d, family = poisson)
 
@@ -527,7 +530,7 @@ dispersiontest(countModel,trafo=1)
 **Corporate and Constituent Letters**  
 *Model #1*
 
-```{r interestplots, fig.width=5, fig.height =4 }
+```{r interestplots, fig.width=5, fig.height =4, echo=FALSE }
 plot(interestModel)
 
 ```
@@ -537,7 +540,7 @@ plot(interestModel)
 **Party and Reelections**
 *Model #2*
  
-```{r partyReelections, fig.width=5, fig.height=4 }
+```{r partyReelections, fig.width=5, fig.height=4 , echo=FALSE}
  plot(partyModel)
 
 ```
@@ -546,14 +549,14 @@ plot(interestModel)
 **Party and Constituent/Corporate Interest Letters**
 *Model #3*
 
-```{r partyconcorp, fig.width=5, fig.height=4 }
+```{r partyconcorp, fig.width=5, fig.height=4 , echo=FALSE}
 plot(partyLetter)
 ```
 
 **Interaction party and interest letters**
 *Model #4*
 
-```{r interaction, fig.width=5, fig.height=4 }
+```{r interaction, fig.width=5, fig.height=4 , echo=FALSE}
 plot(interactionparty)
 
 ```
