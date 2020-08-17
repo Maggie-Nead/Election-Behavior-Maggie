@@ -13,7 +13,6 @@ output:
     code_folding: hide
     toc: yes
 subtitle: Statistical Analysis of Reelection Rates and Correspondence Priorities
-#always_allow_html: yes
 editor_options: 
   chunk_output_type: console
 ---
@@ -58,15 +57,15 @@ Party has a large effect on all aspects of politics. Each has its' own platform 
 
 ### Data
 
-Data for this research has been collected using the Freedom of Information Act (FOIA). All correspodence from a Member of Congress to a federal agency was requested. So far 383,824 letters have been collected and matched to the member it was sent from. This data was collected by the Correspondence Research project headed by Professor Powell at the University of Wisconsin-Madison. The data spans from the 106th to the 116th congress and was requested from every federal agency. The 383,824 observations we currently have contains the data from the federal agencies that have responded so far. Once collected the data was merged with the open source VoteView data. Voteview collects information on Members of Congress which included but is not limited to; names, congresses in which they served, chamber, state information, and ideology scores.  
+We collected data for this research using the Freedom of Information Act (FOIA). All correspodence from a Member of Congress to a federal agency was requested. So far 383,824 letters have been collected and matched to the member it was sent from. This data was collected by the Correspondence Research project headed by Professor Powell at the University of Wisconsin-Madison. The data spans from the 106th to the 116th congress and was requested from every federal agency. The 383,824 observations we currently have contains the data from the federal agencies that have responded so far. Once collected the data was merged with the open source VoteView data. Voteview collects information on Members of Congress which included but is not limited to; names, congresses in which they served, chamber, state information, and ideology scores.  
 
 
 In order to answer the question of congressional behavior there are two ways this research looks at the data:  
--The behavior of members who serve in one congress and the following congress (i.e. in consecutive congresses)
--Behavior trends over time for a count of all the times members have been reelected  
+1. The number and interest of letters sent by members who serve in one congress and the following congress (i.e. in consecutive congresses)  
+2. The number and interest of letters trends over time for a count of all the times members have been reelected  
 
 
-For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who is in one congress and not the following congress. 
+For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who is in one congress and not the following congress. Members who retired or chose not to run are counted as not having been reelected. Alternativley members who are in one chamber in a congress and a different chamber in the following congress are still counted as having been reelected. This was done because members in the House often end up running for the Senate. Those members are able to use the reputation that they already have to be reelected to a different chamber. These are not independent events so they were counted together.
 
 
 ```{r setup, include = FALSE }
@@ -112,23 +111,26 @@ The first, `member_reelected` measures whether or not a member is reelected to t
 Corporate and constituent are based on letter type codings that are contained within five categories. This includes type 1-personal service, type 2-commercial service (transactional), type 3-government or nonprofit service (transactional), type 4-commercial service (policy), and type 5-policy work.  
 
 
-***Personal Service*** is categorized by correspodence sent on behalf of an individual constituent about something non-commercial. This includes things like; help with a governmnet form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, or financial services complaints.
+***Personal Service***   
+Personal service is categorized by correspodence sent on behalf of an individual constituent about something non-commercial. This includes things like; help with a governmnet form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, or financial services complaints.
 
 
-***Commercial Service - Transactional*** contains correspodence that deals with anything related to a specific individual case by a business (including business owners like farmers and consultants). Generally the correspondence contains; help with a grant application, payment, loan or contract (buying anything from or selling anything to a government agency). It migth also include; help with an individual case of tax assessment, fine, or regulatory enforcement action. Or it could also be help with public relations on behalf of a business. Examples of this are: allocation of radio spectrum, case against a company, tax dispute, contract for purchase of military surplus, crop insurance distribution, debt settlement, foreclosure assistance, a fine for a law violation.
+***Commercial Service - Transactional***   
+Commercial service (transactional) contains correspodence that deals with anything related to a specific individual case by a business (including business owners like farmers and consultants). Generally the correspondence contains; help with a grant application, payment, loan or contract (buying anything from or selling anything to a government agency). It migth also include; help with an individual case of tax assessment, fine, or regulatory enforcement action. Or it could also be help with public relations on behalf of a business. Examples of this are: allocation of radio spectrum, case against a company, tax dispute, contract for purchase of military surplus, crop insurance distribution, debt settlement, foreclosure assistance, a fine for a law violation.
 
-***Government and Nonprofit Service - Transactional*** This is similar to commericial service, but for municipal or state governments (including cities, counties, etc.) or non-business-oriented non-profit organizations (i.e. NOT ones that represents an industry or trade association).
+***Government and Nonprofit Service - Transactional***   
+Government and nonprofit service (transactional) is similar to commericial service, but for municipal or state governments (including cities, counties, etc.) or non-business-oriented non-profit organizations (i.e. NOT ones that represents an industry or trade association).
 
 
-***Commercial Service - Policy*** is anything applying to a class of commercial activity or businesses (e.g. shipping, airlines, agriculture). This could include legislation, bills, acts, appropriations, or authorizations. Authorization of or appropriation to a government program that is targeted towards a particular industry or industries and regulation of an industry or commercial practice or competition. Examples of this are: milk prices, insurance or loan eligibility criteria, purchasing policies, crop insurance rates, pollution criteria, classification of products for trade or taxation, conservation appropriation, worker visa types, restrictions, or caps.
+***Commercial Service - Policy***   
+Commerical service (policy) is anything applying to a class of commercial activity or businesses (e.g. shipping, airlines, agriculture). This could include legislation, bills, acts, appropriations, or authorizations. Authorization of or appropriation to a government program that is targeted towards a particular industry or industries and regulation of an industry or commercial practice or competition. Examples of this are: milk prices, insurance or loan eligibility criteria, purchasing policies, crop insurance rates, pollution criteria, classification of products for trade or taxation, conservation appropriation, worker visa types, restrictions, or caps.
 
  
-***Policy Work*** is not in the service of any individual, business, specific industry. This includes lawmaking, oversight, lobbying administrative policy, and political work. Examples of this might be: request for policy-relevant information, committee requesting a report or testimony at a hearing, requesting clarity on an agency rule, agency rulemaking with non-commercial implications, meeting with organized constituent groups, and media requests.  
+***Policy Work***   
+Policy work is not in the service of any individual, business, specific industry. This includes lawmaking, oversight, lobbying administrative policy, and political work. Examples of this might be: request for policy-relevant information, committee requesting a report or testimony at a hearing, requesting clarity on an agency rule, agency rulemaking with non-commercial implications, meeting with organized constituent groups, and media requests.  
 
 
-Each type is a category for the subject of a letter written to a federal agency by a member. For this paper, I am only interested in letters that deal with corporations and constituents this includes types 1,2 and 4, which includes 53,390 observations. The variable `constituent` is a count of type 1  each legislator wrote per congress, and `corporate` is a count of the number of type 2 and 4 letters that each legislator wrote per congress. In the analysis below, each Member of Congress has observation for each congress in which they served. That observation includes the total number of letters they wrote on behalf of constituents and the total number written on behalf of a corporation durring that congress.
-
-
+The table below is the amount of letters that have been categorized under each type.
 ```{r variables, echo=FALSE}
 d %>%
 group_by(TYPE) %>%
@@ -144,16 +146,20 @@ d %<>%
   mutate(interest = ifelse(TYPE %in% c(2,4), "corporate", interest))# %>%
   #mutate(interest = ifelse(! str_detect(TYPE, "1|2|4"), "neither", interest))
 
+```
 
 
+Each type is a category for the subject of a letter written to a federal agency by a member. For this paper, I am only interested in letters that deal with corporations and constituents this includes types 1,2 and 4, which includes 53,390 observations. The variable `constituent` is a count of type 1  each legislator wrote per congress, and `corporate` is a count of the number of type 2 and 4 letters that each legislator wrote per congress. In the analysis, each Member of Congress has one observation for each congress in which they served. That observation includes the total number of letters they wrote on behalf of constituents and the total number written on behalf of a corporation durring that congress.  
+
+
+The table below is the number of corporate and constituent letters.
+```{r table, echo=FALSE}
 d %>%
   group_by(interest) %>%
   tally()%>%
   kable() %>%
   kable_styling() 
-
 ```
-
 
 ```{r dataFilter, fig.width=6, echo=FALSE }
 
@@ -180,7 +186,7 @@ d %<>%
 ```
 
 
-This plot shows general trends for the number of letters (corporate and constituent) sent from the 106th to the 116th congress plotted with the number of reelections durring that time. This is further split out between both letters on behalf of corporation and letters on behalf of constituents in the plots below.
+This plot shows general trends for the number of letters (corporate and constituent) sent from the 106th to the 116th congress plotted with the number of reelections durring that time. This is further split out between both letters on behalf of corporation and letters on behalf of constituents in the plots below. The plots below illustrate the same thing separated between corporate letters and constituent letters.
 
 
 ```{r plots, fig.width=5, fig.height = 5, echo=FALSE }
@@ -198,7 +204,8 @@ d %>%
 
 
 ```
-
+  
+These plots show some potential outliers, however, looking at cooks distance plots they are not outside the bounds. While they may appear to be extreme values they are not extreme enough to be outliers (see Appendix B. for plots)
 
 
 ### Methods 
@@ -226,7 +233,7 @@ $$H_a: \text{The more correspondence from a member on behalf a corporation the m
 
 **Logistic Regression**
 
-$$ln(p/(1-p)) = \beta_0 + \beta_1x_1 + \beta_2x_2 $$
+
 
 Logistic regression was used to look at the response variable of member_reelected which codes true or false for if a member was reelected or not. This was done to determine if there was a short term relationship between letter interests and reelection.
 
@@ -243,7 +250,10 @@ Negative Binomial regression is used when the variance of the data is greater th
 
 ## Results
 
-**Logistic Regression**
+**Logistic Regression**  
+
+**Formula**  
+$$ln(p/(1-p)) = \beta_0 + \beta_1X_\text{Corporate} + \beta_2X_\text{Constituent}$$
 
 This logistic regression tests for a relationship between member_reelected and letter interests (corporate or constituent).
 
@@ -267,7 +277,10 @@ This logit model shows no relationship between corporate or constituent interest
 
 **Negative Binomial Regression**
 
-***Corporate and Constituent Interest Letters***
+***Corporate and Constituent Interest Letters***  
+
+**Formula**  
+$$log(Y) = \beta_0 + \beta_1X_\text{Corporation} + \beta_2X_\text{Constituent}$$
 
 The most basic negative binomial model checks for a relationship between reelection counts and correspondece interest (corporate and constituent) without confounding variables.
 
@@ -299,7 +312,11 @@ Two possibilities for this are: as stated in hypothesis #2 corporations have the
 *Modeling Assumptions*  
 Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagonsitic plots see appendix model 1).
 
-***Party and Reelections***
+***Party and Reelections***  
+
+**Formula**  
+$$log(Y) = \beta_0 + \beta_1X_\text{Democratic} + \beta_2X_\text{Republican}$$  
+$$ Y = \text $$
 
 Another variable that could have an effect on reelection is candidate political party. Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
 
@@ -334,9 +351,12 @@ partyModel %>%
 Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagonsitic plots see appendix model 2).
 
 
-***Party and Constituent/Corporate Interest Letters***
+***Party and Constituent/Corporate Interest Letters***  
 
-```{r partyLetter, fig.width=7, echo=FALSE }
+**Formula**  
+$$log(Y) = \beta_0 + \beta_1X_\text{Corporation} + \beta_2X_\text{Constituent} + \beta_3X_\text{Democratic} + \beta_4X_\text{Republican}$$
+
+```{r partyLetter, echo=FALSE }
 
 partyLetter <- glm.nb(reelections ~ constituent + corporate + party_name, 
             data = noI )  
@@ -353,7 +373,7 @@ partyLetter%>%
 As shown in the previous models above Party and corporate correspodence continue to be significant predictors of the number of times a member is reelected over a ten year period. 
 
 
-```{r partyletterFig, fig,width = 6, echo=FALSE }
+```{r partyletterFig, fig,width = 7, echo=FALSE }
 
 partyLetter %>% mplot()+
   labs(x="", y="Change in Times Reelected Given Party and Letter Interest") 
@@ -369,6 +389,12 @@ Negative Binomial models are not assumed to have normalized residuals. The norma
   
   
 ***Interaction between Party and Letter Interests***  
+
+**Formula**
+$$log(Y) = \beta_0 + \beta_1X_\text{Corp} + \beta_2X_\text{Con} + \beta_3X_\text{Dem} + \beta_1X_\text{Corp}*\beta_3X_\text{Dem} + \beta_2X_\text{Con}*\beta_3X_\text{Dem}$$
+
+$$log(Y) = \beta_0 + \beta_1X_\text{Corp} +\beta_2X_\text{Con} + \beta_4X_\text{Rep} + \beta_1X_\text{Corp}*\beta_4X_\text{Rep} + \beta_2X_\text{Con}*\beta_4X_\text{Rep}$$  
+
 As discussed previously republicans generally seem to be reelected less often than democrats over a ten year period. This is illustrated by the distribution plot below.
 
 
@@ -500,7 +526,10 @@ There is evidence of a relationship between reelction, letter interest, and part
 
 ### Potential for Further Studies  
 
-Further research could be done into how closely correspondece to federal agencies match party platforms. This could then be tested to see if members that follow party lines are more likely to be reelected more times. Along with that ideology scores could also be looked at to determine if members with more extreme views (either left or right) are more likely to be elected more times. Demographic information could also be added to this as well.
+Reelection is hard to predict and there are potential a lot of confounding variables that could effect this. Some of those confound variables include: demographic information, party platforms, and ideology scores.
+Further research could be done into how closely correspondece to federal agencies match party platforms. This could then be tested to see if members that follow party lines are more likely to be reelected more times. Along with that ideology scores could also be looked at to determine if members with more extreme views are more likely to be elected more times. Demographic information could also be added to this as well.
+
+Other interesting topics for further study would be the difference between letter interests for members who were not reelected compared to those that were. This could help determine what kinds of constituent service is correlated with reelection and which kinds are correlated with loosing a bid for reelection. Further subsetting this data to exclude members who retired or chose not to run for the following congress would help determine more concrete data trends as it would not be counting people who did not run.
 
 
 \newpage
