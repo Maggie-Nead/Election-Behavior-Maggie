@@ -280,7 +280,12 @@ This logit model shows no relationship between corporate or constituent interest
 ***Corporate and Constituent Interest Letters***  
 
 **Formula**  
-$$log(Y) = \beta_0 + \beta_1X_\text{Corporation} + \beta_2X_\text{Constituent}$$
+$$log(Y) = \beta_0 + \beta_1X_\text{Corporation} + \beta_2X_\text{Constituent}$$  
+\begin{align}
+Y = \text{ Predicted number of times a member is reelected}  \\
+X_\text{Corporation} = \text{ Number of corporate interest letters sent by member} \\ 
+X_\text{Constituent} = \text{ Number of corporate interest letters sent by member}
+\end{align}   
 
 The most basic negative binomial model checks for a relationship between reelection counts and correspondece interest (corporate and constituent) without confounding variables.
 
@@ -318,9 +323,9 @@ Negative Binomial models are not assumed to have normalized residuals. The norma
 $$log(Y) = \beta_0 + \beta_1X_\text{Democratic} + \beta_2X_\text{Republican}$$
 
 \begin{align}
-Y = \text{ predicted number of times a member is reelected}  \\
-X_\text{Democratic} = 1 \text{ if a member is a Democrat, } 0 \text{ otherwise} \\ 
-X_\text{Republican} = 1 \text{ if a member is a Republican, } 0 \text{ otherwise}
+Y = \text{ Predicted number of times a member is reelected}  \\
+X_\text{Democratic} = 1 \text{ If a member is a Democrat, } 0 \text{ otherwise} \\ 
+X_\text{Republican} = 1 \text{ If a member is a Republican, } 0 \text{ otherwise}
 \end{align}   
 
 Another variable that could have an effect on reelection is candidate political party. Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
@@ -359,7 +364,15 @@ Negative Binomial models are not assumed to have normalized residuals. The norma
 ***Party and Constituent/Corporate Interest Letters***  
 
 **Formula**  
-$$log(Y) = \beta_0 + \beta_1X_\text{Corporation} + \beta_2X_\text{Constituent} + \beta_3X_\text{Democratic} + \beta_4X_\text{Republican}$$
+$$log(Y) = \beta_0 + \beta_1X_\text{Corporation} + \beta_2X_\text{Constituent} + \beta_3X_\text{Democratic} + \beta_4X_\text{Republican}$$  
+
+\begin{align}
+Y = \text{ Predicted number of times a member is reelected}  \\
+X_\text{Corporation} = \text{ Number of corporate interest letters sent by member} \\ 
+X_\text{Constituent} = \text{ Number of corporate interest letters sent by member} \\
+X_\text{Democratic} = 1 \text{ If a member is a Democrat, } 0 \text{ otherwise} \\ 
+X_\text{Republican} = 1 \text{ If a member is a Republican, } 0 \text{ otherwise}
+\end{align}   
 
 ```{r partyLetter, echo=FALSE }
 
@@ -398,7 +411,15 @@ Negative Binomial models are not assumed to have normalized residuals. The norma
 **Formula**
 $$log(Y) = \beta_0 + \beta_1X_\text{Corp} + \beta_2X_\text{Con} + \beta_3X_\text{Dem} + \beta_1X_\text{Corp}*\beta_3X_\text{Dem} + \beta_2X_\text{Con}*\beta_3X_\text{Dem}$$
 
-$$log(Y) = \beta_0 + \beta_1X_\text{Corp} +\beta_2X_\text{Con} + \beta_4X_\text{Rep} + \beta_1X_\text{Corp}*\beta_4X_\text{Rep} + \beta_2X_\text{Con}*\beta_4X_\text{Rep}$$  
+$$log(Y) = \beta_0 + \beta_1X_\text{Corp} +\beta_2X_\text{Con} + \beta_4X_\text{Rep} + \beta_1X_\text{Corp}*\beta_4X_\text{Rep} + \beta_2X_\text{Con}*\beta_4X_\text{Rep}$$   
+
+\begin{align}
+Y = \text{ Predicted number of times a member is reelected}  \\
+X_\text{Corporation} = \text{ Number of corporate interest letters sent by member} \\ 
+X_\text{Constituent} = \text{ Number of corporate interest letters sent by member} \\
+X_\text{Democratic} = 1 \text{ If a member is a Democrat, } 0 \text{ otherwise} \\ 
+X_\text{Republican} = 1 \text{ If a member is a Republican, } 0 \text{ otherwise}
+\end{align} 
 
 As discussed previously republicans generally seem to be reelected less often than democrats over a ten year period. This is illustrated by the distribution plot below.
 
