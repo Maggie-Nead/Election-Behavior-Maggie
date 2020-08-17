@@ -315,8 +315,13 @@ Negative Binomial models are not assumed to have normalized residuals. The norma
 ***Party and Reelections***  
 
 **Formula**  
-$$log(Y) = \beta_0 + \beta_1X_\text{Democratic} + \beta_2X_\text{Republican}$$  
-$$ Y = \text $$
+$$log(Y) = \beta_0 + \beta_1X_\text{Democratic} + \beta_2X_\text{Republican}$$
+
+\begin{align}
+Y = \text{ predicted number of times a member is reelected}  \\
+X_\text{Democratic} = 1 \text{ if a member is a Democrat, } 0 \text{ otherwise} \\ 
+X_\text{Republican} = 1 \text{ if a member is a Republican, } 0 \text{ otherwise}
+\end{align}   
 
 Another variable that could have an effect on reelection is candidate political party. Parties have different priorities and voting members of those parties likely have different interests. For this reason party may play a large role in who gets reelected. For this model independents were dropped as they tend to have a significant amount of variation between them and it can be hard to determine trends in their reelection patterns.
 
