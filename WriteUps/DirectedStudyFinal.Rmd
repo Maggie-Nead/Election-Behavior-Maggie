@@ -37,12 +37,12 @@ ggplot() +
 
 ### Introduction
 
-Political scientists have long studied factors that affect reelection, including political ideology, campaign platforms, and voting records. Significant improvements have been made to the way in which researchers think about and study reelection, but gaps remain. One of the biggest gaps is what happens outside of public perview, such as constituent service and advocacy on behalf of businesses. Who do members of congress advocate for outside of the spotlight, and what impact does that have on reelection? This research seeks to answer the question: what kinds of constituent service behavior leads to reelection? Constituent service pertains to services that members provide outside of legislation. This might include getting federal agencies to perform action, case work, grants work, and more. Patterns and relationships may exist between constituent service and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities are associated with reelection. <!-- and which may lead a member to be replaced.-->
+Political scientists have long studied factors that affect reelection, including political ideology, campaign platforms, and voting records. Significant improvements have been made to the way in which researchers think about and study reelection, but gaps remain. One of the biggest gaps is what happens outside of public perview, such as constituent service and advocacy on behalf of businesses. Who do members of congress advocate for outside of the spotlight, and what impact does that have on reelection? This research seeks to answer the question: what kinds of constituent service behavior leads to reelection? Constituent service pertains to services that members provide outside of legislation. This might include getting federal agencies to perform action, case work, grants work, and more. Patterns and relationships may exist between constituent service and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities are associated with reelection. 
 
 
 ### Theory
 
-In order for a Member of Congress to accomplish their political goals they must first be reelected (Mayhew 1974). <!-- if you want Rmarkdown to make the bibliography in the future, you can just use "[@Mayhew1974]" here to link to a .bib file entry -->
+In order for a Member of Congress to accomplish their political goals they must first be reelected (Mayhew 1974).
 This means that first and foremost the goal of any politician is to be reelected. To be reelected a Member of Congress needs two things, money and the support of their constituents. According to the Federal Election Commission to be considered a candidate for House, Senate, or President a person must first raise or spend at least \$5,000 (n.d.). This is a small amount in comparison to how much campaigns actually end up spending. For the House the campaign that spent the least amount of money in 2018 still spent \$231,921 and the average campaign cost for candidates that won their election was \$2,056,494. For the Senate this is even higher. The campaign that spent the least cost \$3,354,107 and the average spending for Senate candidates that won their election was \$15,753,167 ("Election Trends", 2018). Because campagins are so expensive most campaigns are funded by a few large donations instead of a lot of small donations. Even further than this, the majority of donations are made by buisness contributions. From 2019-2020 buisnesses (which includes buisness executives and professionals) donated a total of \$2,710,340,480 (“Business-Labor-Ideology Split in PAC & Individual Donations to Candidates, Parties, Super PACs and Outside Spending Groups”, 2020).	For this reason, members seeking reelection may focus on advocating for the interest of corporations with resources like money, advertising power, and audience. Corporations have power that can either lead to a successful reelection or help a political opponent take their own victory.  
 
 
@@ -52,8 +52,7 @@ On the other hand, corporations cannot vote. If a constituent feels that their m
 A member who writes a lot of corporate and constituent letters might be appeasing both groups. Constituents feel they are being listened to and corporations believe that members are advocating for their best interest. This way members could get benefits from large audiences, advertising power, and money that are provided by corporations and constituents are already likely to vote for that member. This way when members use the resources provided by large corporations, constituents are more likely to recieve messages to vote for that member positivley. The effects that letter interest has on reelection could also be changed drastically depending on party.  
 
 
-Party has a large effect on all aspects of politics. Each has its' own platform that contains all of the agenda items the party wants to push through during the legislative session. This changes the way that members of each party vote and what they advocate for. Parties have their own priorities and this list of priorities can change what types of letters members are sending. For example if a line item on a party platform is to expand veteran benefits then an influx of letters from members of that party to the Department of Veterans Affairs on behalf of veteran constituents might be expected.
-
+Party has a large effect on all aspects of politics. Each has its' own platform that contains all of the agenda items the party wants to push through during the legislative session. This changes the way that members of each party vote and what they advocate for. Parties have their own priorities and this list of priorities can change what types of letters members are sending. For example if a line item on a party platform is to expand veteran benefits then an influx of letters from members of that party to the Department of Veterans Affairs on behalf of veteran constituents might be expected. Party priorities can change what kinds of correspondence a member is sending but it may also have an effect on reelection. Certain members come from districts with contentious races and the seat might have a democrat or a republican depending on the congress. Other districts are not like this and may only ever have members from one party. In these districts it is very rarely if ever going to be the case that a member of the opposite party is elected. They are typically places where party loyalty is a big deal.
 
 ### Data
 
@@ -102,13 +101,13 @@ d %>%
 
 
 **Variables**  
-From the existing data in VoteView the variable party_name is used as a part of the models in this research. This variable is coded as Republican, Democratic or Independet. Along with this four variables were created: `member_reelected`, `corporate`, `constituent`, and `reelections`.  <!-- write this out in sentence form -->   
+From the existing data in VoteView the variable party_name is used as a part of the models in this research. This variable is coded as Republican, Democratic or Independet. Along with this four variables were created: `member_reelected`, `corporate`, `constituent`, and `reelections`.  
 
 
 The first, `member_reelected` measures whether or not a member is reelected to the following congress. It is coded as true or false for every member in every congress. For example if a member was elected to the 109th congress and served again in the 110th congress member_reelected equals true for the 109th congress. If they did not serve in the 110th congress, member-reelected would be false for the 109th congress.  
 
 
-Corporate and constituent are based on letter type codings that are contained within five categories. This includes type 1-personal service, type 2-commercial service (transactional), type 3-government or nonprofit service (transactional), type 4-commercial service (policy), and type 5-policy work.  
+Corporate and constituent are based on letter type codings that are contained within five categories. This includes type 1-personal service, type 2-commercial service (transactional), type 3-government or nonprofit service (transactional), type 4-commercial service (policy), and type 5-policy work. The requirements for each category are listed below. 
 
 
 ***Personal Service***   
@@ -205,7 +204,7 @@ d %>%
 
 ```
   
-These plots show some potential outliers, however, looking at cooks distance plots they are not outside the bounds. While they may appear to be extreme values they are not extreme enough to be outliers (see Appendix B. for plots)
+These plots show some potential outliers, however, looking at cooks distance plots they are not outside the bounds. While they may appear to be extreme values they are not extreme enough to be outliers (see Appendix B. for plots).
 
 
 ### Methods 
@@ -411,7 +410,8 @@ Negative Binomial models are not assumed to have normalized residuals. The norma
   
 ***Interaction between Party and Letter Interests***  
 
-**Formula**
+**Formula**  
+
 $$log(Y) = \beta_0 + \beta_1X_\text{Corp} + \beta_2X_\text{Con} + \beta_3X_\text{Dem} + \beta_1X_\text{Corp}*\beta_3X_\text{Dem} + \beta_2X_\text{Con}*\beta_3X_\text{Dem}$$
 $$log(Y) = \beta_0 + \beta_1X_\text{Corp} +\beta_2X_\text{Con} + \beta_4X_\text{Rep} + \beta_1X_\text{Corp}*\beta_4X_\text{Rep} + \beta_2X_\text{Con}*\beta_4X_\text{Rep}$$   
 \begin{align}
