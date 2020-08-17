@@ -1,6 +1,6 @@
 ---
 title: "Correspondence and Congressional Member Reelection"
-author: "Maggie Nead"
+author: "Margaret Nead"
 date: "8/16/2020"
 header-includes:
   - \usepackage{setspace}\doublespacing
