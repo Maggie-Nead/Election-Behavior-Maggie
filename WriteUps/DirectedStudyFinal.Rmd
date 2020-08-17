@@ -35,26 +35,26 @@ ggplot() +
 
 ### Introduction
 
-Political scientists have long studied factors that affect reelection, including political ideology, campaign platforms, and voting records. Significant improvements have been made to the way in which researchers think about and study reelection, but gaps remain. One of the biggest gaps is what happens outside of public perview, such as constituent service and advocacy on behalf of businesses. Who do members of congress advocate for outside of the spotlight, and what impact does that have on reelection? This research seeks to answer the question: what kinds of constituent service behavior leads to reelection? Constituent service pertains to services that members provide outside of legislation. This might include getting federal agencies to perform action, case work, grants work, and more. Patterns and relationships may exist between constituent service and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities are associated with reelection. 
+Political scientists have long studied factors that affect reelection, including political ideology, campaign platforms, and voting records. Significant improvements have been made to the way in which researchers think about and study reelection, but gaps remain. One of the biggest gaps is what happens outside of public purview, such as constituent service and advocacy on behalf of businesses. Who do members of congress advocate for outside of the spotlight, and what impact does that have on reelection? This research seeks to answer the question: what kinds of constituent service behavior leads to reelection? Constituent service pertains to services that members provide outside of legislation. This might include getting federal agencies to perform certain actions, casework, grants work, and more. Patterns and relationships may exist between constituent service and reelection. By determining what and who a member of congress advocates for and comparing that to whether or not they get reelected the data may show which priorities are associated with reelection. 
 
 
 ### Theory
 
-In order for a Member of Congress to accomplish their political goals they must first be reelected (Mayhew 1974).
-This means that first and foremost the goal of any politician is to be reelected. To be reelected a Member of Congress needs two things, money and the support of their constituents. According to the Federal Election Commission to be considered a candidate for House, Senate, or President a person must first raise or spend at least \$5,000 (n.d.). This is a small amount in comparison to how much campaigns actually end up spending. For the House the campaign that spent the least amount of money in 2018 still spent \$231,921 and the average campaign cost for candidates that won their election was \$2,056,494. For the Senate this is even higher. The campaign that spent the least cost \$3,354,107 and the average spending for Senate candidates that won their election was \$15,753,167 ("Election Trends", 2018). Because campagins are so expensive most campaigns are funded by a few large donations instead of a lot of small donations. Even further than this, the majority of donations are made by buisness contributions. From 2019-2020 buisnesses (which includes buisness executives and professionals) donated a total of \$2,710,340,480 (“Business-Labor-Ideology Split in PAC & Individual Donations to Candidates, Parties, Super PACs and Outside Spending Groups”, 2020).	For this reason, members seeking reelection may focus on advocating for the interest of corporations with resources like money, advertising power, and audience. Corporations have power that can either lead to a successful reelection or help a political opponent take their own victory.  
+In order for a Member of Congress to accomplish their political goals, they must first be reelected (Mayhew 1974).
+This means that first and foremost the goal of any politician is to be reelected. To be reelected a Member of Congress needs two things, money and the support of their constituents. According to the Federal Election Commission to be considered a candidate for House, Senate, or President a person must first raise or spend at least \$5,000 (n.d.). This is a small amount in comparison to how much campaigns actually end up spending. For the House, the campaign that spent the least amount of money in 2018 still spent \$231,921 and the average campaign cost for candidates that won their election was \$2,056,494. For the Senate, this is even higher. The campaign that spent the least cost \$3,354,107 and the average spending for Senate candidates that won their election was \$15,753,167 ("Election Trends", 2018). Because campaigns are so expensive most campaigns are funded by a few large donations instead of a lot of small donations. Even further than this, the majority of donations are made by business contributions. From 2019-2020 businesses (which include business executives and professionals) donated a total of \$2,710,340,480 (“Business-Labor-Ideology Split in PAC & Individual Donations to Candidates, Parties, Super PACs and Outside Spending Groups”, 2020).	For this reason, members seeking reelection may focus on advocating for the interest of corporations with resources like money, advertising power, and audience. Corporations have power that can either lead to successful reelection or help a political opponent take their own victory.  
 
 
-On the other hand, corporations cannot vote. If a constituent feels that their member of congress listens to them and advocates on their behalf, they may be more likely to vote for that member again. A member is ultimately elected by those they represent and there is evidence to suggest that members will change what they advocate for based on what they hear their constituents want. This is especially true when elections are upcoming. A study done on the role that voter preferences play in how Senators vote found that durring election years the effect of constituent opinion doubles (Levitt, 1996). Members of Congress change how much weight they put on constituent opinion durring election seasons. This suggests that Members are concerned about how constituent interest may effect reelection. For this reason, constituent interest may play a big role in whether or not a member gets reelected. It is also possible that both corporate and constituent interest play a significant role in getting a member reelected. Members who advocate for corporations and constituents at the same time may ultimatley be more likely to get reelected.  
+On the other hand, corporations cannot vote. If a constituent feels that their Member of Congress listens to them and advocates on their behalf, they may be more likely to vote for that member again. A member is ultimately elected by those they represent and there is evidence to suggest that members will change what they advocate for based on what they hear their constituents want. This is especially true when elections are upcoming. A study done on the role that voter preferences play in how Senators vote found that during election years the effect of constituent opinion doubles (Levitt, 1996). Members of Congress change how much weight they put on constituent opinion during election seasons. This suggests that Members are concerned about how constituent interest may affect reelection. For this reason, constituent interest may play a big role in whether or not a member gets reelected. It is also possible that both corporate and constituent interests play a significant role in getting a member reelected. Members who advocate for corporations and constituents at the same time may ultimately be more likely to get reelected.  
 
 
-A member who writes a lot of corporate and constituent letters might be appeasing both groups. Constituents feel they are being listened to and corporations believe that members are advocating for their best interest. This way members could get benefits from large audiences, advertising power, and money that are provided by corporations and constituents are already likely to vote for that member. This way when members use the resources provided by large corporations, constituents are more likely to recieve messages to vote for that member positivley. The effects that letter interest has on reelection could also be changed drastically depending on party.  
+A member who writes a lot of corporate and constituent letters might be appeasing both groups. Constituents feel they are being listened to and corporations believe that members are advocating for their best interest. This way members could get benefits from large audiences, advertising power, and money that are provided by corporations and constituents are already likely to vote for that member. This way when members use the resources provided by large corporations, constituents are more likely to receive messages to vote for that member positively. The effects that letter interest has on reelection could also be changed drastically depending on party.  
 
 
-Party has a large effect on all aspects of politics. Each has its' own platform that contains all of the agenda items the party wants to push through during the legislative session. This changes the way that members of each party vote and what they advocate for. Parties have their own priorities and this list of priorities can change what types of letters members are sending. For example if a line item on a party platform is to expand veteran benefits then an influx of letters from members of that party to the Department of Veterans Affairs on behalf of veteran constituents might be expected. Party priorities can change what kinds of correspondence a member is sending but it may also have an effect on reelection. Certain members come from districts with contentious races and the seat might have a democrat or a republican depending on the congress. Other districts are not like this and may only ever have members from one party. In these districts it is very rarely if ever going to be the case that a member of the opposite party is elected. They are typically places where party loyalty is a big deal.
+Party has a large effect on all aspects of politics. Each has its' own platform that contains all of the agenda items the party wants to push through during the legislative session. This changes the way that members of each party vote and what they advocate for. Parties have their own priorities and this list of priorities can change what types of letters members are sending. For example, if a line item on a party platform is to expand veteran benefits then an influx of letters from members of that party to the Department of Veterans Affairs on behalf of veteran constituents might be expected. Party priorities can change what kinds of correspondence a member is sending but it may also have an effect on reelection. Certain members come from districts with contentious races and the seat might have a democrat or a republican depending on the congress. Other districts are not like this and may only ever have members from one party. In these districts, it is very rarely if ever going to be the case that a member of the opposite party is elected. They are typically places where party loyalty is a big deal.
 
 ### Data
 
-We collected data for this research using the Freedom of Information Act (FOIA). All correspondence from a Member of Congress to a federal agency was requested. So far 383,824 letters have been collected and matched to the member it was sent from. This data was collected by the Correspondence Research project headed by Professor Powell at the University of Wisconsin-Madison. The data spans from the 106th to the 116th congress and was requested from every federal agency. The 383,824 observations we currently have contains the data from the federal agencies that have responded so far. Once collected the data was merged with the open source VoteView data. Voteview collects information on Members of Congress which included but is not limited to; names, congresses in which they served, chamber, state information, and ideology scores.  
+We collected data for this research using the Freedom of Information Act (FOIA). All correspondence from a Member of Congress to a federal agency was requested. So far 383,824 letters have been collected and matched to the member it was sent from. This data was collected by the Correspondence Research project headed by Professor Powell at the University of Wisconsin-Madison. The data spans from the 106th to the 116th congress and was requested from every federal agency. The 383,824 observations we currently have contains the data from the federal agencies that have responded so far. Once collected the data was merged with the open-source VoteView data. Voteview collects information on Members of Congress which included but is not limited to; names, congresses in which they served, chamber, state information, and ideology scores.  
 
 
 In order to answer the question of congressional behavior there are two ways this research looks at the data:  
@@ -62,7 +62,7 @@ In order to answer the question of congressional behavior there are two ways thi
 2. The number and interest of letters trends over time for a count of all the times members have been reelected  
 
 
-For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who is in one congress and not the following congress. Members who retired or chose not to run are counted as not having been reelected. Alternativley members who are in one chamber in a congress and a different chamber in the following congress are still counted as having been reelected. This was done because members in the House often end up running for the Senate. Those members are able to use the reputation that they already have to be reelected to a different chamber. These are not independent events so they were counted together.
+For the purposes of this research reelection will be defined as any member who is in consecutive congresses. Members who were not reelected shall be defined as any member who is in one congress and not the following congress. Members who retired or chose not to run are counted as not having been reelected. Alternatively, members who are in one chamber in a congress and a different chamber in the following congress are still counted as having been reelected. This was done because members in the House often end up running for the Senate. Those members are able to use the reputation that they already have to be reelected to a different chamber. These are not independent events so they were counted together.
 
 
 ```{r setup, include = FALSE }
@@ -86,7 +86,7 @@ d <- data %>%
 
 
 
-The histogram below shows the total number of letters sent by members of congress in each congress. The 106th congress has less letters as it is the first congress of data requested and for most agencies less is availible from this time. The 116th congress also has less letters because it is the current congressional session and as such is ongoing.
+The histogram below shows the total number of letters sent by members of congress in each congress. The 106th congress has fewer letters as it is the first congress of data requested and for most agencies less is available from this time. The 116th congress also has fewer letters because it is the current congressional session and as such is ongoing.
 
 
 ```{r hist, fig.width=6, echo=FALSE }
@@ -99,35 +99,35 @@ d %>%
 
 
 **Variables**  
-From the existing data in VoteView the variable party_name is used as a part of the models in this research. This variable is coded as Republican, Democratic or Independet. Along with this four variables were created: `member_reelected`, `corporate`, `constituent`, and `reelections`.  
+From the existing data in VoteView, the variable party_name is used as a part of the models in this research. This variable is coded as Republican, Democratic, or Independent. Along with this four variables were created: `member_reelected`, `corporate`, `constituent`, and `reelections`.  
 
 
-The first, `member_reelected` measures whether or not a member is reelected to the following congress. It is coded as true or false for every member in every congress. For example if a member was elected to the 109th congress and served again in the 110th congress member_reelected equals true for the 109th congress. If they did not serve in the 110th congress, member-reelected would be false for the 109th congress.  
+The first, `member_reelected` measures whether or not a member is reelected to the following congress. It is coded as true or false for every member in every congress. For example, if a member was elected to the 109th congress and served again in the 110th congress member_reelected equals true for the 109th congress. If they did not serve in the 110th congress, member-reelected would be false for the 109th congress.  
 
 
 Corporate and constituent are based on letter type codings that are contained within five categories. This includes type 1-personal service, type 2-commercial service (transactional), type 3-government or nonprofit service (transactional), type 4-commercial service (policy), and type 5-policy work. The requirements for each category are listed below. 
 
 
 ***Personal Service***   
-Personal service is categorized by correspondence sent on behalf of an individual constituent about something non-commercial. This includes things like; help with a governmnet form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, or financial services complaints.
+Personal service is categorized by correspondence sent on behalf of an individual constituent about something non-commercial. This includes things like; help with a government form, passport, visa, back pay, military honor, enlistment, criminal case, request for personal information (e.g. one’s FBI file), disability application, worker compensation, personal complaint, discrimination case, job application, health insurance, or financial services complaints.
 
 
 ***Commercial Service - Transactional***   
-Commercial service (transactional) contains correspondence that deals with anything related to a specific individual case by a business (including business owners like farmers and consultants). Generally the correspondence contains; help with a grant application, payment, loan or contract (buying anything from or selling anything to a government agency). It migth also include; help with an individual case of tax assessment, fine, or regulatory enforcement action. Or it could also be help with public relations on behalf of a business. Examples of this are: allocation of radio spectrum, case against a company, tax dispute, contract for purchase of military surplus, crop insurance distribution, debt settlement, foreclosure assistance, a fine for a law violation.
+Commercial service (transactional) contains correspondence that deals with anything related to a specific individual case by a business (including business owners like farmers and consultants). Generally, the correspondence contains; help with a grant application, payment, loan, or contract (buying anything from or selling anything to a government agency). It might also include; help with an individual case of tax assessment, fine, or regulatory enforcement action. Or it could also be, help with public relations on behalf of a business. Examples of this are an allocation of radio spectrum, a case against a company, tax dispute, a contract for purchase of military surplus, crop insurance distribution, debt settlement, foreclosure assistance, a fine for a law violation.
 
 ***Government and Nonprofit Service - Transactional***   
-Government and nonprofit service (transactional) is similar to commericial service, but for municipal or state governments (including cities, counties, etc.) or non-business-oriented non-profit organizations (i.e. NOT ones that represents an industry or trade association).
+Government and nonprofit service (transactional) is similar to commercial service, but for municipal or state governments (including cities, counties, etc.) or non-business-oriented non-profit organizations (not one that represents an industry or trade association).
 
 
 ***Commercial Service - Policy***   
-Commerical service (policy) is anything applying to a class of commercial activity or businesses (e.g. shipping, airlines, agriculture). This could include legislation, bills, acts, appropriations, or authorizations. Authorization of or appropriation to a government program that is targeted towards a particular industry or industries and regulation of an industry or commercial practice or competition. Examples of this are: milk prices, insurance or loan eligibility criteria, purchasing policies, crop insurance rates, pollution criteria, classification of products for trade or taxation, conservation appropriation, worker visa types, restrictions, or caps.
+Commerical service (policy) is anything applying to a class of commercial activity or businesses (e.g. shipping, airlines, agriculture). This could include legislation, bills, acts, appropriations, or authorizations. Authorization of or appropriation to a government program that is targeted towards a particular industry or industries and regulation of an industry or commercial practice or competition. Examples of this are milk prices, insurance or loan eligibility criteria, purchasing policies, crop insurance rates, pollution criteria, classification of products for trade or taxation, conservation appropriation, worker visa types, restrictions, or caps.
 
  
 ***Policy Work***   
-Policy work is not in the service of any individual, business, specific industry. This includes lawmaking, oversight, lobbying administrative policy, and political work. Examples of this might be: request for policy-relevant information, committee requesting a report or testimony at a hearing, requesting clarity on an agency rule, agency rulemaking with non-commercial implications, meeting with organized constituent groups, and media requests.  
+Policy work is not in the service of any individual, business, specific industry. This includes lawmaking, oversight, lobbying administrative policy, and political work. Examples of this might be request for policy-relevant information, committee requesting a report or testimony at a hearing, requesting clarity on an agency rule, agency rulemaking with non-commercial implications, meeting with organized constituent groups, and media requests.  
 
 
-The table below is the amount of letters that have been categorized under each type.
+The table below is the number of letters that have been categorized under each type.
 ```{r variables , echo=FALSE }
 d %>%
 group_by(TYPE) %>%
@@ -146,7 +146,7 @@ d %<>%
 ```
 
 
-Each type is a category for the subject of a letter written to a federal agency by a member. For this paper, I am only interested in letters that deal with corporations and constituents this includes types 1,2 and 4, which includes 53,390 observations. The variable `constituent` is a count of type 1  each legislator wrote per congress, and `corporate` is a count of the number of type 2 and 4 letters that each legislator wrote per congress. In the analysis, each Member of Congress has one observation for each congress in which they served. That observation includes the total number of letters they wrote on behalf of constituents and the total number written on behalf of a corporation durring that congress.  
+Each type is a category for the subject of a letter written to a federal agency by a member. For this paper, I am only interested in letters that deal with corporations and constituents this includes types 1,2, and 4, which includes 53,390 observations. The variable `constituent` is a count of type 1  each legislator wrote per congress, and `corporate` is a count of the number of type 2 and 4 letters that each legislator wrote per congress. In the analysis, each Member of Congress has one observation for each congress in which they served. That observation includes the total number of letters they wrote on behalf of constituents and the total number written on behalf of a corporation during that congress.  
 
 
 The table below is the number of corporate and constituent letters.
@@ -183,7 +183,7 @@ d %<>%
 ```
 
 
-This plot shows general trends for the number of letters (corporate and constituent) sent from the 106th to the 116th congress plotted with the number of reelections durring that time. This is further split out between both letters on behalf of corporation and letters on behalf of constituents in the plots below. The plots below illustrate the same thing separated between corporate letters and constituent letters.
+This plot shows general trends for the number of letters (corporate and constituent) sent from the 106th to the 116th congress plotted with the number of reelections during that time. This is further split out between both letters on behalf of corporations and letters on behalf of constituents in the plots below. The plots below illustrate the same thing separated between corporate letters and constituent letters.
 
 
 ```{r plots, fig.width=4, fig.height = 3, echo=FALSE  }
@@ -213,14 +213,14 @@ These plots show some potential outliers, however, looking at cooks distance plo
 
 *Hypothesis #1:*
 
-Constituents want to feel that they are listened to and that their member of congress is advocating for their best interest. Voters want to see that the priorities they hold are reflected by the person that represents them. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
+Constituents want to feel that they are listened to and that their Member of Congress is advocating for their best interest. Voters want to see that the priorities they hold are reflected by the person that represents them. Members that advocate for their constituents the most are more likely to be reelected. For the purpose of this project advocacy on behalf of constituents will be quantified by constituent service correspondence. 
 $$H_0: \text{There is no difference in election outcome between Members that have a lot of constituency service correspondence.}$$
 $$H_a: \text{Members that have more constituent service correspondence are more likely to be reelected.}$$
 
 
 *Hypothesis #2:*
 
-The biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and may be more likely to get elected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
+The biggest campaign donors tend to be corporations (or the owners of large corporations). Campaign finance plays a large roll in getting a candidate elected. If a candidate has more funding, they have a bigger reach, are more able to advertise, and might be more likely to get reelected. Members that do not have corporate donors have a significantly harder time running successful elections. A member that has more correspondence on behalf of large corporations may be more likely to be reelected. Those that have less correspondence on behalf of large corporations may have a hard time getting corporate donors and as a consequence may not have enough monetary donations to run a campaign.
 $$H_0: \text{Correspondence on behalf of corporations has no effect on election outcomes.}$$
 $$H_a: \text{The more correspondence from a member on behalf a corporation the more likely that member is to be reelected.}$$ 
 
@@ -234,7 +234,7 @@ Logistic regression was used to look at the response variable of member_reelecte
 
 **Poisson Regression**
 
-Originally Poisson regression was chosen for the models with reelections as the response variable. This was done because reelections is a count, however, a dispersion test yeilded a small p-value < 2.2e-16 and has an estimated coeffience of 0.339 (See Appedix A. dispersion test). This shows that the counts for this data are over-dispersed. 
+Originally Poisson regression was chosen for the models with reelections as the response variable. This was done because reelections are a count, however, a dispersion test yielded a small p-value < 2.2e-16 and has an estimated coefficient of 0.339 (See Appendix A. dispersion test). This shows that the counts for this data are over-dispersed. 
 
 
 **Negative Binomial Regression**
@@ -272,7 +272,7 @@ model %>%
 ```
 
 
-This logit model shows no relationship between corporate or constituent interest correspondence and likelihood of being elected in the following congress. This is not unexpected as this is a simplistic model for a generally complex response variable. It can be difficult to predict the outcome of one election given only the correspondence from the previous congress as it may take many years for a trend to present itself. Using this as a jumping off point the data now lends itself to more complex models.
+This logit model shows no relationship between corporate or constituent interest correspondence and the likelihood of being elected in the following congress. This is not unexpected as this is a simplistic model for a generally complex response variable. It can be difficult to predict the outcome of one election given only the correspondence from the previous congress as it may take many years for a trend to present itself. Using this as a jumping-off point the data now lends itself to more complex models.
 
 **Negative Binomial Regression**
 
@@ -310,11 +310,11 @@ interestModel %>% mplot()+
 ```
 
 
-Two possibilities for this are: as stated in hypothesis #2 corporations have the money, resources and audience to help a member that advocates for them get reelected. Or it could also mean that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a commmittee chair or majority/minority leadership postition is likely to have been serving for more congresses. Corporations might see this as a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.  
+Two possibilities for this are: as stated in hypothesis #2 corporations have the money, resources, and audience to help a member that advocates for them get reelected. Or it could also mean that corporations are more likely to try and build relationships with members that are more established. A member who has a position of leadership such as a committee chair or majority/minority leadership position is likely to have been serving for more congresses. Corporations might see this as a relationship that is worth building as those members are more likely to continue being in congress for a long time and have more power to push through policy that could favor the corporation.  
 
 
 *Modeling Assumptions*  
-Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagnostic plots see Appendix B. model 1).
+Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part, looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagnostic plots see Appendix B. model 1).
 
 ***Party and Reelections***  
 
@@ -343,7 +343,7 @@ noI <- d %>%
 ```
 
 
-Party is a significant predictor of reelection. Looking solely at democrats and republicans, if the member is republican the log count of the number of times they are reelected is expected to be 0.12 less than that of a Democrat from the 106th to the 116th congress. This does not necessarily mean that republicans are less likely to be elected or that there was a seat turn over. It is possible that the member is replaced by someone of the same party. This model also does not account for things like retirement. This just shows that generally republicans do not hang on to their seats for as long as their democrat counterparts over a ten-year period. This is visualized in the figure below.
+Party is a significant predictor of reelection. Looking solely at democrats and republicans, if the member is republican the log count of the number of times they are reelected is expected to be 0.12 less than that of a Democrat from the 106th to the 116th congress. This does not necessarily mean that Republicans are less likely to be elected or that there was a seat turn over. It is possible that the member is replaced by someone of the same party. This model also does not account for things like retirement. This just shows that generally, Republicans do not hang on to their seats for as long as their democrat counterparts over a ten-year period. This is visualized in the figure below.
 
 
 ```{r partyfig, fig.width=6 , echo=FALSE  }
@@ -356,7 +356,7 @@ partyModel %>%
 
 
 *Modeling Assumptions*  
-Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagnostic plots see Appendix B. model 2).
+Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part, looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagnostic plots see Appendix B. model 2).
 
 
 ***Party and Constituent/Corporate Interest Letters***  
@@ -385,7 +385,7 @@ partyLetter%>%
 ```
 
 
-As shown in the previous models above Party and corporate correspondence continue to be significant predictors of the number of times a member is reelected over a ten-year period. 
+As shown in the previous models above party and corporate correspondence continue to be significant predictors of the number of times a member is reelected over a ten-year period. 
 
 
 ```{r partyletterFig, fig,width = 7, echo=FALSE }
@@ -397,7 +397,7 @@ partyLetter %>% mplot()+
 
 
 *Modeling Assumptions*  
-Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagnostic plots see Appendix B. model 3).
+Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part, looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagnostic plots see Appendix B. model 3).
 
 
 ### Final Model
@@ -436,7 +436,7 @@ ggplot(noI, aes(x=reelections, fill=party_name)) +
 ```
 
 
-The sand color is the distribution of times republicans were reelected and the purple is democrat. The mean number of reelections is shown by the dashed line, blue for republicans and pink for democrats. The mean for republicans sits right around 6.5 and for democrats it is at 7.5. This plot, however, may not provide the full picture for what is happening. Parties can influence what a member advocates for and to that extent could have a significant impact on who (or what) a member is writing on behalf of. For this reason, it is important to check for interaction between party and correspondence interest.
+The sand color is the distribution of times Republicans were reelected and the purple is Democratic. The mean number of reelections is shown by the dashed line, blue for Republicans, and pink for Democrats. The mean for Republicans sits right around 6.5 and for Democrats it is at 7.5. This plot, however, may not provide the full picture of what is happening. Parties can influence what a member advocates for and to that extent could have a significant impact on who (or what) a member is writing on behalf of. For this reason, it is important to check for interaction between party and correspondence interest.
 
 
 ```{r boxplot, fig.height=6, fig.width=5, echo=FALSE}
@@ -459,7 +459,7 @@ grid.arrange(boxcorp, boxcon, ncol=2)
 ```
 
 
-This plot looks at party and correspondence interest. The means for democrats and republicans is similar for corporate interest and constituent interest correspondence and the distributions themselves look very similar. The biggest difference is between corporate and constituent as there are more constituent interest letters.
+This plot looks at party and correspondence interest. The means for Democrats and Republicans are similar for corporate interest and constituent interest correspondence and the distributions themselves look very similar. The biggest difference is between corporate and constituent as there are more constituent interest letters.
 
 
 ```{r interactionParty, fig.width=7, echo=FALSE}
@@ -509,7 +509,7 @@ ggplot(aes(x = corporate, y = .fitted)) +
 ```
 
 
-Modeled in this plot is the predicted number of reelections for a member based on their party and the number of corporate correspondence they have sent in a congress while holding constituent correspondence at its mean. The lines through each point is the confidence interval for that prediction. There is a clear overlap in the confidence intervals for democrats and republicans at each predicted count. This verifies what is seen in the model that the interaction between corporate correspondence and party is not significant.
+Modeled in this plot is the predicted number of reelections for a member based on their party and the number of corporate correspondence they have sent in a congress while holding constituent correspondence at its mean. The lines through each point are the confidence interval for that prediction. There is a clear overlap in the confidence intervals for democrats and republicans at each predicted count. This verifies what is seen in the model that the interaction between corporate correspondence and party is not significant.
 
 
 
@@ -539,16 +539,16 @@ While there may not be evidence to suggest that constituent correspondence is a 
 
 
 *Modeling Assumptions*  
-Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagnostic plots see Appendix B. model 4).
+Negative Binomial models are not assumed to have normalized residuals. The normality plot looks like it could have some skew but for the most part, looks normal. There are a couple of points that stand out on the leverage plot but none that are beyond cook's distance (for diagnostic plots see Appendix B. model 4).
 
 ### Conclusion  
 
-There is evidence of a relationship between reelection, letter interest, and party. Members of Congress who write letters to federal agencies on behalf of corporations are more likely to be reelected more times over a ten-year period. Breaking this down by party, on average Republican members are reelected less times over a ten-year period than their Democratic counterparts, however this changes when letter interest is factored in. Republican members who write letters on behalf of constituents are more likely to be reelected more times than Democratic members who write the same number of letters on behalf of constituents. Due to the complexities of predicting reelection it is hard to determine true causality in these models. While it is possible that when constituents feel that Republican members are advocating for their needs, constituents are more likely to continue to vote for them, the opposite is also a possibility. In reality it could be that constituents are more likely to reach out for help to Republican members that are more established and have been in congress for a longer amount of time. Whereas constituents with Democratic members may be more likely to reach out to members that have not been in congress very long and end up being replaced fairly quickly. There are also potentiallya large number of confounding variables that could have an effect on reelection, party, and letter interest. This could be an area for future studies.  
+There is evidence of a relationship between reelection, letter interest, and party. Members of Congress who write letters to federal agencies on behalf of corporations are more likely to be reelected more times over a ten-year period. Breaking this down by party, on average Republican members are reelected fewer times over a ten-year period than their Democratic counterparts, however, this changes when letter interest is factored in. Republican members who write letters on behalf of constituents are more likely to be reelected more times than Democratic members who write the same number of letters on behalf of constituents. Due to the complexities of predicting reelection, it is hard to determine true causality in these models. While it is possible that when constituents feel that Republican members are advocating for their needs, constituents are more likely to continue to vote for them, the opposite is also a possibility. In reality, it could be that constituents are more likely to reach out for help to Republican members that are more established and have been in congress for a longer amount of time. Whereas constituents with Democratic members may be more likely to reach out to members that have not been in congress very long and end up being replaced fairly quickly. There are also potentially large number of confounding variables that could have an effect on reelection, party, and letter interest. This could be an area for future studies.  
 
 
 ### Potential for Further Studies  
 
-Reelection is hard to predict and there are potentially a lot of confounding variables that could affect this. Some of those confound variables include demographic information, party platforms, and ideology scores. Further research could be done into how things like race and gender effect how many times a member is reelected. Text analysis could also be done to determine how closely correspondence to federal agencies matches party platforms. This could then be tested to see if members that follow party lines are more likely to be reelected more times or if members are more likely to get reelected when they are further from their party platform. Along with that ideology scores could also be looked at to determine if members with more extreme views are more likely to be elected more times. 
+Reelection is hard to predict and there are potentially a lot of confounding variables that could affect this. Some of those confounding variables include demographic information, party platforms, and ideology scores. Further research could be done into how things like race and gender affect how many times a member is reelected. Text analysis could also be done to determine how closely correspondence to federal agencies matches party platforms. This could then be tested to see if members that follow party lines are more likely to be reelected more times or if members are more likely to get reelected when they are further from their party platform. Along with that ideology scores could also be looked at to determine if members with more extreme views are more likely to be elected more times. 
 
 Other interesting topics for further study would be the difference between letter interests for members who were not reelected compared to those that were. This could help determine what kinds of constituent service is correlated with winning reelection and which kinds are correlated with losing a bid for reelection. For this study further subsetting this data to exclude members who retired or chose not to run for the following congress would help determine more concrete data trends as it would not be counting people who did not run.
 
