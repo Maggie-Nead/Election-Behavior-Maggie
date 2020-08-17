@@ -7,16 +7,15 @@ header-includes:
 output:
   pdf_document: null
   fontsize: 14pt
-  geometry: margin=1in  
+  geometry: margin=1in
   html_document:
     df_print: paged
     code_folding: hide
     toc: yes
-  word_document:
-    toc: yes
-    toc_float: yes
 subtitle: Statistical Analysis of Reelection Rates and Correspondence Priorities
-always_allow_html: yes
+#always_allow_html: yes
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r global.options, include=FALSE}
