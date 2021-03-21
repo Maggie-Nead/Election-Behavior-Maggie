@@ -86,7 +86,7 @@ nrow(all_contacts)
 #merge data
 #Two different year_elected
 data <- left_join(all_contacts, 
-              members %>% dplyr::select(member_reelected, icpsr, bioname, congress, chamber, reelections)
+              members %>% dplyr::select(member_reelected, icpsr, bioname, congress, chamber, reelections, nominate.dim1)
               )#, by = "icpsr")
 
 nrow(data)
